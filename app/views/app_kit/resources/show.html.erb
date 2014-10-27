@@ -1,0 +1,20 @@
+<% content_for :breadcrumb do %>
+    <li><%= link_to @record.class.name.humanize.pluralize, [app_kit, @record.class] %></li>
+    <li class="active"><span class="resource"><%= @record.class.name.humanize %></span><%= @record %></li>
+<% end %>
+<% content_for :breadcrumb_tools do %>
+    <li><%= link_to icon('edit'), edit_polymorphic_path([ app_kit, @record]) %></li>
+    <li><%= link_to icon('trash'), polymorphic_path([ app_kit, @record]) %></li>
+<% end %>
+<div class="panelkit">
+    <div class="pk-title"><%= @record %></div>
+    <div class="pk-body">
+        <div class="keyval">
+            <% displayable_attributes.each do |attribute| %>
+                <div class="kv-row">
+                    <span class="kv-key"><%= attribute.to_s.humanize %></span><span class="kv-value"><%= format_attribute(@record, attribute) %></span>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

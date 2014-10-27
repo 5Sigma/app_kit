@@ -1,0 +1,31 @@
+.input {
+    padding: 5px;
+    font-size: 0.8em;
+    label {
+        color: #999;
+    }
+    input {
+    }
+    span.error {
+        margin-top: -10px;
+        font-weight: bold;
+        color: #cc0000;
+        display: block;
+    }
+}
+.input.field_with_errors {
+    $form-error-bg: #FDE6E6 !default;
+    background: $form-error-bg;
+    border: 1px solid darken($form-error-bg, 10);
+    border-radius: 4px;
+}
+.input.boolean {
+    
+}
+.input.date, .input.datetime {
+    select {
+        width: 100px;
+        display: inline-block;
+        margin-right: 0px;
+    }
+}

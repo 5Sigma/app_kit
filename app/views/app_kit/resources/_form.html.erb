@@ -1,0 +1,22 @@
+<div class="panelkit">
+    <%= simple_form_for [app_kit, @record] do |f| %>
+        <% if @record.new_record? %>
+            <div class="pk-title">New <%= model.name.humanize %></div>
+        <% else %>
+            <div class="pk-title"><%= @record %></div>
+        <% end %>
+        <div class="pk-body pad">
+                <% resource.visible_fields.each do |field| %>
+                    <%= f.input field, :as => get_editor_for_attribute(field) %>
+                <% end %>
+        </div>
+        <div class="buttons">
+            <% if @record.new_record? %>
+                <%= link_to 'Cancel', polymorphic_path([app_kit,@record.class]) %>
+            <% else %>
+                <%= link_to 'Cancel', polymorphic_path([app_kit,@record]) %>
+            <% end %>
+            <%= f.submit %>
+        </div>
+    <% end %>
+</div>

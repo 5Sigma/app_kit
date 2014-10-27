@@ -1,0 +1,9 @@
+<div class="nav">
+    <% AppKit::Navigation::RESOURCES.each do |resource| %>
+        <% if params[:controller] == "app_kit/#{resource.controller_name}" %>
+            <%= link_to resource.model.name.humanize.pluralize, [app_kit, resource.model], class: 'active' %>
+        <% else %>
+            <%= link_to resource.model.name.humanize.pluralize, [app_kit, resource.model] %>
+        <% end %>
+    <% end %>
+</div>

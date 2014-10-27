@@ -1,0 +1,60 @@
+div.ap-breadcrumb {
+    @include clearfix;
+    font-family: $base-font-family;
+    box-shadow: 1px 1px 1px darken($base-background-color, 10);
+    border: 1px solid #eee;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 0.8em; 
+    background-color: #fff;
+    font-weight: bold;
+    ul {
+        float: left;
+        background: rgba(246, 247, 248, 1);
+        display: inline-block;
+        li {
+            display: inline-block;
+            color: #999;
+            padding: 10px 15px;
+            border-left: 1px solid #ccc;
+            a {
+                color: #999;
+            }
+            a:hover {
+                color: #454545;
+            }
+        }
+        li:first-child {
+            border-left: none;
+        }
+        li.active {
+            color: #454545;
+            background: #fff;
+            border-left: 1px solid #ccc;
+            font-weight: bold;
+            span.resource {
+                color: #bbb;
+                display: inline-block;
+                padding-right: 10px;
+                &:after {
+                    content: ':';
+                } 
+            } 
+        }
+    }
+    ul.tools {
+        float:right;
+        li {
+            border-left: 1px solid #ccc;
+            a {
+                color: #666;
+            }
+            a:hover {
+                color: $base-accent-color;
+            }
+        }
+    
+    }
+}

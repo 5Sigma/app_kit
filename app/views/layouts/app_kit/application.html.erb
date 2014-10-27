@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AppKit</title>
+  <%= stylesheet_link_tag    "app_kit/application", media: "all" %>
+  <%= javascript_include_tag "app_kit/application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render 'app_kit/nav' %>
+<%= render 'app_kit/breadcrumb' %>
+<%= yield %>
+
+</body>
+</html>

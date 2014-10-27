@@ -1,0 +1,33 @@
+<% content_for :breadcrumb do %>
+    <li class="active"><%= model.name.humanize.pluralize %></li>
+<% end %>
+<div class="panelkit">
+    <div class="pk-title"><%= resource_name %></div>
+    <div class="pk-body">
+        <table>
+            <thead>
+                <tr>
+                    <% displayable_attributes.each do |attribute_name| %>
+                        <th><%= attribute_name.to_s.humanize %></th>
+                    <% end %>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            <% @records.each do |record| %>
+                    <tr>
+                        <% displayable_attributes.each do |attribute_name| %>
+                            <td><%= format_attribute(record,attribute_name) %></td>
+                        <% end %>
+                        <td><%= link_to 'View', polymorphic_path([app_kit, record]) %></td> 
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    <div class="buttons">
+        <%= link_to "New #{resource_name.singularize}", new_polymorphic_path([app_kit, model])%>
+    </button>
+</div>
+
+        

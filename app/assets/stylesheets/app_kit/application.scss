@@ -1,0 +1,18 @@
+
+@import "bourbon";
+@import "neat";
+@import "base/base";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+$property-header-color: #999 !default;
+$property-value-color: $base-font-color !default;
+@import "tables";
+@import "panels";
+@import "form";
+@import "nav";
+@import "breadcrumb";
+
+body {
+    @include outer-container;
+}
+

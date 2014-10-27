@@ -1,0 +1,13 @@
+<% if content_for :breadcrumb %>
+    <div class="ap-breadcrumb">
+        <ul>
+            <li><%= link_to icon('home'), '' %></li>
+            <%= yield :breadcrumb %>
+        </ul>
+        <% if content_for :breadcrumb_tools %>
+            <ul class="tools">
+                <%= yield :breadcrumb_tools %>
+            </ul>
+        <% end %>
+    </div>
+<% end %>

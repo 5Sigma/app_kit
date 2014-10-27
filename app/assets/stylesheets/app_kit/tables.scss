@@ -1,0 +1,45 @@
+table {
+    border-collapse: collapse;
+    margin: ($base-line-height / 2) 0;
+    table-layout: fixed;
+    width: 100%;
+
+    th {
+      border-bottom: 1px solid darken($base-border-color, 15%);
+      font-weight: bold;
+      padding: ($base-line-height / 2) 0;
+      text-align: left;
+    }
+
+    td {
+      border-bottom: 1px solid $base-border-color;
+      padding: ($base-line-height / 2) 0;
+    }
+
+    td, th {
+      vertical-align: middle;
+      font-family: $base-font-family;
+      color: $base-font-color;
+      font-size: $base-font-size;
+    }
+}
+
+div.keyval {
+    div.kv-row {
+        span.kv-key, span.kv-value {
+            font-family: $base-font-family;
+            font-size: $base-font-size;
+        }
+        span.kv-key {
+            display: inline-block;
+            width: 150px;
+            color: $property-header-color;
+        }
+        span.kv-value {
+            display: inline-block;
+            width: 150px;
+            color: $property-value-color
+        }
+
+    }
+}
