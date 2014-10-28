@@ -1,22 +1,16 @@
 .show-details {
-    @include row(table); 
-    .details {
-        @include span-columns(9);
-    }
-    .actions {
-        @include span-columns(2);
-        padding-left: 40px;
-        h2 {
-            font-size: 0.8em;
-            color: #888;
-            text-transform: uppercase;
+    .pk-body {
+        @include outer-container;
+        .show-details-column {
+            @include span-columns(8);
         }
-        ul {
-            li {
-                a {
-                }
-                a:hover {
-                }
+        .show-actions-column {
+            @include span-columns(4);
+            padding-top: 15px;
+            h2 {
+                font-size: 0.8em;
+                color: lighten($base-font-color, 30);
+                text-transform: uppercase;
             }
         }
     }

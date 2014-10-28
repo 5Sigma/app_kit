@@ -10,7 +10,14 @@
                 <% if field.is_foreign_key? %>
                     <%= f.association field.association.name.to_sym, wrapper_html: {class: 'association'} %>
                 <% else %>
-                    <%= f.input field.name, :as => field.editor %>
+                    <% if field.editor == :readonly %>
+                        <div class="input readonly">
+                            <label><%= field.display_name %></label>
+                            <div class="field_value"><%= @record.send(field.name) %></div>
+                        </div>
+                    <% else %>
+                        <%= f.input field.name, :as => field.editor %>
+                    <% end %>
                 <% end %>
             <% end %>
         </div>

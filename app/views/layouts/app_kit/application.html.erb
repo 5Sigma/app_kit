@@ -7,9 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render 'app_kit/nav' %>
-<%= render 'app_kit/breadcrumb' %>
-<%= yield %>
+    <%= render 'app_kit/nav' %>
+    <div class="page-container">
+        <%= render 'app_kit/breadcrumb' %>
+        <%= yield %>
+    </div>
 
 </body>
 </html>

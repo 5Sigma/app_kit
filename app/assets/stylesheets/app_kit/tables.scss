@@ -1,8 +1,8 @@
 table {
-    border-collapse: collapse;
     margin: ($base-line-height / 2) 0;
     table-layout: fixed;
     width: 100%;
+    border-collapse: collapse;
 
     th {
       border-bottom: 1px solid darken($base-border-color, 15%);
@@ -22,6 +22,15 @@ table {
       color: $base-font-color;
       font-size: $base-font-size;
     }
+    td.actions {
+        text-align:right;
+        a {
+            color: #666;
+        }
+        a:hover {
+            color: #000;
+        }
+    }
 }
 
 div.keyval {
@@ -32,13 +41,18 @@ div.keyval {
         }
         span.kv-key {
             display: inline-block;
-            width: 150px;
+            width: 250px;
             color: $property-header-color;
         }
         span.kv-value {
             display: inline-block;
             width: 150px;
-            color: $property-value-color
+            color: $property-value-color;
+            a:after {
+                padding-left: 5px;
+                font-family: FontAwesome;
+                content: "\f0da";
+            }
         }
 
     }

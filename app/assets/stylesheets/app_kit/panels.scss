@@ -12,8 +12,7 @@
     div.pk-title {
         @include clearfix;
         display: block;
-        background: rgba(246, 247, 248, 1);
-        margin-bottom: 5px;
+        @include linear-gradient(#fefefe, #f0f0f0);
         font-size: 0.8em;
         font-weight: bold;
         text-align: left;
@@ -30,16 +29,18 @@
             @include pad();
         }
         p.no-data {
-            padding: 5px 15px;
+            padding: 25px;
             color: #999;
+            text-align: center;
+            a {
+                color: #333;
+            } 
+            a:hover {
+                color: #000;
+            }
             
         }
         table {
-            margin: 0;
-            thead tr th, tbody tr td {
-                padding: 5px 10px;
-                font-size: 0.9em;
-            }
             thead {
                 tr {
                     th {
@@ -105,24 +106,16 @@
             a {
                 color: #999;
                 display: block;
-                padding: 5px 15px;
-                text-align: center;
             }
             a:hover {
                 color: #333;
+            }
+            a:after {
+                padding-left: 5px;
+                font-family: FontAwesome;
+                content: "\f0da";
             }
         }
     }
 }
 
-.two-column.table {
-    @include outer-container;
-    @include row(table);
-    .panelkit:first-child {
-        @include span-columns(10);
-    }
-    .panelkit:last-child {
-        @include span-columns(2);
-        @include shift(1);
-    }
-}

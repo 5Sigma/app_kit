@@ -4,13 +4,13 @@ module AppKit
 
         attr_writer :editable
         def editable(val=nil)
-            return @editable unless val
+            return @editable if val.nil? 
             @editable = val
         end
         
         attr_writer :formatter
         def formatter(val=nil)
-            return @formatter unless val
+            return @formatter if val.nil?
             @formatter = val
         end
 

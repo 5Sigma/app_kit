@@ -16,6 +16,11 @@ $property-value-color: $base-font-color !default;
 @import "resources";
 
 body {
-    @include outer-container;
+    padding: 0px;
+    margin: 0px;
+    .page-container {
+        @include outer-container;
+        @include pad;
+    }
 }
 

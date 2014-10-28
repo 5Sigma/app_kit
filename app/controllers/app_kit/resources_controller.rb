@@ -1,5 +1,5 @@
 module AppKit
-    class ResourceController < ActionController::Base
+    class ResourcesController < ActionController::Base
         class_attribute :resource
         layout 'app_kit/application'
 
@@ -7,36 +7,37 @@ module AppKit
 
         def index
             @records = model.all
-            render "app_kit/resources/index"
         end
 
         def new 
             @record = model.new
-            render 'app_kit/resources/new'
+            resource.before_actions[:new].call(@record) if resource.before_actions[:new] 
         end
 
         def create
             @record = model.new(record_params)
+            resource.before_actions[:create].call(@record) if resource.before_actions[:create] 
             if @record.save
                 redirect_to polymorphic_path([app_kit, @record]) 
             else
-                render 'app_kit/resources/new'
+                render 'new'
             end
         end
         
         def show
-            render 'app_kit/resources/show'
+            resource.before_actions[:show].call(@record) if resource.before_actions[:show] 
         end
 
         def edit
-            render 'app_kit/resources/edit'
+            resource.before_actions[:edit].call(@record) if resource.before_actions[:edit] 
         end
 
         def update
+            resource.before_actions[:update].call(@record) if resource.before_actions[:update] 
             if @record.update(record_params)
                 redirect_to polymorphic_path([app_kit, @record])
             else
-                render 'app_kit/resources/edit'
+                render 'edit'
             end
         end
 

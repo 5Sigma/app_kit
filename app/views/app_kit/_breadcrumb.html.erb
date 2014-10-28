@@ -5,9 +5,9 @@
             <%= yield :breadcrumb %>
         </ul>
         <% if content_for :breadcrumb_tools %>
-            <ul class="tools">
+            <div class="tools">
                 <%= yield :breadcrumb_tools %>
-            </ul>
+            </div>
         <% end %>
     </div>
 <% end %>

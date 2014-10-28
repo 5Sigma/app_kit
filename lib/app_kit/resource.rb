@@ -1,4 +1,5 @@
 module AppKit
+    RESOURCES=[]
     class Resource
         attr_writer :hidden_fields, :editors, :formatters, :member_actions,
             :editable_fields
@@ -6,11 +7,20 @@ module AppKit
 
         def member_actions; @member_actions ||= {}; end
 
-        attr_reader :fields
+
+        def self.find(model)
+            AppKit::RESOURCES.find{|r| r.model == model} 
+        end
+
+        attr_writer :fields
         def fields; @fields ||= []; end 
+
+        attr_writer :before_actions
+        def before_actions; @before_actions ||= {}; end
 
         def initialize(model)
             @model = model
+            AppKit::RESOURCES << self
         end
 
         def action(name, options={}, &block)
@@ -34,13 +44,17 @@ module AppKit
         end
         
         def has_many_associations 
-            model.reflect_on_all_associations.select{|a| a.macro == :has_many }.map(&:name)
+            model.reflect_on_all_associations.select{|a| a.macro == :has_many }
         end
 
         def show_in_navigation(val)
             if val == true 
                 AppKit::Navigation::RESOURCES << self
             end
+        end
+
+        def before(action, &block)
+            before_actions[action] = block
         end
 
 
