@@ -6,9 +6,13 @@
             <div class="pk-title"><%= @record %></div>
         <% end %>
         <div class="pk-body pad">
-                <% resource.visible_fields.each do |field| %>
+            <% resource.visible_fields.each do |field| %>
+                <% if resource.is_foreign_key?(field) %>
+                    <%= f.association resource.get_association_for_foreign_key(field.to_s).name.to_sym %>
+                <% else %>
                     <%= f.input field, :as => get_editor_for_attribute(field) %>
                 <% end %>
+            <% end %>
         </div>
         <div class="buttons">
             <% if @record.new_record? %>

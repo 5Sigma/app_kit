@@ -1,29 +1,26 @@
 module AppKit
     class Resource
-        attr_writer :hidden_fields, :editors, :formatters, :actions
-        attr_accessor :model, :controller_name 
+        attr_writer :hidden_fields, :editors, :formatters, :member_actions,
+            :editable_fields
+        attr_accessor :model, :controller_name
 
-        def editors; @editors ||= {}; end
-        def formatters; @formatters ||= {}; end
-        def hidden_fields; @hidden_fields ||= [:id, :created_at, :updated_at]; end
-        def actions; @actions ||= []; end
+        def member_actions; @member_actions ||= {}; end
+
+        attr_reader :fields
+        def fields; @fields ||= []; end 
 
         def initialize(model)
             @model = model
         end
 
-        def is_hidden?(attribute_name)
-            hiddne_fields.include? attribute_name
+        def action(name, options={}, &block)
+            member_actions[name] = Action.new(name, self, options, &block)
         end
 
-        def hide(attributes)
-            hidden_fields << attributes.to_s
-        end
-
-        def format_column(column, options)
-            if options[:as] 
-                self.formatters[column.to_sym] = options[:as]
-            end
+        def field(name, options={}, &block) 
+            field = Field.new(model, name, options)
+            field.instance_eval(&block)  if block_given?
+            fields << field 
         end
 
         def show_in_navigation(val)
@@ -32,18 +29,6 @@ module AppKit
             end
         end
 
-        def edit(attribute, options)
-            attribute = attribute.to_sym
-            if options[:with]
-                editors[attribute] = options[:with] 
-            end
-        end
 
-        def visible_fields
-            model.column_names.map(&:to_sym) - hidden_fields
-        end
-        def editable_attributes
-            visible_fields.map{|i| i.to_sym}
-        end
     end
 end

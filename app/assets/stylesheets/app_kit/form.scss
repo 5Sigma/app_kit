@@ -1,10 +1,15 @@
 .input {
     padding: 5px;
     font-size: 0.8em;
+    @include outer-container;
     label {
+        @include span-columns(4);
+        display: block;
         color: #999;
     }
     input {
+        display: block;
+        @include span-columns(8);
     }
     span.error {
         margin-top: -10px;

@@ -9,6 +9,7 @@ module AppKit
             @records = model.all
             render "app_kit/resources/index"
         end
+
         def new 
             @record = model.new
             render 'app_kit/resources/new'
@@ -37,6 +38,19 @@ module AppKit
             else
                 render 'app_kit/resources/edit'
             end
+        end
+
+        def perform_action
+            find_record
+            action_name = params[:action_name].to_sym
+            action = resource.member_actions[action_name]
+            if action.is_method_action?
+                @record.send(action.method_name)
+            end
+            if action.is_block_action?
+                action.block.call(@record)
+            end
+            return redirect_to([app_kit, @record])
         end
 
         private
@@ -68,7 +82,7 @@ module AppKit
             self.class.resource.visible_fields
         end
         helper_method :displayable_attributes
-
+        
 
     end
 end

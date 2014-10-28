@@ -6,15 +6,27 @@
     <li><%= link_to icon('edit'), edit_polymorphic_path([ app_kit, @record]) %></li>
     <li><%= link_to icon('trash'), polymorphic_path([ app_kit, @record]) %></li>
 <% end %>
-<div class="panelkit">
-    <div class="pk-title"><%= @record %></div>
-    <div class="pk-body">
-        <div class="keyval">
-            <% displayable_attributes.each do |attribute| %>
-                <div class="kv-row">
-                    <span class="kv-key"><%= attribute.to_s.humanize %></span><span class="kv-value"><%= format_attribute(@record, attribute) %></span>
-                </div>
-            <% end %>
+<div class="show-details">
+    <div class="panelkit details">
+        <div class="pk-title"><%= @record %></div>
+        <div class="pk-body">
+            <div class="keyval">
+                <% resource.fields.each do |field| %>
+                    <div class="kv-row">
+                        <span class="kv-key"><%= field.display_name %></span><span class="kv-value"><%= format_attribute(@record, field) %></span>
+                    </div>
+                <% end %>
+            </div>
         </div>
+    </div>
+    <div class="actions">
+        <h2>Actions</h2>
+        <ul>
+            <% resource.member_actions.each do |name, action| %>
+                <% if action.enabled_for_record?(@record) %>
+                    <li><%= link_to action.name.to_s.humanize, polymorphic_path([app_kit, action.name, @record])%></li>
+                <% end %>
+            <% end %>
+        </ul>
     </div>
 </div>

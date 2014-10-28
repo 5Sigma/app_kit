@@ -26,20 +26,13 @@ module AppKit
             mail_to val
         end
 
-        def format_attribute(record,attribute)
-            formatter = case detect_attribute_type(record,attribute)
-            when :decimal 
-                :currency
-            when :datetime
-                :date
-            when :boolean
-                :boolean
-            when :phone
-                :phone
-            else :string
-            end
-            formatter = resource.formatters[attribute.to_sym] || formatter
-            send("format_#{formatter}", record, attribute, record.send(attribute))
+        def format_datetime(record,attribute, val)
+            val.strftime('%m/%d/%y %l:%m %p')
+        end
+
+        def format_attribute(record,field)
+            formatter = field.formatter
+            send("format_#{formatter}", record, field.name, record.send(field.name))
         end
 
         def detect_attribute_type(record,attribute)

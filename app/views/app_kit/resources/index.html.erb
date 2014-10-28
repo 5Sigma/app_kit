@@ -7,17 +7,17 @@
         <table>
             <thead>
                 <tr>
-                    <% displayable_attributes.each do |attribute_name| %>
-                        <th><%= attribute_name.to_s.humanize %></th>
+                    <% resource.fields.each do |field| %>
+                        <th><%= field.display_name.to_s.humanize %></th>
                     <% end %>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-            <% @records.each do |record| %>
+                <% @records.each do |record| %>
                     <tr>
-                        <% displayable_attributes.each do |attribute_name| %>
-                            <td><%= format_attribute(record,attribute_name) %></td>
+                        <% resource.fields.each do |field| %>
+                            <td><%= format_attribute(record,field) %></td>
                         <% end %>
                         <td><%= link_to 'View', polymorphic_path([app_kit, record]) %></td> 
                     </tr>

@@ -11,5 +11,7 @@ require "app_kit/dsl"
 module AppKit
     autoload :Resource, 'app_kit/resource'
     autoload :Navigation, 'app_kit/navigation'
+    autoload :Action, 'app_kit/action'
+    autoload :Field, 'app_kit/field'
     LOAD_PATH = [File.expand_path('app/app_kit', Rails.root)]
 end

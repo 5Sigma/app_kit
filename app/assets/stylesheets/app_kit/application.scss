@@ -11,6 +11,7 @@ $property-value-color: $base-font-color !default;
 @import "form";
 @import "nav";
 @import "breadcrumb";
+@import "resources";
 
 body {
     @include outer-container;

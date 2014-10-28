@@ -97,4 +97,32 @@
     }
 }
 
+.panelkit .pk-body {
+    ul.links {
+        margin-top: 0px;
+        li {
+            margin-top: 0px;
+            a {
+                color: #999;
+                display: block;
+                padding: 5px 15px;
+                text-align: center;
+            }
+            a:hover {
+                color: #333;
+            }
+        }
+    }
+}
 
+.two-column.table {
+    @include outer-container;
+    @include row(table);
+    .panelkit:first-child {
+        @include span-columns(10);
+    }
+    .panelkit:last-child {
+        @include span-columns(2);
+        @include shift(1);
+    }
+}
