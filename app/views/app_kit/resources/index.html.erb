@@ -1,5 +1,5 @@
 <% content_for :breadcrumb do %>
-    <li class="active"><%= model.name.humanize.pluralize %></li>
+    <li class="active"><%= resource.model.name.humanize.pluralize %></li>
 <% end %>
 <div class="panelkit">
     <div class="pk-title"><%= resource_name %></div>
@@ -7,7 +7,7 @@
         <table>
             <thead>
                 <tr>
-                    <% resource.fields.each do |field| %>
+                    <% resource.table_fields.each do |field| %>
                         <th><%= field.display_name.to_s.humanize %></th>
                     <% end %>
                     <th></th>
@@ -16,7 +16,7 @@
             <tbody>
                 <% @records.each do |record| %>
                     <tr>
-                        <% resource.fields.each do |field| %>
+                        <% resource.table_fields.each do |field| %>
                             <td><%= format_attribute(record,field) %></td>
                         <% end %>
                         <td><%= link_to 'View', polymorphic_path([app_kit, record]) %></td> 

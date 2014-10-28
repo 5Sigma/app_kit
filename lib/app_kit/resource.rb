@@ -23,6 +23,20 @@ module AppKit
             fields << field 
         end
 
+        def table_fields
+            fields.each.select(&:show_in_table)
+        end
+        def detail_fields
+            fields.each.select(&:show_in_details)
+        end
+        def editable_fields
+            fields.each.select(&:editable)
+        end
+        
+        def has_many_associations 
+            model.reflect_on_all_associations.select{|a| a.macro == :has_many }.map(&:name)
+        end
+
         def show_in_navigation(val)
             if val == true 
                 AppKit::Navigation::RESOURCES << self

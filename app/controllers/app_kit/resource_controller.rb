@@ -56,7 +56,7 @@ module AppKit
         private
     
         def record_params
-            params.require(model.name.underscore.to_sym).permit(resource.editable_attributes)
+            params.require(model.name.underscore.to_sym).permit(resource.editable_fields.map(&:name))
         end
 
         def find_record

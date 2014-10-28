@@ -1,49 +1,71 @@
 module AppKit
     class Field
-        attr_accessor :name, :foreign_key, :association_name, :data_type
+        attr_accessor :name, :foreign_key, :data_type, :association
 
         attr_writer :editable
         def editable(val=nil)
-            @editable ||= true
             return @editable unless val
             @editable = val
         end
         
         attr_writer :formatter
         def formatter(val=nil)
-            @formatter ||= data_type
             return @formatter unless val
             @formatter = val
         end
 
         attr_writer :show_in_table
         def show_in_table(val = nil)
-            @show_in_table ||= true
-            return @show_in_table unless val
+            return @show_in_table if val.nil?
             @show_in_table = val
         end
 
         attr_writer :show_in_details 
-        def show_in_details; @show_in_details ||= true; end
+        def show_in_details(val=nil)
+            return @show_in_details if val.nil?
+            @show_in_details = val
+        end
 
         attr_writer :display_name 
         def display_name; @display_name ||= name.to_s.humanize; end
 
-    
+        def show_in_details (val=nil)
+            return @show_in_details if val.nil?
+            @show_in_details = val
+        end
+
+        attr_writer :editor
+        def editor(val=nil)
+            return @editor if val.nil?
+            @editor = val
+        end
+
+                 
 
         def initialize(model, name, options={})
             @name = name
             @data_type = model.columns_hash[name.to_s].try(:type) || :string
+            @show_in_details = true
+            @show_in_table = true
+            @editable = true
+            @formatter = data_type
+            options.each {|k,v| send(k,v) }
 
-            options.each do |k,v| 
-                send(k,v)
-            end
+            @association = model.reflect_on_all_associations.find{|i| i.foreign_key.to_sym == name}
         end
 
-        def hide
-            show_in_details = false
-            show_in_table = false
-            editable = false
+        def is_foreign_key?
+            association.present?
+        end
+
+        def associated_record
+            assoication.active_record
+        end
+
+        def hide(val = true)
+            show_in_details = !val
+            show_in_table = !val
+            editable = !val
         end
 
         

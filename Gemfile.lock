@@ -4,6 +4,7 @@ PATH
     app_kit (0.0.1)
       bourbon
       font-awesome-sass
+      jquery-rails
       neat
       rails (~> 4.1.6)
       sass-rails
@@ -48,6 +49,9 @@ GEM
       sass (~> 3.2)
     hike (1.2.3)
     i18n (0.6.11)
+    jquery-rails (3.1.2)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
     json (1.8.1)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)

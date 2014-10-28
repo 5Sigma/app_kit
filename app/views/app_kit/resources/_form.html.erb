@@ -6,11 +6,11 @@
             <div class="pk-title"><%= @record %></div>
         <% end %>
         <div class="pk-body pad">
-            <% resource.visible_fields.each do |field| %>
-                <% if resource.is_foreign_key?(field) %>
-                    <%= f.association resource.get_association_for_foreign_key(field.to_s).name.to_sym %>
+            <% resource.editable_fields.each do |field| %>
+                <% if field.is_foreign_key? %>
+                    <%= f.association field.association.name.to_sym, wrapper_html: {class: 'association'} %>
                 <% else %>
-                    <%= f.input field, :as => get_editor_for_attribute(field) %>
+                    <%= f.input field.name, :as => field.editor %>
                 <% end %>
             <% end %>
         </div>

@@ -1,18 +1,14 @@
 .input {
     padding: 5px;
     font-size: 0.8em;
-    @include outer-container;
     label {
-        @include span-columns(4);
         display: block;
         color: #999;
     }
     input {
         display: block;
-        @include span-columns(8);
     }
     span.error {
-        margin-top: -10px;
         font-weight: bold;
         color: #cc0000;
         display: block;
@@ -23,14 +19,19 @@
     background: $form-error-bg;
     border: 1px solid darken($form-error-bg, 10);
     border-radius: 4px;
+    label {
+        color: #cc0000;
+    }
 }
 .input.boolean {
     
 }
 .input.date, .input.datetime {
-    select {
-        width: 100px;
+    select{
         display: inline-block;
-        margin-right: 0px;
+    }
+    .select2-container{
+        margin-right: 5px;
+        margin-left: 5px;
     }
 }

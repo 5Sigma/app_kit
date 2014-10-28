@@ -4,10 +4,11 @@ AppKit.register Customer do
     action :deactivate, :if => :active do |customer|
         customer.update(active: false)
     end
-
+    
     field :name 
     field :email, formatter: :email
     field :phone_number, :formatter => :phone
+    field :active
     field :created_at, show_in_table: false
     field :updated_at, show_in_table: false
 

@@ -31,8 +31,15 @@ module AppKit
         end
 
         def format_attribute(record,field)
+            if field.is_foreign_key? 
+                associated_record = record.send(field.association.name)
+                return link_to associated_record, [app_kit, associated_record] 
+            end
             formatter = field.formatter
-            send("format_#{formatter}", record, field.name, record.send(field.name))
+            format_method = "format_#{formatter}"
+            return send(format_method, record, field.name, record.send(field.name)) if self.respond_to?(format_method)
+            return record.send(field.name)
+
         end
 
         def detect_attribute_type(record,attribute)

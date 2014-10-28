@@ -11,7 +11,7 @@
         <div class="pk-title"><%= @record %></div>
         <div class="pk-body">
             <div class="keyval">
-                <% resource.fields.each do |field| %>
+                <% resource.detail_fields.each do |field| %>
                     <div class="kv-row">
                         <span class="kv-key"><%= field.display_name %></span><span class="kv-value"><%= format_attribute(@record, field) %></span>
                     </div>
@@ -30,3 +30,13 @@
         </ul>
     </div>
 </div>
+<% resource.has_many_associations.each do |assoc_name| %>
+    <div class="panelkit">
+        <div class="pk-title"><%= assoc_name.to_s.humanize.pluralize %> </div>
+        <div class="body">
+            <% @record.send(assoc_name).each do |assoc_record| %>
+                <%= assoc_record %>
+            <% end %>
+        </div>
+    </div>
+<% end %>
