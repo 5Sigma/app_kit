@@ -1,5 +1,5 @@
 <% content_for :breadcrumb do %>
-    <li class="active"><%= resource.model.name.humanize.pluralize %></li>
+    <li class="active"><%= resource.plural_display_name %></li>
 <% end %>
 <div class="panelkit">
     <div class="pk-title"><%= resource_name %></div>

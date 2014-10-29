@@ -26,6 +26,14 @@ module AppKit
             mail_to val
         end
 
+        def format_integer(record, attribute, val)
+            number_to_human(val)
+        end
+        
+        def format_decimal(record,attribute, val)
+            number_to_human(val)
+        end
+
         def format_datetime(record,attribute, val)
             val.strftime('%m/%d/%y %l:%m %p')
         end
