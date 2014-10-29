@@ -3,7 +3,7 @@ module AppKit
         class_attribute :resource
         layout 'app_kit/application'
 
-        before_action :find_record, only: [:show, :edit, :update, :destroy]
+        before_action :find_record, only: [:show, :edit, :update, :destroy, :perform_action]
 
         def index
             @records = model.all
@@ -33,6 +33,7 @@ module AppKit
         end
 
         def update
+            flash[:success] = "Record updated successfully."
             resource.before_actions[:update].call(@record) if resource.before_actions[:update] 
             if @record.update(record_params)
                 redirect_to polymorphic_path([app_kit, @record])
@@ -40,9 +41,15 @@ module AppKit
                 render 'edit'
             end
         end
+        
+        def destroy 
+            if @record.destroy
+                flash[:success] = "Record deleted successfully."
+                redirect_to polymorphic_path([app_kit, model])
+            end
+        end
 
         def perform_action
-            find_record
             action_name = params[:action_name].to_sym
             action = resource.member_actions[action_name]
             if action.is_method_action?

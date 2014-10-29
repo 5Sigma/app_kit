@@ -7,19 +7,19 @@
         <table>
             <thead>
                 <tr>
+                    <th class="checkbox-cell"><%= check_box_tag :all %></th>
                     <% resource.table_fields.each do |field| %>
                         <th><%= field.display_name.to_s.humanize %></th>
                     <% end %>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <% @records.each do |record| %>
-                    <tr>
+                    <tr class="data-row" data-url="<%= polymorphic_path([app_kit,record]) %>">
+                        <td class="checkbox-cell"><%= check_box_tag record.id %></td>
                         <% resource.table_fields.each do |field| %>
                             <td><%= format_attribute(record,field) %></td>
                         <% end %>
-                        <td><%= link_to 'View', polymorphic_path([app_kit, record]) %></td> 
                     </tr>
                 <% end %>
             </tbody>

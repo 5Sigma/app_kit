@@ -1,26 +1,40 @@
 table {
-  border-collapse: collapse;
-  margin: ($base-spacing / 2) 0;
-  table-layout: fixed;
-  width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    font-size: 0.8em;
 }
 
 th {
     margin:0px;
-  border-bottom: 1px solid darken($base-border-color, 15);
-  font-weight: bold;
-  text-align: left;
-  background: #f5f5f5;
-  font-size: 0.8em;
+    border-bottom: 1px solid darken($base-border-color, 15);
+    font-weight: bold;
+    text-align: left;
+    background: #f5f5f5;
+    padding: 5px 15px;
+    &.checkbox-cell {
+        width: 40px;
+    }
+    &.actions-cell {
+        width: 50px;
+    }
 }
 
 td {
-  border-bottom: $base-border;
-  padding: ($base-spacing / 2) 0;
+    border-bottom: $base-border;
+    padding: 5px 15px;
+}
+
+tr.data-row:hover {
+    td {
+        background-color: #eee;
+        cursor: pointer;
+    }
 }
 
 tr,
 td,
 th {
-  vertical-align: middle;
+    vertical-align: middle;
 }
+

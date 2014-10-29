@@ -4,7 +4,7 @@
 <% end %>
 <% content_for :breadcrumb_tools do %>
     <%= link_to icon('edit'), edit_polymorphic_path([ app_kit, @record]) %>
-    <%= link_to icon('trash'), polymorphic_path([ app_kit, @record]) %>
+    <%= link_to icon('trash'), polymorphic_path([ app_kit, @record]), data: {:method => :delete, confirm: "This will permanently delete this record. Are you sure?"} %>
 <% end %>
 <div class="show-details">
     <div class="panelkit">
@@ -62,7 +62,7 @@
             <% else %>
                 <p class="no-data">
                 No <%= assoc.name.to_s.humanize.pluralize %> found for this <%= @record.class.name.humanize %>. <br/>
-                <%= link_to 'Create', new_polymorphic_path([app_kit, assoc.klass]) %> a new <%= assoc.name.to_s.humanize %>.
+                <%= link_to 'Create', new_polymorphic_path([app_kit, assoc.klass]) %> a new <%= assoc.name.to_s.humanize.singularize %>.
                 </p>
             <% end %>
         </div>
