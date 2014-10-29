@@ -2,6 +2,8 @@ module AppKit
     module AttributeHelper
         include FontAwesome::Sass::Rails::ViewHelpers
 
+        # General helpers for dealing with field columns
+
         def format_string(record, attribute, val)
             val
         end

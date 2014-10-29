@@ -10,7 +10,13 @@ module AppKit
     class Resource
         attr_writer :hidden_fields, :editors, :formatters, :member_actions,
             :editable_fields
-        attr_accessor :model, :controller_name
+        
+        # The model class that this resource manages.
+        attr_accessor :model
+        
+        # The name of the controller this resource manages.
+        attr_accessor :controller_name
+
 
         def member_actions; @member_actions ||= {}; end
 
@@ -105,23 +111,37 @@ module AppKit
         def table_fields
             fields.each.select(&:show_in_table)
         end
+
+        # A list of fields that should be displayed in the #SHOW action or detail view
+        # All fields are included in this list by default, unless the 
+        # display_in_detail option is set to false in the field options.
         def detail_fields
             fields.each.select(&:show_in_details)
         end
+
+        # A list of all fields that can be displayed in the edit/create form. All fields
+        # are included in this list unless the editable option in the field configuration is
+        # set to false.
         def editable_fields
             fields.each.select(&:editable)
         end
         
+        # A list of all has_many associations the model has. 
         def has_many_associations 
             model.reflect_on_all_associations.select{|a| a.macro == :has_many }
         end
-
+        
+        # DSL method for displaying resources in the main navigation bar.
+        # @params val [boolean] - If true a menu item for this resrouce will be displayed in the main navigation menu.
         def show_in_navigation(val)
             if val == true 
                 AppKit::Navigation::RESOURCES << self
             end
         end
 
+        # DSL method for defining before_actions on resources.
+        # @param action [Symbol] The action the before filter should execute for. Generally :new, :create, :update, or :destroy
+        # @param block [Block] A block to execute. This block is given the record object.
         def before(action, &block)
             before_actions[action] = block
         end

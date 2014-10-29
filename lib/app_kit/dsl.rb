@@ -1,6 +1,7 @@
 module AppKit
     def self.register(model, &block)
         # create resource controller
+        return unless ActiveRecord::Base.connection.table_exists? model.table_name
         resource_name = model.name.underscore.pluralize
         controller_name = model.name.pluralize
         controller = AppKit.const_set("#{controller_name}Controller", Class.new(ResourcesController))
