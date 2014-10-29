@@ -99,7 +99,84 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>The field class manages individual attributes on a model.</p>
 
+<h2 id="label-Fields+DSL">Fields DSL</h2>
+
+<p>Fields are defined inside resource DSL. A field must have a name given by a
+symbol which relates to  a specific method on the model class and can take
+a variety of options to configure the way it is handled.</p>
+
+<h3 id="label-Field+Options">Field Options</h3>
+<ul><li>
+<p><code>editable</code> - If set to false a fieild will not be visible in the
+create/edit forms and it will not be whitelisted</p>
+</li><li>
+<p><code>formatter</code> - A symbol for the fomatter to use when displaying
+this field.</p>
+<ul><li>
+<p><code>:currency</code> - Formats using ActiveSupports number_to_currency
+method.</p>
+</li><li>
+<p><code>:integer</code> - Formats to humanized numbers.</p>
+</li><li>
+<p><code>:date</code> - Formats to <code>m/d/yy</code> format</p>
+</li><li>
+<p><code>:datetime</code> - Formats to <code>m/d/yy</code> hh:mm:ss</p>
+</li><li>
+<p><code>:string</code> - Returns the value unmodified.</p>
+</li></ul>
+
+<p>The default formatter for a given field is determened by its data type.</p>
+</li><li>
+<p><code>display_in_table</code> - If set to false the field will not appear
+in tabular lists of the records.</p>
+</li><li>
+<p><code>display_in_detail</code> - If set to false the field will not appear
+in the key/value details view in the #show action.</p>
+</li><li>
+<p><code>hide</code> - A convienence method. If set to false the
+<code>display_in_table</code>, <code>display_in_detail</code>, and
+<code>editable</code> options will all be set to false.</p>
+</li><li>
+<p><code>editor</code> - The editor to use when this field is displayed on in
+the edit/create forms. The default editor is selected based on the
+field&#39;s data type.</p>
+</li></ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>DSL inline options</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_field'>field</span> <span class='symbol'>:total_amount</span><span class='comma'>,</span> <span class='symbol'>:formatter</span> <span class='op'>=&gt;</span> <span class='symbol'>:currency</span><span class='comma'>,</span> <span class='label'>editable:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>display_in_table:</span> <span class='kw'>false</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>DSL block options</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_field'>field</span> <span class='symbol'>:total_amount</span> <span class='kw'>do</span> 
+    <span class='id identifier rubyid_formatter'>formatter</span> <span class='symbol'>:currency</span>
+    <span class='id identifier rubyid_editable'>editable</span> <span class='kw'>false</span>
+    <span class='id identifier rubyid_display_in_table'>display_in_table</span> <span class='kw'>false</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+
+</div>
 
 
 
@@ -127,7 +204,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute association.</p>
+<p>The association object for this field if it is a foreign_key.</p>
 </div></span>
   
 </li>
@@ -154,7 +231,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute data_type.</p>
+<p>The data_type of this field.</p>
 </div></span>
   
 </li>
@@ -256,7 +333,8 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute foreign_key.</p>
+<p>A boolean value indicating if this field is the foreign_key of an
+association.</p>
 </div></span>
   
 </li>
@@ -308,7 +386,8 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute name.</p>
+<p>A symbol which relates to the method on the model this field gets it&#39;s
+value from.</p>
 </div></span>
   
 </li>
@@ -334,7 +413,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>DSL option.</p>
+</div></span>
   
 </li>
 
@@ -359,7 +440,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>DSL option.</p>
+</div></span>
   
 </li>
 
@@ -394,7 +477,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves the assoicated record for this field.</p>
+</div></span>
   
 </li>
 
@@ -416,7 +501,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>A conveinence method for completely hiding a field from the UI.</p>
+</div></span>
   
 </li>
 
@@ -441,7 +528,8 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of Field.</p>
+<p>This class is generally created by the Resource DSL and it should not need
+to be  created directly.</p>
 </div></span>
   
 </li>
@@ -464,7 +552,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Determins if the field is the foreign_key of an association.</p>
+</div></span>
   
 </li>
 
@@ -487,13 +577,68 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of Field</p>
+<p>This class is generally created by the Resource DSL and it should not need
+to be  created directly.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>model</span>
+      
+      
+        <span class='type'>(<tt>ActiveRecord::Base</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The model this field belongs to.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The method this field gets it&#39;s value from.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The options which should be set for this field.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -501,20 +646,20 @@
       <pre class="lines">
 
 
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55</pre>
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_model'>model</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
     <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
@@ -551,7 +696,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute association</p>
+<p>The association object for this field if it is a foreign_key</p>
 
 
   </div>
@@ -565,12 +710,12 @@
       <pre class="lines">
 
 
-3
-4
-5</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_association'>association</span>
   <span class='ivar'>@association</span>
@@ -594,7 +739,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute data_type</p>
+<p>The data_type of this field. Retrieved from the column definition.</p>
 
 
   </div>
@@ -608,12 +753,12 @@
       <pre class="lines">
 
 
-3
-4
-5</pre>
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_data_type'>data_type</span>
   <span class='ivar'>@data_type</span>
@@ -640,10 +785,10 @@
       <pre class="lines">
 
 
-30</pre>
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_display_name'>display_name</span><span class='semicolon'>;</span> <span class='ivar'>@display_name</span> <span class='op'>||=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_humanize'>humanize</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -668,13 +813,13 @@
       <pre class="lines">
 
 
-6
-7
-8
-9</pre>
+45
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_editable'>editable</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='ivar'>@editable</span> <span class='kw'>if</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> 
@@ -702,13 +847,13 @@
       <pre class="lines">
 
 
-38
-39
-40
-41</pre>
+81
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 81</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_editor'>editor</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='ivar'>@editor</span> <span class='kw'>if</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -733,7 +878,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute foreign_key</p>
+<p>A boolean value indicating if this field is the foreign_key of an
+association</p>
 
 
   </div>
@@ -747,12 +893,12 @@
       <pre class="lines">
 
 
-3
-4
-5</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_foreign_key'>foreign_key</span>
   <span class='ivar'>@foreign_key</span>
@@ -779,13 +925,13 @@
       <pre class="lines">
 
 
-12
-13
-14
-15</pre>
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_formatter'>formatter</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='ivar'>@formatter</span> <span class='kw'>if</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -810,7 +956,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute name</p>
+<p>A symbol which relates to the method on the model this field gets it&#39;s
+value from.</p>
 
 
   </div>
@@ -824,12 +971,12 @@
       <pre class="lines">
 
 
-3
-4
-5</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -850,19 +997,54 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>DSL option</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>val</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><ul><li>
+<p>If set to false the field will not be displayed in the details panel of the
+#show action.</p>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-24
-25
-26
-27</pre>
+70
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show_in_details'>show_in_details</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='ivar'>@show_in_details</span> <span class='kw'>if</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -884,19 +1066,53 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>DSL option</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>val</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><ul><li>
+<p>If set to false the item will not appear in tables.</p>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-18
-19
-20
-21</pre>
+61
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show_in_table'>show_in_table</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='ivar'>@show_in_table</span> <span class='kw'>if</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -923,18 +1139,47 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieves the assoicated record for this field. If it is a foreign_key.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>An active record object on the otherside of the association.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-61
-62
-63</pre>
+112
+113
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_associated_record'>associated_record</span>
     <span class='id identifier rubyid_assoication'>assoication</span><span class='period'>.</span><span class='id identifier rubyid_active_record'>active_record</span>
@@ -953,20 +1198,54 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>A conveinence method for completely hiding a field from the UI.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>val</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>If true the item will not be displayed in tables, details, and will not be
+editable.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-65
-66
-67
-68
-69</pre>
+118
+119
+120
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hide'>hide</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_show_in_details'>show_in_details</span> <span class='op'>=</span> <span class='op'>!</span><span class='id identifier rubyid_val'>val</span>
@@ -990,6 +1269,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Determins if the field is the foreign_key of an association.</p>
+
 
   </div>
 </div>
@@ -1015,12 +1296,12 @@
       <pre class="lines">
 
 
-57
-58
-59</pre>
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/field.rb', line 106</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_foreign_key?'>is_foreign_key?</span>
     <span class='id identifier rubyid_association'>association</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
@@ -1035,7 +1316,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Oct 29 12:44:26 2014 by
+  Generated on Wed Oct 29 14:35:39 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

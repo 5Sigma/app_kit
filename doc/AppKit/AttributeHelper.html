@@ -340,7 +340,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>General helpers for dealing with field columns.</p>
+</div></span>
   
 </li>
 
@@ -392,12 +394,12 @@
       <pre class="lines">
 
 
-53
-54
-55</pre>
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_detect_attribute_type'>detect_attribute_type</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='comma'>,</span><span class='id identifier rubyid_attribute'>attribute</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_columns_hash'>columns_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_attribute'>attribute</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>||</span> <span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_formatters'>formatters</span><span class='period'>.</span><span class='id identifier rubyid_has_key'>has_key</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute'>attribute</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span>
@@ -422,8 +424,6 @@
       <pre class="lines">
 
 
-41
-42
 43
 44
 45
@@ -432,10 +432,12 @@
 48
 49
 50
-51</pre>
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_attribute'>format_attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='comma'>,</span><span class='id identifier rubyid_field'>field</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_field'>field</span><span class='period'>.</span><span class='id identifier rubyid_is_foreign_key?'>is_foreign_key?</span> 
@@ -468,12 +470,12 @@
       <pre class="lines">
 
 
-17
-18
-19</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_boolean'>format_boolean</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
     <span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span> <span class='op'>?</span> <span class='id identifier rubyid_icon'>icon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>toggle-on</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_icon'>icon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>toggle-off</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -498,12 +500,12 @@
       <pre class="lines">
 
 
-9
-10
-11</pre>
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_currency'>format_currency</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='comma'>,</span><span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_number_to_currency'>number_to_currency</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
@@ -528,12 +530,12 @@
       <pre class="lines">
 
 
-13
-14
-15</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_date'>format_date</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='comma'>,</span><span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%m/%d/%y</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -558,12 +560,12 @@
       <pre class="lines">
 
 
-37
-38
-39</pre>
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_datetime'>format_datetime</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='comma'>,</span><span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%m/%d/%y %l:%m %p</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -588,12 +590,12 @@
       <pre class="lines">
 
 
-33
-34
-35</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_decimal'>format_decimal</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='comma'>,</span><span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_number_to_human'>number_to_human</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
@@ -618,12 +620,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_email'>format_email</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_mail_to'>mail_to</span> <span class='id identifier rubyid_val'>val</span>
@@ -648,12 +650,12 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_integer'>format_integer</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_number_to_human'>number_to_human</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
@@ -678,12 +680,12 @@
       <pre class="lines">
 
 
-21
-22
-23</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_phone'>format_phone</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_number_to_phone'>number_to_phone</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
@@ -702,18 +704,29 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>General helpers for dealing with field columns</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-5
-6
-7</pre>
+7
+8
+9</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 7</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_string'>format_string</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_val'>val</span>
@@ -738,12 +751,12 @@
       <pre class="lines">
 
 
-57
-58
-59</pre>
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/app_kit/attribute_helper.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_editor_for_attribute'>get_editor_for_attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute'>attribute</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_editors'>editors</span><span class='lbracket'>[</span><span class='id identifier rubyid_attribute'>attribute</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span>
@@ -758,7 +771,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Oct 29 12:44:26 2014 by
+  Generated on Wed Oct 29 14:35:39 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

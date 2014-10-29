@@ -7,7 +7,7 @@ lib/app_kit/action.rb 50fa694a4e0aa7d8d3f6454d53695f158faa2aed
 lib/app_kit/version.rb 746959c1135a670c5ffed18d966e4050c0174a1f
 lib/app_kit/resource.rb fdf2df984202775c7a6944ff9c6c6a2bded7d200
 lib/app_kit/navigation.rb 04bd76cc2e54fd4c31caf64a384e45c14a58f2c8
-app/helpers/app_kit/attribute_helper.rb 518e3f0dd3a06cb5dc6ea6629cd92cb2a18dbd6f
+app/helpers/app_kit/attribute_helper.rb 191c5d0de11af402e0bd0b2993a9bb30c81e9f25
 app/helpers/app_kit/dashboard_helper.rb 36b9e9546fd0f89a73f8d68309027b6bcaa3fe37
 app/helpers/app_kit/application_helper.rb b55c3eb1e296f4e23e3a1fde874a0933b5a6d4d7
 app/controllers/app_kit/dashboard_controller.rb 50b011bff9401cab5c8c9c14a265151778832e85

@@ -99,7 +99,34 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>The action class is used to generate custom actions that can be performed
+on a given record. These actions are displayed when viewing a specific
+record. Actions are defiend in the main Resource DSL.</p>
 
+<h2 id="label-DSL+Examples">DSL Examples</h2>
+
+<h3 id="label-Inline+example">Inline example</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_action'>action</span> <span class='symbol'>:deactivate</span><span class='comma'>,</span> <span class='symbol'>:if</span> <span class='op'>=&gt;</span> <span class='symbol'>:active</span>
+</code></pre>
+
+<h3 id="label-Block+example">Block example</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_action'>action</span> <span class='symbol'>:deactivate</span><span class='comma'>,</span> <span class='symbol'>:if</span> <span class='op'>=&gt;</span> <span class='symbol'>:active</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_record'>record</span><span class='op'>|</span>
+    <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='label'>active:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -127,7 +154,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute block.</p>
+<p>The block to be executed when the aciton is performed.</p>
 </div></span>
   
 </li>
@@ -154,7 +181,8 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute if_method.</p>
+<p>A method to call on the model to determin if this action should be
+displayed.</p>
 </div></span>
   
 </li>
@@ -181,7 +209,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute name.</p>
+<p>The name of the aciton.</p>
 </div></span>
   
 </li>
@@ -208,7 +236,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute resource.</p>
+<p>The resoruce this action belongs to.</p>
 </div></span>
   
 </li>
@@ -230,7 +258,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#action_type-instance_method" title="#action_type (instance method)">- (Object) <strong>action_type</strong> </a>
+      <a href="#action_type-instance_method" title="#action_type (instance method)">- (Symbol) <strong>action_type</strong> </a>
     
 
     
@@ -244,7 +272,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Determines if the action should call to a method or execute a block.</p>
+</div></span>
   
 </li>
 
@@ -252,7 +282,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#display_name-instance_method" title="#display_name (instance method)">- (Object) <strong>display_name</strong> </a>
+      <a href="#display_name-instance_method" title="#display_name (instance method)">- (String) <strong>display_name</strong> </a>
     
 
     
@@ -266,7 +296,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The display name to use when displaying a link to the action.</p>
+</div></span>
   
 </li>
 
@@ -288,7 +320,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Determines if the action should be displayed.</p>
+</div></span>
   
 </li>
 
@@ -313,7 +347,8 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of Action.</p>
+<p>This class should be created from the Resource DSL and should not be
+created manually.</p>
 </div></span>
   
 </li>
@@ -336,7 +371,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Convienence method that detmines if the action should call a block.</p>
+</div></span>
   
 </li>
 
@@ -358,7 +395,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Convienence method that detmines if the action should call a model method.</p>
+</div></span>
   
 </li>
 
@@ -366,7 +405,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#method_name-instance_method" title="#method_name (instance method)">- (Object) <strong>method_name</strong> </a>
+      <a href="#method_name-instance_method" title="#method_name (instance method)">- (Symbol) <strong>method_name</strong> </a>
     
 
     
@@ -380,7 +419,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The method name to call on the model.</p>
+</div></span>
   
 </li>
 
@@ -403,13 +444,69 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of Action</p>
+<p>This class should be created from the Resource DSL and should not be
+created manually.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the action and the name of the model method to call (if no
+block is given).</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>resource</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Resource.html" title="AppKit::Resource (class)">AppKit::Resource</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The resource this action belongs to.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A optin hash for the action.A</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -417,15 +514,15 @@
       <pre class="lines">
 
 
-5
-6
-7
-8
-9
-10</pre>
+46
+47
+48
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
     <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
@@ -457,7 +554,12 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute block</p>
+<p>The block to be executed when the aciton is performed.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_action'>action</span> <span class='symbol'>:deactive</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_record'>record</span><span class='op'>|</span>
+   <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='label'>active:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</code></pre>
 
 
   </div>
@@ -471,12 +573,12 @@
       <pre class="lines">
 
 
-3
-4
-5</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_block'>block</span>
   <span class='ivar'>@block</span>
@@ -500,7 +602,11 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute if_method</p>
+<p>A method to call on the model to determin if this action should be
+displayed.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_action'>action</span> <span class='symbol'>:deactivate</span><span class='comma'>,</span> <span class='symbol'>:if</span> <span class='op'>=&gt;</span> <span class='symbol'>:active</span>
+</code></pre>
 
 
   </div>
@@ -514,12 +620,12 @@
       <pre class="lines">
 
 
-3
-4
-5</pre>
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_if_method'>if_method</span>
   <span class='ivar'>@if_method</span>
@@ -543,7 +649,15 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute name</p>
+<p>The name of the aciton. This will be used to display the link title of the
+action itself. It will also be used as a the name of the method on the
+model class to execute if a block is  not given.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_action'>action</span> <span class='symbol'>:consolidate_items</span></code></pre>
+
+<p>This action would create a custom action visible when viewing a resource
+record. This action will also execute a method named
+<code>consolidate_items</code> on the model instance.</p>
 
 
   </div>
@@ -557,12 +671,12 @@
       <pre class="lines">
 
 
-3
-4
-5</pre>
+25
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -586,7 +700,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute resource</p>
+<p>The resoruce this action belongs to.</p>
 
 
   </div>
@@ -600,12 +714,12 @@
       <pre class="lines">
 
 
-3
-4
-5</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resource'>resource</span>
   <span class='ivar'>@resource</span>
@@ -625,24 +739,53 @@
       <div class="method_details first">
   <h3 class="signature first" id="action_type-instance_method">
   
-    - (<tt>Object</tt>) <strong>action_type</strong> 
+    - (<tt>Symbol</tt>) <strong>action_type</strong> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Determines if the action should call to a method or execute a block.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Returns either <code>:block</code> or <code>:method_call</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-21
-22
-23</pre>
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_action_type'>action_type</span>
     <span class='lparen'>(</span><span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span> <span class='op'>?</span> <span class='symbol'>:block</span> <span class='op'>:</span> <span class='symbol'>:method_call</span><span class='rparen'>)</span>
@@ -655,27 +798,56 @@
       <div class="method_details ">
   <h3 class="signature " id="display_name-instance_method">
   
-    - (<tt>Object</tt>) <strong>display_name</strong> 
+    - (<tt>String</tt>) <strong>display_name</strong> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The display name to use when displaying a link to the action.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A humanized version fo the name.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-12
-13
-14</pre>
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_display_name'>display_name</span> 
-    <span class='id identifier rubyid_name'>name</span>
+    <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_humanize'>humanize</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -694,11 +866,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Determines if the action should be displayed</p>
+
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>record</span>
+      
+      
+        <span class='type'>(<tt>Model</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A model instance to test.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -708,6 +902,11 @@
         <span class='type'>(<tt>Boolean</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'>
+<p>Returns true if the if_method returns true or is not defined.</p>
+</div>
       
     </li>
   
@@ -719,13 +918,13 @@
       <pre class="lines">
 
 
-16
-17
-18
-19</pre>
+62
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enabled_for_record?'>enabled_for_record?</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>unless</span> <span class='id identifier rubyid_if_method'>if_method</span>
@@ -748,6 +947,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Convienence method that detmines if the action should call a block.</p>
+
 
   </div>
 </div>
@@ -773,12 +974,12 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_block_action?'>is_block_action?</span>
     <span class='id identifier rubyid_action_type'>action_type</span> <span class='op'>==</span> <span class='symbol'>:block</span>
@@ -800,6 +1001,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Convienence method that detmines if the action should call a model method.</p>
+
 
   </div>
 </div>
@@ -825,12 +1028,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_method_action?'>is_method_action?</span>
     <span class='id identifier rubyid_action_type'>action_type</span> <span class='op'>==</span> <span class='symbol'>:method_call</span>
@@ -843,24 +1046,53 @@
       <div class="method_details ">
   <h3 class="signature " id="method_name-instance_method">
   
-    - (<tt>Object</tt>) <strong>method_name</strong> 
+    - (<tt>Symbol</tt>) <strong>method_name</strong> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The method name to call on the model.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Returns the name of the action.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-33
-34
-35</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/app_kit/action.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_name'>method_name</span>
     <span class='id identifier rubyid_name'>name</span>
@@ -875,7 +1107,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Oct 29 12:44:26 2014 by
+  Generated on Wed Oct 29 14:35:39 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>
