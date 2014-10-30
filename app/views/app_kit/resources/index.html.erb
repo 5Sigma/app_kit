@@ -9,7 +9,7 @@
                 <tr>
                     <th class="checkbox-cell"><%= check_box_tag :all %></th>
                     <% resource.table_fields.each do |field| %>
-                        <th><%= field.display_name.to_s.humanize %></th>
+                        <th><%= sort_link [:app_kit, @q], field.sort_field, field.display_name %></th>
                     <% end %>
                 </tr>
             </thead>
@@ -27,7 +27,24 @@
     </div>
 </div>
 <div class="buttons">
-    <%= link_to "Delete Selected", new_polymorphic_path([app_kit, model]), class: 'button' %>
-    <%= link_to "New #{resource_name.singularize}", new_polymorphic_path([app_kit, model]), class: 'button button-primary' %>
+    <%= link_to "New #{resource_name.singularize}", new_polymorphic_path([app_kit, model]), class: 'primary' %>
 </div>
-        
+<button type="button" class="filter-trigger sliding-menu-button">
+  <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/menu.png" alt="Menu Icon">
+</button>
+
+<nav class="filter-panel">
+<%= search_form_for @q, url: polymorphic_url([app_kit, model]) do |f| %>
+    <% resource.fields.each do |field|  %>
+        <% if field.name != :name %>
+            <%= f.label "#{field.name}_cont" %>
+            <%= f.search_field "#{field.name}_cont".to_sym, placeholder: "Filter by #{field.display_name.downcase}" %>
+        <% end %>
+    <% end %>
+    <div class="buttons">
+        <%= f.submit %>
+    </div>
+<% end %>
+</nav>
+
+<div class="filter-screen"></div> 

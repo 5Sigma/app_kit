@@ -13,6 +13,9 @@ module AppKit
         
         # The model class that this resource manages.
         attr_accessor :model
+    
+        # A string tha represents a icon used in the navigation menu. Taken from FontAwesome and is set using the #icon DSL method.
+        attr_accessor :navigation_icon 
         
         # The name of the controller this resource manages.
         attr_accessor :controller_name
@@ -144,6 +147,15 @@ module AppKit
         # @param block [Block] A block to execute. This block is given the record object.
         def before(action, &block)
             before_actions[action] = block
+        end
+
+        # DSL method for defining an icon to be used in the navigation menu for this resource.
+        # These icons use FontAwesome and should relate to the FontAwesome icon name.
+        # @param icon [String] The FontAwesome icon name to use.
+        # @example 
+        #   icon 'list'
+        def icon(icon_name)
+            self.navigation_icon = icon_name
         end
 
 

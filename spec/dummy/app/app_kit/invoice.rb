@@ -1,5 +1,6 @@
 AppKit.register Invoice do 
     show_in_navigation true
+    icon 'list'
     
     field :invoice_number, editable: false
     field :customer_id

@@ -74,6 +74,9 @@
     @include user-select(none);
     text-align: right;
     padding-right: 15px;
+    .primary {
+        @include button;
+    }
 }
 .panelkit .pk-body {
     ul.links {

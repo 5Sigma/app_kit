@@ -9,12 +9,13 @@
 $property-header-color: #999 !default;
 $property-value-color: $base-font-color !default;
 @import "tables";
+@import "filter_panel";
 @import "panels";
 @import "form";
 @import "nav";
 @import "breadcrumb";
 @import "resources";
-@import "buttons";
+@import "modal";
 body {
     padding: 0px;
     margin: 0px;

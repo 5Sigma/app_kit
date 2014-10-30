@@ -12,7 +12,8 @@ module AppKit
         # GET /resource
         # Lists all records for an invoice.
         def index
-            @records = model.all
+            @q = model.search(params[:q])
+            @records = @q.result
         end
         
         # GET /resource/new

@@ -1,9 +1,15 @@
 <div class="nav">
     <% AppKit::Navigation::RESOURCES.each do |resource| %>
         <% if params[:controller] == "app_kit/#{resource.controller_name}" %>
-            <%= link_to resource.model.name.humanize.pluralize, [app_kit, resource.model], class: 'active' %>
+            <%= link_to [app_kit, resource.model], class: 'active' do %>
+                <%= icon(resource.navigation_icon, nil, class: 'fa-2x fa-fw') %>
+                <%= resource.model.name.humanize.pluralize %>
+            <% end %>
         <% else %>
-            <%= link_to resource.model.name.humanize.pluralize, [app_kit, resource.model] %>
+            <%= link_to [app_kit, resource.model] do %>
+                <%= icon(resource.navigation_icon, nil, class: 'fa-2x fa-fw') %>
+                <%= resource.model.name.humanize.pluralize %>
+            <% end %>
         <% end %>
     <% end %>
 </div>

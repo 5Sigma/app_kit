@@ -18,6 +18,9 @@ th {
     &.actions-cell {
         width: 50px;
     }
+    a {
+        color: $base-font-color;
+    }
 }
 
 td {

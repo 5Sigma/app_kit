@@ -4,6 +4,7 @@ require "font-awesome-sass"
 require "simple_form"
 require "font-awesome-sass";
 require "jquery-rails";
+require "ransack";
 
 require "app_kit/engine"
 require "app_kit/setup"

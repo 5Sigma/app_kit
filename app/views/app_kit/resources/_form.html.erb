@@ -20,14 +20,9 @@
                     <% end %>
                 <% end %>
             <% end %>
-        </div>
-        <div class="buttons">
-            <% if @record.new_record? %>
-                <%= link_to 'Cancel', polymorphic_path([app_kit,@record.class]) %>
-            <% else %>
-                <%= link_to 'Cancel', polymorphic_path([app_kit,@record]) %>
-            <% end %>
-            <%= f.submit %>
+            <div class="buttons">
+                <%= f.submit %>
+            </div>
         </div>
     <% end %>
 </div>

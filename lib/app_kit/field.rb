@@ -38,6 +38,8 @@ module AppKit
         attr_accessor :data_type
         # The association object for this field if it is a foreign_key
         attr_accessor :association
+        # A custom field to sort by.
+        attr_accessor :sort_field
     
         # DSL option for flagging the field as editable or not.
         # @param val [Boolean] if set to false the field will not be displayed in the edit/create form.
@@ -119,6 +121,16 @@ module AppKit
             show_in_details = !val
             show_in_table = !val
             editable = !val
+        end
+        
+        # DSL method for setting the sort name for this field. 
+        # @param val [Symbol] The name of a column to sort this field by.
+        def sort_field(val = nil)
+            if val == nil 
+                @sort_field || name
+            else
+                @sort_field = val
+            end
         end
 
         

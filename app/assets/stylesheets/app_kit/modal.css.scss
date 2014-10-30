@@ -1,0 +1,32 @@
+
+.modal-wrapper {
+    z-index: 500;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    @include radial-gradient(#666,#333);
+    opacity: 0.8;
+}
+
+.modal {
+    scale: 0.5;
+    box-shadow: 0 2px 4px #333;
+    top: 200px;
+    z-index: 1000;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    margin-left: -300px;
+    border-radius: 5px;
+    border: 1px solid #666;
+    .panelkit {
+        margin-top: 0px;
+        margin-bottom:0px;
+        border-radius: 5px;
+        .pk-title {
+            @include border-top-radius(5px);
+        }
+    }
+}
