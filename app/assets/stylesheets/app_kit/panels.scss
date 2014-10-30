@@ -2,7 +2,6 @@
  .panelkit {
     font-family: $base-font-family;
     box-shadow: 1px 1px 1px darken($base-background-color, 10);
-    border: 1px solid #eee;
     border-bottom: 1px solid #ccc;
     @include border-bottom-radius(5px);
     background: #fefefe;
@@ -12,19 +11,24 @@
     div.pk-title {
         @include clearfix;
         display: block;
-        @include linear-gradient(#fefefe, #f0f0f0);
+        @include linear-gradient($base-background-color, darken($base-background-color, 10));
         font-size: 0.8em;
+        text-transform:uppercase;
         font-weight: bold;
         text-align: left;
-        padding: 12px 10px;
-        color: #888;
-        border-bottom: 1px solid #ccc;
+        padding: 10px 10px;
+        margin-right: -1px;
+        color: #444;
+        text-shadow: 0 1px 1px white;
+        border: 1px solid darken($base-background-color,10);
+        border-bottom: 1px solid darken($base-background-color,30);
         i {
             padding-right: 15px;
         }
     }
     div.pk-body {
         background-color: #fff;
+        border-left: 1px solid #eee;
         &.pad {
             @include pad();
         }
@@ -65,39 +69,12 @@
             }
         }
     }
-    .buttons {
-        @include user-select(none);
-        text-align: right;
-        background: #f5f5f5;
-        border-top: 1px solid #eee;
-        li {
-            display: inline-block;
-        }
-        a,button,input {
-            background: none;
-            border-right: 1px solid #ccc;
-            display: inline-block;
-            padding: 10px 15px;
-            font-weight: bold;
-            font-size: 0.8em;
-            color: #454545;
-            line-height: 1.5;
-            &:hover {
-                background: #eee;
-            }
-        }
-        li:last-child a, >a:last-child, >button:last-child, >input:last-child {
-            border-right: none;
-        }
-        li:first-child a, >a:first-child, >button:first-child, >input:first-child {
-            border-left: none;
-            &:hover {
-                border-left: 1px solid #ccc;
-            }
-        }
-    }
 }
-
+.buttons {
+    @include user-select(none);
+    text-align: right;
+    padding-right: 15px;
+}
 .panelkit .pk-body {
     ul.links {
         margin-top: 0px;

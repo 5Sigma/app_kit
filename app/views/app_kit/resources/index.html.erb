@@ -25,9 +25,9 @@
             </tbody>
         </table>
     </div>
-    <div class="buttons">
-        <%= link_to "New #{resource_name.singularize}", new_polymorphic_path([app_kit, model])%>
-    </button>
 </div>
-
+<div class="buttons">
+    <%= link_to "Delete Selected", new_polymorphic_path([app_kit, model]), class: 'button' %>
+    <%= link_to "New #{resource_name.singularize}", new_polymorphic_path([app_kit, model]), class: 'button button-primary' %>
+</div>
         
