@@ -21,6 +21,9 @@
         color: #cc0000;
     }
 }
+input[type=submit] {
+    @include button(simple, $base-accent-color, 14px, 10px 8px);
+}
 .input.boolean {
     
 }

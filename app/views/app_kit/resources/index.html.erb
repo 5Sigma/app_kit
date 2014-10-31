@@ -2,7 +2,10 @@
     <li class="active"><%= resource.plural_display_name %></li>
 <% end %>
 <div class="panelkit">
-    <div class="pk-title"><%= resource_name %></div>
+    <div class="pk-title">
+        <%= resource_name %>
+        <span class="right"><%= link_to icon('filter', 'Filter'), '#', class: 'filter-trigger' %></span>
+    </div>
     <div class="pk-body">
         <table>
             <thead>
@@ -29,16 +32,13 @@
 <div class="buttons">
     <%= link_to "New #{resource_name.singularize}", new_polymorphic_path([app_kit, model]), class: 'primary' %>
 </div>
-<button type="button" class="filter-trigger sliding-menu-button">
-  <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/menu.png" alt="Menu Icon">
-</button>
 
 <nav class="filter-panel">
 <%= search_form_for @q, url: polymorphic_url([app_kit, model]) do |f| %>
     <% resource.fields.each do |field|  %>
         <% if field.name != :name %>
             <%= f.label "#{field.name}_cont" %>
-            <%= f.search_field "#{field.name}_cont".to_sym, placeholder: "Filter by #{field.display_name.downcase}" %>
+            <%= f.search_field "#{field.name}_cont".to_sym  %>
         <% end %>
     <% end %>
     <div class="buttons">
