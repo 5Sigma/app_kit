@@ -11,3 +11,14 @@ $(document).ready(function(){
     e.preventDefault();
   });
 });
+
+
+$(function() {
+    $('.predicate-select select').on('change', function() {
+        var condition = $(this).val();
+        input = $(this).parent().parent().find('.value input');
+        var name = input.attr('id').split('_').splice(-1,1).join('_');
+        input.attr('name', "q[" + name + "_" + condition + "]");
+
+    });
+});

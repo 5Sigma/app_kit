@@ -40,6 +40,26 @@ $sliding-menu-color-hover: #fff;
             color: #fff;
             padding-right: 0px;
         }
+        select {
+            width: 100%;
+        }
+        .range-filter {
+            @include outer-container;
+            input, select {
+                display: block;
+                @include span-columns(6);
+            }
+        }
+        .predicate-filter {
+            @include outer-container;
+            .predicate-select {
+                @include span-columns(4);
+                padding-top: 5px;
+            }
+            .value {
+                @include span-columns(8);
+            }
+        }
     }
 
 

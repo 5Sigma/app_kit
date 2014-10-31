@@ -32,19 +32,5 @@
 <div class="buttons">
     <%= link_to "New #{resource_name.singularize}", new_polymorphic_path([app_kit, model]), class: 'primary' %>
 </div>
-
-<nav class="filter-panel">
-<%= search_form_for @q, url: polymorphic_url([app_kit, model]) do |f| %>
-    <% resource.fields.each do |field|  %>
-        <% if field.name != :name %>
-            <%= f.label "#{field.name}_cont" %>
-            <%= f.search_field "#{field.name}_cont".to_sym  %>
-        <% end %>
-    <% end %>
-    <div class="buttons">
-        <%= f.submit %>
-    </div>
-<% end %>
-</nav>
-
+<%= render partial: 'filter_panel', locals: { filter_resource: resource } %>
 <div class="filter-screen"></div> 

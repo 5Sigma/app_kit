@@ -14,6 +14,7 @@ module AppKit
         def index
             @q = model.search(params[:q])
             @records = @q.result
+            respond_with(@records)
         end
         
         # GET /resource/new
