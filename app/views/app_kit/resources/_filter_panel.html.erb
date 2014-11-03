@@ -1,43 +1,13 @@
-
 <div class="filter-panel">
-    <%= search_form_for @q, url: polymorphic_url([app_kit, filter_resource.model])  do |f| %>
-        <% filter_resource.fields.each do |field|  %>
-        <% if field.name != :name %>
-            <% case field.data_type %>
-            <% when :boolean %>
-                <%= f.label "#{field.name}_eq", field.display_name %>
-                <%= f.select "#{field.name}_eq", options_for_select([['Yes', 1], ['No', 0]]), prompt: 'Any' %>
-            <% when :datetime %>
-                <%= f.label "#{field.name}_gt", "#{field.display_name}" %>
-                <div class="range-filter">
-                    <%= f.search_field "#{field.name}_gt" %>
-                    <%= f.search_field "#{field.name}_lt" %>
-                </div>
-            <% when :string %>
-                <%= f.label "#{field.name}_cont", field.display_name %>
-                <div class="predicate-filter">
-                    <div class="predicate-select"><%= f.predicate_select only: [:cont, :not_cont, :eq, :not_eq] %></div>
-                    <div class="value"><%= f.search_field "#{field.name}_cont".to_sym  %></div>
-                </div>
-            <% when :integer, :decimal %>
-                <%= f.label field.name, field.display_name %>
-                <div class="predicate-filter">
-                    <div class="predicate-select"><%= f.predicate_select only: [:eq, :gt, :lt] %></div>
-                    <div class="value"><%= f.search_field "#{field.name}_cont".to_sym  %></div>
-                </div>
-            <% else %>
-                <%= f.label "#{field.name}_cont", field.display_name %>
-                <div class="predicate-filter">
-                    <%= f.predicate_select %>
-                    <%= f.search_field "#{field.name}".to_sym  %>
-                    <div class="predicate-select"><%= f.predicate_select only: [:eq, :gt, :lt] %></div>
-                    <div class="value"><%= f.search_field "#{field.name}_cont".to_sym  %></div>
-                </div>
-            <% end %>
-        <% end %>
+<%= search_form_for @q, url: ak_path(filter_resource.model)  do |f| %>
+  <% filter_resource.fields.each do |field|  %>
+    <% if field.name != :name %>
+      <%= f.label field.name, field.display_name %>
+      <%= filter_field f,field, @q  %>
     <% end %>
-    <div class="buttons">
-        <%= f.submit %>
-    </div>
+  <% end %>
+  <div class="buttons">
+    <%= f.submit 'Filter Records'%>
+  </div>
 <% end %>
 </div>

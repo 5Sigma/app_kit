@@ -4,6 +4,7 @@ $sliding-menu-color: #fff;
 $sliding-menu-border: 1px solid $sliding-menu-border-color;
 $sliding-menu-background-hover: $base-accent-color;
 $sliding-menu-color-hover: #fff;
+$sliding-menu-width: 320px;
 
 .sliding-menu-button {
   @include button(simple, $base-background-color);
@@ -21,47 +22,46 @@ $sliding-menu-color-hover: #fff;
 
 .filter-panel{
   @include position(fixed, 0px auto 0px 0px);
-  @include size(420px 100%);
-  @include transform(translateX(-420px));
+  @include size($sliding-menu-width 100%);
+  @include transform(translateX($sliding-menu-width * -1));
   @include transition(all .25s linear);
   @include pad;
   background: $sliding-menu-background;
   z-index: 999999;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-    form {
-        font-size: 0.8em;
-        label {
-            color: #eee;
-        }
-        input[type=search] {
-            background: darken($sliding-menu-background,10);
-            border: 1px solid lighten($sliding-menu-background,10);
-            color: #fff;
-            padding-right: 0px;
-        }
-        select {
-            width: 100%;
-        }
-        .range-filter {
-            @include outer-container;
-            input, select {
-                display: block;
-                @include span-columns(6);
-            }
-        }
-        .predicate-filter {
-            @include outer-container;
-            .predicate-select {
-                @include span-columns(4);
-                padding-top: 5px;
-            }
-            .value {
-                @include span-columns(8);
-            }
-        }
+  form {
+    font-size: 0.8em;
+    label {
+      color: #eee;
     }
-
+    input[type=search] {
+      background: darken($sliding-menu-background,10);
+      border: 1px solid lighten($sliding-menu-background,10);
+      color: #fff;
+      padding-right: 0px;
+    }
+    select {
+      width: 100%;
+    }
+    .range-filter {
+      @include outer-container;
+      input, select {
+        display: block;
+        @include span-columns(6);
+      }
+    }
+    .predicate-filter {
+      @include outer-container;
+      .predicate-select {
+        @include span-columns(4);
+        padding-top: 5px;
+      }
+      .value {
+        @include span-columns(8);
+      }
+    }
+  }
 
   &.is-visible {
     @include transform(translateX(0));
