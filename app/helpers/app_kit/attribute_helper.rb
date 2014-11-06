@@ -9,7 +9,7 @@ module AppKit
         end
 
         def format_currency(record,attribute,val)
-            number_to_currency(val)
+          number_to_currency(val) || "$0.00"
         end
 
         def format_date(record,attribute,val)
@@ -19,7 +19,7 @@ module AppKit
         def format_boolean(record, attribute, val)
             (val ? icon('toggle-on') : icon('toggle-off'))
         end
-        
+
         def format_phone(record, attribute, val)
             number_to_phone(val)
         end
@@ -31,7 +31,7 @@ module AppKit
         def format_integer(record, attribute, val)
             number_to_human(val)
         end
-        
+
         def format_decimal(record,attribute, val)
             number_to_human(val)
         end
@@ -41,9 +41,9 @@ module AppKit
         end
 
         def format_attribute(record,field)
-            if field.is_foreign_key? 
+            if field.is_foreign_key?
                 associated_record = record.send(field.association.name)
-                return link_to associated_record, [app_kit, associated_record] 
+                return link_to associated_record, [app_kit, associated_record]
             end
             formatter = field.formatter
             format_method = "format_#{formatter}"
