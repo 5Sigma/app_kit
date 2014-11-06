@@ -1,11 +1,13 @@
 <div class="nav-header">
   <div class="application-name">AppKit Test Application</div>
   <div class="user">
-    Logged in as <%= link_to 'Joe', '' %> (<%= link_to 'logout', app_kit.destroy_user_session_path, :method => :delete %>)
+    Logged in as <%= link_to 'Joe', ak_path(current_user) %> (<%= link_to 'logout', app_kit.destroy_user_session_path, :method => :delete %>)
   </div>
 </div>
 <div class="nav">
-    <% AppKit::Navigation::RESOURCES.each do |resource| %>
+    <div class="nav-left">
+      <% AppKit::Navigation::RESOURCES.each do |resource| %>
+        <% next unless resource.navigation_position == :left %>
         <% if params[:controller] == "app_kit/#{resource.controller_name}" %>
             <%= link_to [app_kit, resource.model], class: 'active' do %>
                 <%= icon(resource.navigation_icon, nil, class: 'fa-2x fa-fw') %>
@@ -17,5 +19,22 @@
                 <%= resource.plural_display_name %>
             <% end %>
         <% end %>
-    <% end %>
+      <% end %>
+    </div>
+    <div class="nav-right">
+      <% AppKit::Navigation::RESOURCES.each do |resource| %>
+        <% next unless resource.navigation_position == :right %>
+        <% if params[:controller] == "app_kit/#{resource.controller_name}" %>
+            <%= link_to [app_kit, resource.model], class: 'active' do %>
+                <%= icon(resource.navigation_icon, nil, class: 'fa-2x fa-fw') %>
+                <%= resource.plural_display_name %>
+            <% end %>
+        <% else %>
+            <%= link_to [app_kit, resource.model] do %>
+                <%= icon(resource.navigation_icon, nil, class: 'fa-2x fa-fw') %>
+                <%= resource.plural_display_name %>
+            <% end %>
+        <% end %>
+      <% end %>
+    </div>
 </div>

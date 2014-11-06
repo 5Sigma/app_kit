@@ -17,6 +17,7 @@ module AppKit
     # A string tha represents a icon used in the navigation menu.
     # Taken from FontAwesome and is set using the #icon DSL method.
     attr_accessor :navigation_icon
+    attr_accessor :navigation_position
 
     # The name of the controller this resource manages.
     attr_accessor :controller_name
@@ -55,6 +56,7 @@ module AppKit
     def initialize(model)
       @model = model
       AppKit::RESOURCES << self
+      @navigation_position = :left
     end
 
     # A DSL method for defining a new action.
@@ -152,10 +154,12 @@ module AppKit
     # DSL method for defining an icon to be used in the navigation menu for this resource.
     # These icons use FontAwesome and should relate to the FontAwesome icon name.
     # @param icon [String] The FontAwesome icon name to use.
+    # @param position [:left,:right] the position for the navigation item
     # @example
     #   icon 'list'
-    def icon(icon_name)
+    def icon(icon_name, position = :left)
       self.navigation_icon = icon_name
+      self.navigation_position = position
     end
 
   end

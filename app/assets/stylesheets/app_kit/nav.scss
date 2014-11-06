@@ -29,6 +29,13 @@
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   @include clearfix;
   font-size: 0.8em;
+  .nav-left {
+    float: left;
+  }
+  .nav-right {
+    float :right;
+  }
+
   a {
     @include transition(all, 0.5s);
     float: left;
@@ -64,6 +71,9 @@
       border-color: #fff;
       background-color: #555;
     }
+  }
+  a:first-child {
+    border-left: none;
   }
   a:last-child {
     border-right: none;

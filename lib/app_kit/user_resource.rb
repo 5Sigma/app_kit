@@ -1,6 +1,6 @@
 AppKit.register AppKit::User do
   show_in_navigation true
-  icon 'users'
+  icon 'users', :right
 
   field :email
   field :password, show_in_details: false, show_in_table: false
