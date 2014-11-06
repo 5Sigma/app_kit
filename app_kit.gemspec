@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
   s.add_dependency "neat"
   s.add_dependency "simple_form"
   s.add_dependency "coffee-rails"
-  s.add_dependency "ransack"
   s.add_dependency "kaminari"
   s.add_dependency "jquery-ui-rails"
 
