@@ -136,9 +136,11 @@ module AppKit
 
     # DSL method for displaying resources in the main navigation bar.
     # @params val [boolean] - If true a menu item for this resrouce will be displayed in the main navigation menu.
-    def show_in_navigation(val=true)
+    # @param position [:left,:right] the position for the navigation item
+    def show_in_navigation(val=true, position = :left)
       if val == true
         AppKit::Navigation::RESOURCES << self
+        self.navigation_position = position
       else
         AppKit::Navigation::RESOURCES.delete self
       end
@@ -154,12 +156,10 @@ module AppKit
     # DSL method for defining an icon to be used in the navigation menu for this resource.
     # These icons use FontAwesome and should relate to the FontAwesome icon name.
     # @param icon [String] The FontAwesome icon name to use.
-    # @param position [:left,:right] the position for the navigation item
     # @example
     #   icon 'list'
-    def icon(icon_name, position = :left)
+    def icon(icon_name)
       self.navigation_icon = icon_name
-      self.navigation_position = position
     end
 
   end
