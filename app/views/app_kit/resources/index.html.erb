@@ -31,6 +31,11 @@
         <% end %>
       </tbody>
     </table>
+    <div class="data-download">
+      <%= link_to 'XML', ak_path(model, :format => :xml) %>
+      <%= link_to 'JSON', ak_path(model, :format => :json) %>
+      <%= link_to 'CSV', ak_path(model, :format => :csv) %>
+    </div>
   </div>
 </div>
 <%= paginate @records, params: { :route_set => :app_kit } %>

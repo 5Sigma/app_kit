@@ -40,6 +40,7 @@
   </div>
 </div>
 <% resource.has_many_associations.each do |assoc| %>
+  item: <%= assoc.klass %>
   <div class="panelkit">
   <div class="pk-title"><%= assoc.name.to_s.humanize.pluralize %> </div>
   <div class="pk-body">

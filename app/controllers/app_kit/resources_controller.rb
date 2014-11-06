@@ -8,7 +8,7 @@ module AppKit
     layout 'app_kit/application'
 
     # respond to html and json for api calls.
-    respond_to :html, :json
+    respond_to :html, :json, :xml, :csv
 
     # Setup a instance variable for the model
     before_action :find_record, only: [:show, :edit, :update,
