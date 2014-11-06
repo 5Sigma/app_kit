@@ -1,7 +1,7 @@
 <div class="nav-header">
   <div class="application-name">AppKit Test Application</div>
   <div class="user">
-    Logged in as <%= link_to 'Joe', '' %> (<%= link_to 'logout', '' %>)
+    Logged in as <%= link_to 'Joe', '' %> (<%= link_to 'logout', app_kit.destroy_user_session_path, :method => :delete %>)
   </div>
 </div>
 <div class="nav">
@@ -9,12 +9,12 @@
         <% if params[:controller] == "app_kit/#{resource.controller_name}" %>
             <%= link_to [app_kit, resource.model], class: 'active' do %>
                 <%= icon(resource.navigation_icon, nil, class: 'fa-2x fa-fw') %>
-                <%= resource.model.name.humanize.pluralize %>
+                <%= resource.plural_display_name %>
             <% end %>
         <% else %>
             <%= link_to [app_kit, resource.model] do %>
                 <%= icon(resource.navigation_icon, nil, class: 'fa-2x fa-fw') %>
-                <%= resource.model.name.humanize.pluralize %>
+                <%= resource.plural_display_name %>
             <% end %>
         <% end %>
     <% end %>

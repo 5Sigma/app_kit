@@ -1,0 +1,13 @@
+$flash-red: #FBE3E4;
+$flash-yellow: #FFF6BF;
+$flash-green: #E6EFC2;
+
+.flash-error {
+  @include flash($flash-red);
+  @include span-columns(4);
+  @include shift(4);
+  margin-top: 30px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: 1px solid darken($flash-red,30);
+}

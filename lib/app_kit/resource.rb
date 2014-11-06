@@ -22,6 +22,7 @@ module AppKit
     attr_accessor :controller_name
 
 
+
     def member_actions; @member_actions ||= {}; end
 
     # Looks up a resoruce by its model class.
@@ -92,7 +93,7 @@ module AppKit
     #   resource.display_name #=> "User option"
     #
     def display_name
-      model.name.underscore.humanize
+      model.name.demodulize.underscore.humanize
     end
 
     # Helper method for displaying the resource name.

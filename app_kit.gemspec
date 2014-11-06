@@ -7,11 +7,11 @@ require "app_kit/version"
 Gem::Specification.new do |s|
   s.name        = "app_kit"
   s.version     = AppKit::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of AppKit."
-  s.description = "TODO: Description of AppKit."
+  s.authors     = ["Joe Bellus"]
+  s.email       = ["joe@5sigma.io"]
+  s.homepage    = "http://appkit.5sigma.io"
+  s.summary     = "A data driven application framework."
+  s.description = "AppKit provides a full framework for rapidly creating data driven application through a simple DSL."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency "coffee-rails"
   s.add_dependency "kaminari"
   s.add_dependency "jquery-ui-rails"
+  s.add_dependency "devise"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "faker"

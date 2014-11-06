@@ -1,7 +1,7 @@
 <% if content_for :breadcrumb %>
     <div class="ap-breadcrumb">
         <ul>
-            <li><%= link_to icon('home'), '' %></li>
+            <li><%= link_to icon('home'), app_kit.dashboard_path  %></li>
             <%= yield :breadcrumb %>
         </ul>
         <% if content_for :breadcrumb_tools %>

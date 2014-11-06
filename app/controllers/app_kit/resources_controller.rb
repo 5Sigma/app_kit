@@ -13,6 +13,7 @@ module AppKit
     # Setup a instance variable for the model
     before_action :find_record, only: [:show, :edit, :update,
                                        :destroy, :perform_action]
+    before_action :authenticate_user!
 
     # GET /resource
     # Lists all records for an invoice.
@@ -102,7 +103,7 @@ module AppKit
 
     # Whitelisting for all fields marked as +editable+ in the dsl.
     def record_params
-      params.require(model.name.underscore.to_sym).permit(resource.editable_fields.map(&:name))
+      params.require(model.class_name.underscore.to_sym).permit(resource.editable_fields.map(&:name))
     end
 
     # A generic before_action method to set an instance variable for the
@@ -120,9 +121,22 @@ module AppKit
     # A helper method to retrieve the model classs based on the current controller's
     # class name.
     def model
-      @model ||= Object.const_get(controller_name.classify)
+      @model ||= resource.model
     end
     helper_method :model
+
+    def has_namespace?
+      model.name.deconstantize != ""
+    end
+
+    def form_url(record)
+      if has_namespace?
+        [app_kit, model.name.deconstantize.underscore.to_sym, record]
+      else
+        [app_kit, record]
+      end
+    end
+    helper_method :form_url
 
     # A helper method to display the current resource name.
     def resource_name

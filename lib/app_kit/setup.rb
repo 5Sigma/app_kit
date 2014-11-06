@@ -15,6 +15,7 @@ module AppKit
       # load DSL files
       files = LOAD_PATH.flatten.compact.uniq.map{ |path| Dir["#{path}/**/*.rb"] }.flatten
       files.each { |file| load file }
+      require "app_kit/user_resource"
     end
   end
 end

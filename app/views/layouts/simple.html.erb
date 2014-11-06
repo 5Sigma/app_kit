@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>AppKit</title>
+    <%= stylesheet_link_tag    "app_kit/application", media: "all" %>
+    <%= javascript_include_tag "app_kit/application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="simple">
+  <% if flash[:notice] %>
+    <div class="flash-notice"><%= flash[:notice] %></div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="flash-error"><%= flash[:alert] %></div>
+  <% end %>
+    <div class="simple-panel">
+      <%= yield %>
+    </div>
+</body>
+</html>

@@ -20,6 +20,8 @@ $property-value-color: $base-font-color !default;
 @import "modal";
 @import "pagination";
 @import "datepicker";
+@import "simple";
+@import "flash";
 body {
     padding: 0px;
     margin: 0px;
