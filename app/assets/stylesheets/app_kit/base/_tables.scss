@@ -28,6 +28,11 @@ td {
     padding: 5px 15px;
 }
 
+tr.data-row {
+  td {
+    overflow: ellipsis;
+  }
+}
 tr.data-row:hover {
     td {
         background-color: #eee;

@@ -3,7 +3,7 @@
 <% end %>
 <div class="panelkit">
   <div class="pk-title">
-    <%= resource_name %>
+    <%= icon("list", resource_name) %>
     <span class="right">
       <%= link_to icon('filter', 'Filter'), '#', class: 'filter-trigger' %>
     </span>
@@ -15,9 +15,7 @@
           <th class="checkbox-cell"><%= check_box_tag :all %></th>
           <% resource.table_fields.each do |field| %>
             <th>
-              <%= sort_link [:app_kit, @q],
-                field.sort_field,
-                field.display_name %>
+              <%= field.display_name %>
             </th>
           <% end %>
         </tr>
@@ -35,6 +33,7 @@
     </table>
   </div>
 </div>
+<%= paginate @records, params: { :route_set => :app_kit } %>
 <div class="buttons">
   <%= link_to "New #{resource_name.singularize}",
     new_polymorphic_path([app_kit, model]),
@@ -42,4 +41,3 @@
 </div>
 <%= render partial: 'filter_panel', locals: { filter_resource: resource } %>
 <div class="filter-screen"></div>
-<%= debug params %>

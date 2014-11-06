@@ -24,9 +24,6 @@
 input[type=submit] {
     @include button(simple, $base-accent-color, 14px, 10px 8px);
 }
-.input.boolean {
-    
-}
 .input.date, .input.datetime {
     select{
         display: inline-block;

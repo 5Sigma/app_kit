@@ -1,11 +1,13 @@
-
 @import "bourbon";
 @import "neat";
 @import "base/base";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "jquery-ui";
 @import "select2";
 @import "select2-bootstrap";
+@import "dropkick";
+@import "dropkick.dark";
 $property-header-color: #999 !default;
 $property-value-color: $base-font-color !default;
 @import "tables";
@@ -16,6 +18,8 @@ $property-value-color: $base-font-color !default;
 @import "breadcrumb";
 @import "resources";
 @import "modal";
+@import "pagination";
+@import "datepicker";
 body {
     padding: 0px;
     margin: 0px;

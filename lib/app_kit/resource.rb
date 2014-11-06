@@ -133,9 +133,11 @@ module AppKit
 
     # DSL method for displaying resources in the main navigation bar.
     # @params val [boolean] - If true a menu item for this resrouce will be displayed in the main navigation menu.
-    def show_in_navigation(val)
+    def show_in_navigation(val=true)
       if val == true
         AppKit::Navigation::RESOURCES << self
+      else
+        AppKit::Navigation::RESOURCES.delete self
       end
     end
 
@@ -143,7 +145,7 @@ module AppKit
     # @param action [Symbol] The action the before filter should execute for. Generally :new, :create, :update, or :destroy
     # @param block [Block] A block to execute. This block is given the record object.
     def before(action, &block)
-      before_actions[action] = block
+      before_actions[action] = block if block_given?
     end
 
     # DSL method for defining an icon to be used in the navigation menu for this resource.

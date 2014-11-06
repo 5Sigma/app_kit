@@ -9,9 +9,10 @@ module AppKit
         controller.resource.instance_exec(&block)  if block_given?
         controller.resource.controller_name = controller.controller_name
         controller.prepend_view_path("app/views/#{model.name.underscore.pluralize}")
+        # draw controller routes
         AppKit::Engine.routes.prepend do
             resources resource_name.to_sym do
-                member do 
+                member do
                     controller.resource.member_actions.each do |name,action|
                         get action.name, action: 'perform_action', action_name: 'deactivate'
                     end

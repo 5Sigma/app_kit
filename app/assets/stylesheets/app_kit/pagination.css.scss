@@ -1,0 +1,14 @@
+nav.pagination {
+  span.current, span a {
+      padding: 4px 8px;
+      border: 1px solid $base-border-color;
+      margin-left: 3px;
+      color: #454545; 
+      background-color: darken($base-background-color, 3);
+      display: inline-block;
+  }
+  span.current {
+    background: #333;
+    color: white;
+  }
+}

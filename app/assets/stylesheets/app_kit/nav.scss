@@ -1,46 +1,71 @@
-.nav {
-    @include linear-gradient(#414141,#323232);
-    border-bottom: 2px solid #444; 
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-    @include clearfix;
-    font-size: 0.8em;
+.nav-header {
+  background: #161616;
+  color: white;
+  height: 55px;
+  .application-name {
+    font-weight: lighter;
+    font-size: 1.5em;
+    line-height: 55px;
+    float: left;
+    padding-left: 20px;
+  }
+  .user {
+    float: right;
+    line-height: 55px;
+    padding-right: 20px;
     a {
-        @include transition(all, 0.5s);
-        float: left;
-        border-left: 1px solid #292929;
-        border-right: 1px solid #4A4A4A;
-        font-weight: bold;
-        display: inline-block;
-        color: #888;
-        padding: 10px 15px;
-        text-align: center;
-        i {
-            display: block;
-            margin: auto auto;
-            width: 44px;
-            height: 44px;
-            text-align: center;
-            border-radius: 22px;
-            line-height: 44px;
-            background: #333;
-        }
-        span {
-            display: block;
-        }
+      font-weight: bold;
+      color: white;
     }
     a:hover {
-        color: #ccc; 
-        i {
-        }
+      text-decoration: underline;
     }
-    a.active {
-        color: #fff; 
-        i {
-            border-color: #fff;
-            background-color: #555;
-        }
+  }
+}
+.nav {
+  @include linear-gradient(#414141,#323232);
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #444; 
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  @include clearfix;
+  font-size: 0.8em;
+  a {
+    @include transition(all, 0.5s);
+    float: left;
+    border-left: 1px solid #292929;
+    border-right: 1px solid #4A4A4A;
+    font-weight: bold;
+    display: inline-block;
+    color: #888;
+    padding: 10px 15px;
+    text-align: center;
+    i {
+      display: block;
+      margin: auto auto;
+      width: 44px;
+      height: 44px;
+      text-align: center;
+      border-radius: 22px;
+      line-height: 44px;
+      background: #333;
     }
-    a:last-child {
-        border-right: none;
+    span {
+      display: block;
     }
+  }
+  a:hover {
+    color: #ccc; 
+    i {
+    }
+  }
+  a.active {
+    color: #fff; 
+    i {
+      border-color: #fff;
+      background-color: #555;
+    }
+  }
+  a:last-child {
+    border-right: none;
+  }
 }

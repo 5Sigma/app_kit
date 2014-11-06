@@ -1,3 +1,9 @@
+<div class="nav-header">
+  <div class="application-name">AppKit Test Application</div>
+  <div class="user">
+    Logged in as <%= link_to 'Joe', '' %> (<%= link_to 'logout', '' %>)
+  </div>
+</div>
 <div class="nav">
     <% AppKit::Navigation::RESOURCES.each do |resource| %>
         <% if params[:controller] == "app_kit/#{resource.controller_name}" %>

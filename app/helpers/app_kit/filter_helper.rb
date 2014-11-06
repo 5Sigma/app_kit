@@ -10,9 +10,9 @@ module AppKit::FilterHelper
       search_form.select "#{field.name}_eq",
         boolean_select_options, prompt: 'Any'
     when :datetime
-      content_tag :div, class: 'range-filter' do
-        concat search_form.search_field("#{field.name}_lt")
-        concat search_form.search_field("#{field.name}_gt")
+      content_tag :div, class: 'range-filter date-range' do
+        concat search_form.search_field("#{field.name}_gteq", placeholder: 'from')
+        concat search_form.search_field("#{field.name}_lt", placeholder: 'to')
       end
     when :string
       predicate = get_field_predicate(search_instance,field,'cont')
@@ -60,11 +60,9 @@ module AppKit::FilterHelper
   # @param field [AppKit::Field] field to check.
   # @param default [String] the default value if none is found.
   def get_field_predicate(search_instance,field,default)
-    condition = search_instance.conditions.find {|i|
-      i.attributes.first.name = field.name.to_s
-    }
-    return default unless condition
-    return condition.predicate.name
+    search_instance.conditions.find {|i|
+      i.attributes.first.name == field.name.to_s
+    }.try(:predicate).try(:name) || default
   end
 
   # Condition select options for string based fields.
@@ -94,8 +92,18 @@ module AppKit::FilterHelper
   # @param predicate [String] the predicate condition.
   def filter_search_field(search_form, field, predicate)
     search_method = "#{field.name}_#{predicate}"
-    search_form.search_field search_method.to_sym,
+    css = ""
+    css = "datepicker" if field.data_type == :date || field.data_type == :datetime
+    search_form.search_field  search_method.to_sym,
       "data-field" => field.name.to_s
+  end
+
+  def filter_form_for(resource, *args, &block)
+    options = args.extract_options!
+    options.update(:builder => AppKit::FilterFormBuilder)
+    options.update(:url => ak_path(resource.model))
+    options.update(:method => 'get')
+    form_for(resource.model.name, options, &block)
   end
 
 end

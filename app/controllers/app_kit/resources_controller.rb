@@ -17,8 +17,7 @@ module AppKit
     # GET /resource
     # Lists all records for an invoice.
     def index
-      @q = model.search(params[:q])
-      @records = @q.result.page(1)
+      @records = process_filters(model, params["#{model.name.underscore}_filter"].try(:first)).page(get_page)
       respond_with(@records)
     end
 
@@ -101,12 +100,12 @@ module AppKit
 
     private
 
-    # Whitelisting for all fields marked as +editable+ in the dsl. 
+    # Whitelisting for all fields marked as +editable+ in the dsl.
     def record_params
       params.require(model.name.underscore.to_sym).permit(resource.editable_fields.map(&:name))
     end
 
-    # A generic before_action method to set an instance variable for the 
+    # A generic before_action method to set an instance variable for the
     # current record.
     def find_record
       @record ||= model.find_by_id(params[:id])
@@ -120,7 +119,7 @@ module AppKit
 
     # A helper method to retrieve the model classs based on the current controller's
     # class name.
-    def model 
+    def model
       @model ||= Object.const_get(controller_name.classify)
     end
     helper_method :model
@@ -131,7 +130,31 @@ module AppKit
     end
     helper_method :resource_name
 
+    def get_page
+      params[:page] || 1
+    end
 
+    def process_filters(records,filter_params)
+      return records unless filter_params
+      filter_params.each do |field,filter_param|
+        if filter_param.has_key?("value")
+          value = filter_param["value"]
+          next unless value.present?
+          condition = filter_param["condition"] || 'eq'
+          case condition
+          when "eq"
+            value = true if value == 'true'
+            value = [false, nil] if value == 'false'
+            records = records.where(field.to_sym => value)
+          when "cont"
+            records = records.where("#{field} LIKE '%#{value}%'")
+          when "ncont"
+            records = records.where("#{field} NOT LIKE '%#{value}%'")
+          end
+        end
+      end
+      return records
+    end
 
   end
 end

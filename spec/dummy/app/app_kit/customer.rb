@@ -1,12 +1,11 @@
 AppKit.register Customer do
     show_in_navigation true
-    icon 'user'  
-    
+    icon 'user'
 
     action :deactivate, :if => :active do |customer|
         customer.update(active: false)
     end
-    
+
     field :name, editable: false, :sort_field => :first_name
     field :first_name, show_in_table: false, show_in_details: false
     field :last_name, show_in_table: false, show_in_details: false

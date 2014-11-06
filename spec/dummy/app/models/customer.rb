@@ -1,9 +1,9 @@
 class Customer < ActiveRecord::Base
-    validates :first_name, presence: true 
+    validates :first_name, presence: true
     validates :last_name, presence: true
     validates :phone_number, numericality: true
 
-    has_many :invoices
+    has_many :invoices, :dependent => :destroy
 
     def name
         "#{first_name} #{last_name}"

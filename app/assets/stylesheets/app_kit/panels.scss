@@ -1,108 +1,119 @@
 
- .panelkit {
-    font-family: $base-font-family;
-    box-shadow: 1px 1px 1px darken($base-background-color, 10);
-    border-bottom: 1px solid #ccc;
-    @include border-bottom-radius(5px);
-    background: #fefefe;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: $base-font-size;
-    div.pk-title {
-        @include clearfix;
-        display: block;
-        @include linear-gradient($base-background-color, darken($base-background-color, 10));
+.panelkit {
+  font-family: $base-font-family;
+  box-shadow: 1px 1px 1px darken($base-background-color, 10);
+  border-bottom: 1px solid #ccc;
+  @include border-bottom-radius(5px);
+  background: #fefefe;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: $base-font-size;
+  div.pk-title {
+    @include clearfix;
+    display: block;
+    @include linear-gradient($base-background-color, darken($base-background-color, 10));
+    font-size: 0.8em;
+    text-transform:uppercase;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px 10px;
+    margin-right: -1px;
+    color: #444;
+    text-shadow: 0 1px 1px white;
+    border: 1px solid darken($base-background-color,10);
+    border-bottom: 1px solid darken($base-background-color,30);
+    >i {
+      padding-right: 15px;
+      color: #ccc;
+    }
+    span.right {
+      float: right;
+      a {
+        color: #888;
         font-size: 0.8em;
-        text-transform:uppercase;
-        font-weight: bold;
-        text-align: left;
-        padding: 10px 10px;
-        margin-right: -1px;
-        color: #444;
-        text-shadow: 0 1px 1px white;
-        border: 1px solid darken($base-background-color,10);
-        border-bottom: 1px solid darken($base-background-color,30);
-        >i {
-            padding-right: 15px;
-        }
-        span.right {
-            float: right;
-            a {
-                color: #888;
-                font-size: 0.8em;
-            }
-        }
+        margin-right: 20px;
+      }
+      a:hover {
+        color: $base-accent-color;
+      }
+      a.danger {
+        color: #886769;
+      }
+      a.danger:hover {
+        color: #cc0000;
+      }
     }
-    div.pk-body {
-        background-color: #fff;
-        border-left: 1px solid #eee;
-        &.pad {
-            @include pad();
-        }
-        p.no-data {
-            padding: 25px;
-            color: #999;
-            text-align: center;
-            a {
-                color: #333;
-            } 
-            a:hover {
-                color: #000;
-            }
-            
-        }
-        table {
-            thead {
-                tr {
-                    th {
-
-                    }
-                }
-            }
-            tbody {
-                tr {
-                    td {
-
-                    }
-                }
-            }
-        }
-        div.keyval {
-            @include pad;
-            div.kv-row {
-                span.kv-key, span.kv-value {
-                    font-size: 0.9em;
-                }
-            }
-        }
+  }
+  div.pk-body {
+    background-color: #fff;
+    border-left: 1px solid #eee;
+    &.pad {
+      @include pad();
     }
+    p.no-data {
+      padding: 25px;
+      color: #999;
+      text-align: center;
+      a {
+        color: #333;
+      }
+      a:hover {
+        color: #000;
+      }
+
+    }
+    table {
+      thead {
+        tr {
+          th {
+
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+
+          }
+        }
+      }
+    }
+    div.keyval {
+      @include pad;
+      div.kv-row {
+        span.kv-key, span.kv-value {
+          font-size: 0.9em;
+        }
+      }
+    }
+  }
 }
 .buttons {
-    @include user-select(none);
-    text-align: right;
-    padding-right: 15px;
-    .primary {
-        @include button(simple, $base-accent-color, 14px, 5px 8px);
-    }
+  @include user-select(none);
+  text-align: right;
+  padding-right: 15px;
+  .primary {
+    @include button(simple, $base-accent-color, 14px, 5px 8px);
+  }
 }
 .panelkit .pk-body {
-    ul.links {
-        margin-top: 0px;
-        li {
-            margin-top: 0px;
-            a {
-                color: #999;
-                display: block;
-            }
-            a:hover {
-                color: #333;
-            }
-            a:after {
-                padding-left: 5px;
-                font-family: FontAwesome;
-                content: "\f0da";
-            }
-        }
+  ul.links {
+    margin-top: 0px;
+    li {
+      margin-top: 0px;
+      a {
+        color: #999;
+        display: block;
+      }
+      a:hover {
+        color: #333;
+      }
+      a:after {
+        padding-left: 5px;
+        font-family: FontAwesome;
+        content: "\f0da";
+      }
     }
+  }
 }
 

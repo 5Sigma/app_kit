@@ -1,0 +1,59 @@
+.dk-select {
+  width: 100%;
+  @include user-select(none);
+  .dk-selected {
+    border: 1px solid #555;
+    color: white;
+    font-size: 1em;
+    padding: 6.4px;
+    background-image: linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -o-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -moz-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -webkit-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -ms-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-color: #313439;
+    &:after {
+      border-left: none;
+    }
+    &:before {
+      border: none;
+      font-family: "FontAwesome";
+      content: "\f0dc";
+      color: #c0c4c7;
+      text-shadow: 0 0 .05em #222427;
+      line-height: 0.5;
+    }
+  }
+  .dk-select-options {
+    background-image: linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -o-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -moz-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -webkit-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -ms-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-color: #313439;
+    border: 1px solid #555;
+    border-top: none;
+    color: #999;
+    .dk-option{
+      padding: 6.4px;
+    }
+  }
+  .dk-option-selected {
+    color: #fff;
+    background-image: linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -o-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -moz-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -webkit-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -ms-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-color: #313439;
+  }
+  .dk-option-highlight {
+    color: #fff;
+    background-image: linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -o-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -moz-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -webkit-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-image: -ms-linear-gradient(bottom, #313439 100%, #2B2E32 0%);
+    background-color: #313439;
+  }
+}

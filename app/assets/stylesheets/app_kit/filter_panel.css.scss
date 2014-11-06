@@ -30,10 +30,20 @@ $sliding-menu-width: 320px;
   z-index: 999999;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  h2 {
+    font-weight: lighter;
+    margin-bottom: 40px;
+    text-align: center;
+    color: white;
+  }
   form {
     font-size: 0.8em;
     label {
-      color: #eee;
+      margin-top: 10px;
+      color: #999;
+      &.highlight {
+        color: #fff;
+      }
     }
     input[type=search] {
       background: darken($sliding-menu-background,10);
@@ -54,12 +64,14 @@ $sliding-menu-width: 320px;
     .predicate-filter {
       @include outer-container;
       .predicate-select {
-        @include span-columns(4);
-        padding-top: 5px;
+        @include span-columns(6);
       }
       .value {
-        @include span-columns(8);
+        @include span-columns(6);
       }
+    }
+    input[type=submit] {
+      @include button(simple, #222, 14px, 10px 8px);
     }
   }
 
