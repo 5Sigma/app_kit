@@ -1,4 +1,4 @@
-AppKit.register InvoiceItem do
+AppKit.register <%= class_name %> do
   # Create a menu item for this resource in the main navigation bar.
   show_in_navigation true
 
@@ -11,22 +11,15 @@ AppKit.register InvoiceItem do
   #   show_in_details (true|false) to show the field when the record is viewed
   #   formatter (string) - a formatter that should be used to display the field
   #   hide - hides the field from both tables and detail views
-
-  field :id
-  field :invoice_id
-  field :description
-  field :unit_price
-  field :quantity
-  field :extended_price
-  field :created_at
-  field :updated_at
+<% @resource_class.column_names.each do |column_name| %>
+  field :<%= column_name %><% end %>
 
   # Action definitions - Custom actions can be defined for the resource. This
   # will generate a link on the details page for the record to perform the 
   # given action
   #
-  # action :some_action do |invoice_item|
-  #   invoice_item.my_action(param: true)
+  # action :some_action do |<%= class_name.underscore %>|
+  #   <%= class_name.underscore %>.my_action(param: true)
   # end
 end
 
