@@ -1,0 +1,8 @@
+Description:
+   Install AppKit supporting initialization files
+
+Example:
+    rails generate app_kit:install
+
+    This will create:
+      config/initializers/app_kit.rb

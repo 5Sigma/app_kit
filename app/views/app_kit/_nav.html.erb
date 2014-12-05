@@ -1,7 +1,7 @@
 <div class="nav-header">
   <div class="application-name">AppKit Test Application</div>
   <div class="user">
-    Logged in as <%= link_to 'Joe', ak_path(current_user) %> (<%= link_to 'logout', app_kit.destroy_user_session_path, :method => :delete %>)
+    <%= link_to 'profile', ak_path(current_user) %> | <%= link_to 'logout', app_kit.destroy_user_session_path, :method => :delete %>
   </div>
 </div>
 <div class="nav">
