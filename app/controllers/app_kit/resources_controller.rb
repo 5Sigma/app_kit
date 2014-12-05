@@ -103,7 +103,7 @@ module AppKit
 
     # Whitelisting for all fields marked as +editable+ in the dsl.
     def record_params
-      params.require(model.class_name.underscore.to_sym).permit(resource.editable_fields.map(&:name))
+      params.require(model.model_name.name.underscore.to_sym).permit(resource.editable_fields.map(&:name))
     end
 
     # A generic before_action method to set an instance variable for the
