@@ -14,4 +14,8 @@ class AppKit::InstallGenerator < Rails::Generators::Base
     migration_template "create_users.rb", "db/migrate/create_app_kit_users.rb"
   end
 
+  def install_simple_form
+    generate "simple_form:install"
+  end
+
 end
