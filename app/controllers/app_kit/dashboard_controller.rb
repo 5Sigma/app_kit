@@ -5,5 +5,11 @@ module AppKit
     before_action :authenticate_user!
     def show
     end
+
+    private
+    def dashboard
+      AppKit::APP.dashboard
+    end
+    helper_method :dashboard
   end
 end

@@ -1,0 +1,30 @@
+<% content_for :breadcrumb do %>
+  <li class="active">Dashboard</li>
+<% end %>
+<div class="panelkit">
+  <div class="pk-title"><%= icon("list", item.title) %></div>
+  <div class="pk-body">
+    <table>
+      <thead>
+        <tr>
+          <th class="checkbox-cell"><%= check_box_tag :all %></th>
+          <% item.resource.table_fields.each do |field| %>
+            <th>
+              <%= field.display_name %>
+            </th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% item.get_records.each do |record| %>
+          <tr class="data-row" data-url="<%= ak_path(record) %>">
+            <td class="checkbox-cell"><%= check_box_tag record.id %></td>
+            <% item.resource.table_fields.each do |field| %>
+              <td><%= format_attribute(record,field) %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

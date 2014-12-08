@@ -29,11 +29,11 @@ module AppKit
         end
 
         def format_integer(record, attribute, val)
-            number_to_human(val)
+            number_with_delimiter val
         end
 
         def format_decimal(record,attribute, val)
-            number_to_human(val)
+            number_with_delimiter val
         end
 
         def format_datetime(record,attribute, val)

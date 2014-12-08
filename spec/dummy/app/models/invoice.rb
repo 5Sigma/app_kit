@@ -3,6 +3,8 @@ class Invoice < ActiveRecord::Base
     has_many :invoice_items, :dependent => :destroy
     validates :customer, presence: true
 
+    scope :open, ->{ where(paid: false, published: true) }
+
     def to_s
         "Invoice ##{invoice_number}"
     end

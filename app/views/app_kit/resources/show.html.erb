@@ -1,8 +1,8 @@
 <% content_for :breadcrumb do %>
   <li><%= link_to resource.plural_display_name, [app_kit, @record.class] %></li>
-<li class="active">
-<span class="resource"><%= resource.display_name %></span><%= @record %>
-  </li>
+  <li class="active">
+    <span class="resource"><%= resource.display_name %></span><%= @record %>
+</li>
 <% end %>
 <% content_for :breadcrumb_tools do %>
 <% end %>
@@ -20,73 +20,72 @@
             confirm: "This will permanently delete this record. Are you sure?"
           },
           class: 'danger' %>
-      </span>
-      </div>
-      <div class="pk-body">
-        <div class="show-details-column">
-          <div class="keyval">
-            <% resource.detail_fields.each do |field| %>
-              <div class="kv-row">
+    </span>
+    </div>
+    <div class="pk-body">
+      <div class="show-details-column">
+        <div class="keyval">
+          <% resource.detail_fields.each do |field| %>
+            <div class="kv-row">
               <span class="kv-key"><%= field.display_name %></span>
               <span class="kv-value"><%= format_attribute(@record, field) %></span>
             </div>
           <% end %>
-          </div>
         </div>
-        <% if resource.member_actions.select{|name, a| a.enabled_for_record?(@record)}.count > 0 %>
-          <div class="show-actions-column">
-          <h2>Actions</h2>
+      </div>
+      <% if resource.member_actions.select{|name, a| a.enabled_for_record?(@record)}.count > 0 %>
+        <div class="show-actions-column">
           <ul class="links">
             <% resource.member_actions.each do |name, action| %>
               <% if action.enabled_for_record?(@record) %>
-              <li><%= link_to action.name.to_s.humanize, polymorphic_path([app_kit, action.name, @record])%></li>
-          <% end %>
-          <% end %>
+                <li><%= link_to action.name.to_s.humanize, polymorphic_path([app_kit, action.name, @record])%></li>
+              <% end %>
+            <% end %>
           </ul>
         </div>
       <% end %>
-      </div>
     </div>
   </div>
-  <% resource.has_many_associations.each do |assoc| %>
-    <div class="panelkit">
+</div>
+<% resource.has_many_associations.each do |assoc| %>
+  <div class="panelkit">
     <div class="pk-title"><%= assoc.name.to_s.humanize.pluralize %> </div>
     <div class="pk-body">
       <% if @record.send(assoc.name).count > 0 %>
         <table>
-        <thead>
-          <tr>
-            <% AppKit::Resource.find(assoc.klass).table_fields.each do |field| %>
-              <% if field.is_foreign_key? %>
-              <% if field.association.active_record == assoc.klass %>
-              <% next %>
-          <% end %>
-          <% end %>
-            <th><%= field.display_name %></th>
-          <% end %>
-          </tr>
-        </thead>
-        <tbody>
-        <% @record.send(assoc.name).each do |assoc_record| %>
-          <tr class="data-row" data-url="<%= ak_path(assoc_record) %>">
-          <% AppKit::Resource.find(assoc.klass).table_fields.each do |field| %>
-            <% if field.is_foreign_key? %>
-            <% if field.association.active_record == assoc.klass %>
-            <% next %>
-        <% end %>
-        <% end %>
-          <td><%= format_attribute(assoc_record, field) %></td>
-        <% end %>
-        </tr>
-      <% end %>
-        </tbody>
-      </table>
-    <% else %>
+          <thead>
+            <tr>
+              <% AppKit::Resource.find(assoc.klass).table_fields.each do |field| %>
+                <% if field.is_foreign_key? %>
+                  <% if field.association.active_record == assoc.klass %>
+                    <% next %>
+                  <% end %>
+                <% end %>
+                <th><%= field.display_name %></th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @record.send(assoc.name).each do |assoc_record| %>
+              <tr class="data-row" data-url="<%= ak_path(assoc_record) %>">
+                <% AppKit::Resource.find(assoc.klass).table_fields.each do |field| %>
+                  <% if field.is_foreign_key? %>
+                    <% if field.association.active_record == assoc.klass %>
+                      <% next %>
+                    <% end %>
+                  <% end %>
+                  <td><%= format_attribute(assoc_record, field) %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
         <p class="no-data">
-      No <%= assoc.name.to_s.humanize.pluralize %> found for this <%= @record.class.name.humanize %>. <br/>
-      <%= link_to 'Create', new_polymorphic_path([app_kit, assoc.klass]) %> a new <%= assoc.name.to_s.humanize.singularize %>.
-      </p>
-    <% end %>
+        No <%= assoc.name.to_s.humanize.pluralize %> found for this <%= @record.class.name.humanize %>. <br/>
+        <%= link_to 'Create', new_polymorphic_path([app_kit, assoc.klass]) %> a new <%= assoc.name.to_s.humanize.singularize %>.
+        </p>
+      <% end %>
     </div>
   </div>
 <% end %>

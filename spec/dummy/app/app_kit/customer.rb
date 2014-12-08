@@ -5,6 +5,9 @@ AppKit.register Customer do
     action :deactivate, :if => :active do |customer|
         customer.update(active: false)
     end
+    action :deactivate2, :if => :active do |customer|
+        customer.update(active: false)
+    end
 
     field :name, editable: false, :sort_field => :first_name
     field :first_name, show_in_table: false, show_in_details: false

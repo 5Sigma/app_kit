@@ -6,6 +6,7 @@
         }
         .show-actions-column {
             @include span-columns(4);
+            @include pad;
             padding-top: 15px;
             h2 {
                 font-size: 0.8em;

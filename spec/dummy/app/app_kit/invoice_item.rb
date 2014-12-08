@@ -15,9 +15,9 @@ AppKit.register InvoiceItem do
   field :id
   field :invoice_id
   field :description
-  field :unit_price
+  field :unit_price, :formatter => :currency
   field :quantity
-  field :extended_price
+  field :extended_price, :formatter => :currency
   field :created_at
   field :updated_at
 
