@@ -1,3 +1,4 @@
+require 'redcarpet'
 ###
 # Compass
 ###
@@ -6,7 +7,10 @@
 # compass_config do |config|
 #   config.output_style = :compact
 # end
-
+set :markdown_engine, :redcarpet
+set :markdown, :fenced_code_blocks => true, :smartypants => true
+set :haml, { ugly: true }
+activate :directory_indexes
 ###
 # Page options, layouts, aliases and proxies
 ###
@@ -36,9 +40,9 @@
 # activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
-# configure :development do
-#   activate :livereload
-# end
+ configure :development do
+   activate :livereload
+ end
 
 # Methods defined in the helpers block are available in templates
 # helpers do

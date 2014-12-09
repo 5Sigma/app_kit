@@ -1,0 +1,123 @@
+@import "bourbon/bourbon";
+@import "base/base";
+@import "neat/neat";
+
+body {
+  background: darken($base-background-color, 3);
+  margin: 0px;
+  padding: 0px;
+}
+div.page-container {
+  @include outer-container;
+  @include row(table);
+  div.side-nav {
+    @include span-columns(3);
+    @include border-left-radius(8px);
+    min-width: 200px;
+    background: #454545;
+    padding: 10px;
+    margin-top: 2px;
+    >ul {
+      >li {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        border-top: 1px solid #555;
+        border-bottom: 1px solid #333;
+        >a {
+          font-size: 1em;
+        }
+        &:first-child {
+          border-top: none;
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+    ul {
+      li {
+        padding-left: 10px;
+        a {
+          color: #eee;
+          font-weight: 500;
+          font-size: 0.8em;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  div.article-container {
+    @include span-columns(9);
+    @include pad;
+    @include border-right-radius(8px);
+    border: 1px solid $base-border-color;
+    background-color: $base-background-color;
+    h3 {
+      border-bottom: 1px solid $base-border-color;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+    }
+    code {
+      border: 1px solid $base-border-color;
+      padding: 1px 2px;
+    }
+    pre {
+      background: #454545;
+      color: #fefefe;
+      padding: 10px 15px;
+      line-height: 1;
+      border-radius:4px;
+      code {
+        border: none;
+        padding:0px;
+      }
+    }
+  }
+}
+header {
+  background: white;
+  padding: 20px;
+  padding-bottom: 5px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ccc;
+  .title {
+    font-size: 2em;
+    line-height: 1;
+  }
+  small {
+    color: lighten($base-font-color, 30);
+  }
+}
+nav {
+  @include outer-container;
+  padding: 10px 20px;
+  margin-top: 20px;
+  a {
+    margin-right: 12px;
+    line-height: 1;
+    color: lighten($base-font-color, 40);
+  }
+  a:hover {
+    color: #151515;
+    border-bottom: 2px solid #151515;
+  }
+  a.active {
+    color: #151515;
+    border-bottom: 2px solid #151515;
+  }
+}
+footer {
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 0.8em;
+  color: #999;
+  a {
+    color: #161616;
+  }
+}
+
+

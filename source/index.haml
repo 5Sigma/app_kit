@@ -1,0 +1,22 @@
+= partial 'nav'
+.page-container
+  .side-nav
+    %ul
+      %li
+        %a{:name => 'Overview'} Overview
+        %ul
+          %li
+            %a{:href => '#what-for'} What is it for
+          %li
+            %a{:href => '#what-not'} What isn't it for
+      %li
+        %a{href: '#getting-started'} Getting started
+        %ul
+          %li
+            %a{:href => '#adding-appkit'} Adding appkit to a project
+          %li
+            %a{href: '#create-user'} Create a user
+  .article-container
+    = partial 'articles/getting_started'
+    = partial 'articles/adding-appkit'
+    = partial 'articles/creating-a-user'
