@@ -1,6 +1,8 @@
 @import "bourbon/bourbon";
 @import "base/base";
 @import "neat/neat";
+@import 'font-awesome';
+@import "vim";
 
 body {
   background: darken($base-background-color, 3);
@@ -10,6 +12,8 @@ body {
 div.page-container {
   @include outer-container;
   @include row(table);
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px darken($base-background-color, 10);
   div.side-nav {
     @include span-columns(3);
     @include border-left-radius(8px);
@@ -55,9 +59,17 @@ div.page-container {
     border: 1px solid $base-border-color;
     background-color: $base-background-color;
     h3 {
+      margin-top: 80px;
       border-bottom: 1px solid $base-border-color;
       margin-bottom: 10px;
       padding-bottom: 10px;
+    }
+    h3:first-child {
+      margin-top: 0px;
+    }
+    h4 {
+      margin-bottom: 10px;
+      margin-top: 15px
     }
     code {
       border: 1px solid $base-border-color;
@@ -72,6 +84,27 @@ div.page-container {
       code {
         border: none;
         padding:0px;
+      }
+    }
+    ul {
+      margin-top: 20px;
+      padding-left: 20px;
+      margin-bottom: 40px;
+      li {
+        margin-bottom: 10px;
+        border-left: 4px solid #888;
+        padding-left: 10px;
+        ul {
+          margin-top: 10px;
+          margin-bottom: 0px;
+          li {
+            line-height: 1.2;
+            border-left: none;
+            list-style-type: disc;
+            list-style-position: inside;
+            margin-bottom: 0px;
+          }
+        }
       }
     }
   }
@@ -105,13 +138,15 @@ nav {
   }
   a.active {
     color: #151515;
-    border-bottom: 2px solid #151515;
   }
 }
+
 footer {
   border-top: 1px solid #eee;
   margin-top: 20px;
+  padding-top: 20px;
   margin-bottom: 20px;
+  padding-bottom: 20px;
   text-align: center;
   font-size: 0.8em;
   color: #999;

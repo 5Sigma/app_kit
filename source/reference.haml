@@ -1,0 +1,29 @@
+.page-container
+  .side-nav
+    %ul
+      %li
+        %a{:name => 'configuration'} Configuration
+        %ul
+          %li
+            %a{:href => '#dashboard'} Dashboard
+            %ul
+              %li
+                %a{href: '#tables'} Tables
+      %li
+        %a{href: '#resources'} Resources
+        %ul
+          %li
+            %a{:href => '#generating-resources'} Generating resources
+          %li
+            %a{:href => '#resource-configuration'} Resource configuration
+          %li
+            %a{:href => '#fields'} Fields
+            %ul
+              %li
+                %a{href: '#field-options'} Field options
+          %li
+            %a{href: '#before-actions'} Before actions
+
+  .article-container
+    = partial 'articles/dsl/configuration.md'
+    = partial 'articles/dsl/resources.md'

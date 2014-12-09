@@ -1,14 +1,13 @@
-= partial 'nav'
 .page-container
   .side-nav
     %ul
       %li
-        %a{:name => 'Overview'} Overview
+        %a{:href => '#overview'} Overview
         %ul
           %li
-            %a{:href => '#what-for'} What is it for
+            %a{:href => '#how-it-works'} How it works 
           %li
-            %a{:href => '#what-not'} What isn't it for
+            %a{:href => '#what-for'} What is it for
       %li
         %a{href: '#getting-started'} Getting started
         %ul
@@ -17,6 +16,5 @@
           %li
             %a{href: '#create-user'} Create a user
   .article-container
+    = partial 'articles/overview.md'
     = partial 'articles/getting_started.md'
-    = partial 'articles/adding-appkit.md'
-    = partial 'articles/creating-a-user.md'
