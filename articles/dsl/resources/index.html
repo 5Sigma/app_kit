@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<link href="../../../stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="../../../stylesheets/main.css" rel="stylesheet" type="text/css" />
+<script src="../../../javascripts/all.js" type="text/javascript"></script>
+</head>
+<body>
+<header>
+<div class='title'>
+app
+<strong>
+kit
+</strong>
+</div>
+<small>Advanced data applications in minutes</small>
+<nav>
+<a class="" href="index.html">home</a>
+<a class="" href="reference.html">reference</a>
+<a class="" href="tutorial.html">tutorial</a>
+<a href='https://github.com/5Sigma/app_kit/'>code</a>
+</nav>
+</header>
+
+<h3>Resources</h3>
+
+<p>Resources are the configuration object for a specific set of data, namely a
+model. A resource should be defined for each model that the application needs to
+build controllers and views for.</p>
+
+<p>Resource files are expected to be in <code>app/app_kit</code>.</p>
+
+<h4>Generating resources</h4>
+
+<p>AppKit comes with a generator for creating resource files. From the root of your
+rails project run:</p>
+<pre class="highlight plaintext"><code>rails g app_kit:resource MODEL_NAME
+</code></pre>
+
+<p>This will create a new file inside the <code>app/app_kit/</code> folder with a default
+configurations.</p>
+
+<p>An example resource definition may look like this:</p>
+<pre class="highlight ruby"><code><span class="no">AppKit</span><span class="o">.</span><span class="no">Register</span> <span class="no">Invoice</span> <span class="k">do</span>
+  <span class="n">show_in_navigation</span> <span class="kp">true</span>
+  <span class="n">icon</span> <span class="s1">'list'</span>
+
+  <span class="n">field</span> <span class="ss">:invoice_number</span><span class="p">,</span> <span class="ss">editable: </span><span class="kp">false</span>
+  <span class="n">field</span> <span class="ss">:invoice_total</span><span class="p">,</span> <span class="ss">editable: </span><span class="kp">false</span><span class="p">,</span> <span class="ss">:formatter</span> <span class="o">=&gt;</span> <span class="ss">:currency</span>
+  <span class="n">field</span> <span class="ss">:invoice_date</span><span class="p">,</span> <span class="ss">:formatter</span> <span class="o">=&gt;</span> <span class="ss">:date</span>
+  <span class="n">field</span> <span class="ss">:published</span><span class="p">,</span> <span class="ss">show_in_table: </span><span class="kp">false</span>
+
+  <span class="n">before</span><span class="p">(</span><span class="ss">:new</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">record</span><span class="o">|</span>
+    <span class="n">record</span><span class="p">.</span><span class="nf">invoice_number</span> <span class="o">=</span>  <span class="n">record</span><span class="p">.</span><span class="nf">set_invoice_number</span>
+  <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+
+<h5>Configuration commands</h5>
+
+<ul>
+<li>  <strong>show_in_navigation</strong> <em>(boolean)</em> - If set to true a menu item will be
+created in the navigation for interacting with this model. <em>(defaults to
+true)</em></li>
+<li>  <strong>icon</strong> <em>(string)</em> - A string value for the icon to use for this item. This
+icon is used in the menu and panel titles for the resource. AppKit uses
+font-awesome for creating icons/glyphs. This string should be the icon name
+from the font-awesome list.</li>
+</ul>
+
+<h5>Defining fields</h5>
+
+<p>Resource fields are the data attributes on the model that will be displayed when
+viewing tables or records. Fields are defined with the field command:</p>
+<pre class="highlight ruby"><code><span class="n">field</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">options_hash</span>
+</code></pre>
+
+<h6>Field options</h6>
+
+<ul>
+<li>  <strong>editable</strong> <em>(boolean)</em> - If set to true the field will be editable when
+editing a record. This will also control attribute whitelisting. <em>(default:
+true)</em></li>
+<li>  <strong>formatter</strong> <em>(symbol)</em> - The formatting that should be used when
+displaying the fields value.
+
+<ul>
+<li>  <strong>:string</strong> - No formatting is performed <em>(default)</em></li>
+<li>  <strong>:number</strong> - Formats the value as a number with delimitation.</li>
+<li>  <strong>:currency</strong> - Formats the value as currency appending currency symbols,
+and delimiting numbers. It will also automatically round the number to
+two decimal places.</li>
+<li>  <strong>:date</strong> - Formats the value as a simple date without time information.</li>
+</ul></li>
+<li>  <strong>show_in_table</strong> <em>(boolean)</em> - Controls if the field should be used as a
+table column when listing records for this resource.</li>
+<li>  <strong>show_in_detail</strong> <em>(boolean)</em> - If false the field will not be displayed
+when viewing a given record. <em>(default: true)</em></li>
+<li>  <strong>hide</strong> <em>(boolean)</em> -  This automatically sets both show_in_table and
+show_in_detail. <em>(default: false)</em></li>
+<li>  <strong>editor</strong> <em>(symbol)</em> - The editor displayed for the field when editing a
+record. The default value is dependent on the fields data type.</li>
+</ul>
+
+<h5>Before actions</h5>
+
+<p>Before actions let you define small pieces of logic that should occure during
+the execution of an action on a given resource.</p>
+<pre class="highlight ruby"><code>  <span class="n">before</span><span class="p">(</span><span class="ss">:action_name</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">r</span><span class="o">|</span>
+    <span class="c1"># some code to execute</span>
+  <span class="p">}</span>
+</code></pre>
+
+<p>The action can be any of the standard restful actions <code>:index</code>, <code>:show</code>, <code>:new</code>,
+<code>:create</code>, <code>:edit</code>, <code>:update</code>, or <code>:destroy</code>. The block of code is also passed
+the record object that the action is currently acting on.</p>
+
+<footer>
+<div class='div'>
+AppKit is an open source project, you can download the sourcecode
+<a href='https://github.com/5Sigma/app_kit/'>here.</a>
+</div>
+<div class='div'>
+This project is maintained by
+<a href='http://5sigma.io'>5Sigma.</a>
+</div>
+</footer>
+
+</body>
+</html>

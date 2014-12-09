@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+<link href="../stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="../stylesheets/main.css" rel="stylesheet" type="text/css" />
+<script src="../javascripts/all.js" type="text/javascript"></script>
+</head>
+<body>
+<header>
+<div class='title'>
+app
+<strong>
+kit
+</strong>
+</div>
+<small>Advanced data applications in minutes</small>
+<nav>
+<a class="" href="/">home</a>
+<a class="" href="/reference/">reference</a>
+<a class="active" href="/tutorial/">tutorial</a>
+<a href='https://github.com/5Sigma/app_kit/'>code</a>
+</nav>
+</header>
+
+<div class='page-container'>
+<div class='side-nav'>
+<ul>
+<li>
+<a name='configuration'>Configuration</a>
+<ul>
+<li>
+<a href='#dashboard'>Dashboard</a>
+<ul>
+<li>
+<a href='#tables'>Tables</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href='#resources'>Resources</a>
+<ul>
+<li>
+<a href='#generating-resources'>Generating resources</a>
+</li>
+<li>
+<a href='#resource-configuration'>Resource configuration</a>
+</li>
+<li>
+<a href='#fields'>Fields</a>
+<ul>
+<li>
+<a href='#field-options'>Field options</a>
+</li>
+</ul>
+</li>
+<li>
+<a href='#before-actions'>Before actions</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class='article-container'>
+<h3>Generating a new project</h3>
+
+<p>To get started we will setup a new rails project.</p>
+<pre class="highlight plaintext"><code>rails new crm
+</code></pre>
+
+<p>This will create a new folder called <code>crm</code> with your project files in it. The
+first thing we need to do is add AppKit to it. Open the file <code>Gemfile</code> and add
+the following line somewhere in the file.</p>
+<pre class="highlight ruby"><code><span class="n">gem</span> <span class="s1">'app_kit'</span>
+</code></pre>
+
+<p>Then run the bundle command:</p>
+<pre class="highlight plaintext"><code>bundle
+</code></pre>
+
+<p>This will install the AppKit gem and all of its dependencies as well as set them
+up in your project.</p>
+
+<h3>Setting up data models</h3>
+
+<p>We will use the default database settings for Rails, which is Sqlite3 and
+ActiveRecord. To create a few models we can use Rails&rsquo; built in generators.</p>
+<pre class="highlight plaintext"><code>rails g model customer
+rails g model invoice
+rails g model invoice_item
+</code></pre>
+
+<p>Edit the customer migration created in <code>db/migrate/XXXXXXXX_create_customer.rb</code>.</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">CreateCustomers</span> <span class="o">&lt;&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="n">migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:customers</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:first_name</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:last_name</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:phone_number</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:email</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:active</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Edit the invoice migration created at <code>db/migrate/XXXXXXX_create_invoices</code>.</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">CreateInvoices</span> <span class="o">&lt;&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="n">migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:invoices</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">belongs_to</span> <span class="ss">:customer</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">integer</span> <span class="ss">:invoice_number</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">decimal</span> <span class="ss">:invoice_total</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">datetime</span> <span class="ss">:invoice_date</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">boolean</span> <span class="ss">:paid</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">boolean</span> <span class="ss">:published</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Edit the invoice_item migration created at
+<code>db/migrate/XXXXXX_create_invoice_items</code>.</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">CreateInvoiceItems</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:invoice_items</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">belongs_to</span> <span class="ss">:invoice</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:description</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">decimal</span> <span class="ss">:unit_price</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">decimal</span> <span class="ss">:quantity</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">decimal</span> <span class="ss">:extended_price</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Next add your associations to your model files located in <code>app/model/</code>.</p>
+<pre class="highlight ruby"><code><span class="c1">#customer.rb</span>
+<span class="k">class</span> <span class="nc">Customer</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">has_many</span> <span class="ss">:invoices</span>
+<span class="k">end</span>
+
+<span class="c1">#invoice.rb</span>
+<span class="k">class</span> <span class="nc">Invoice</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:customer</span>
+<span class="k">end</span>
+
+<span class="c1">#invoice_item.rb</span>
+<span class="k">class</span> <span class="nc">InvoiceItem</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:invoice</span>
+<span class="k">end</span>
+</code></pre>
+
+<h3>Defining AppKit resources</h3>
+
+<p>From the root of your project run the <code>app_kit:resource</code> generator for each
+model.</p>
+<pre class="highlight plaintext"><code>app_kit:resource customer
+app_kit:resource invoice
+app_kit:resource invoice_item
+</code></pre>
+
+<p>The generated resource files will have many commented lines that can be used as
+a quick syntax reference. For the sake of brevity those will be ignored below.</p>
+
+<h4>Customer resource</h4>
+
+<p>Open the customer resource file located at <code>app/app_kit/customer.rb</code>.</p>
+
+</div>
+</div>
+
+<footer>
+<div class='div'>
+AppKit is an open source project, you can download the sourcecode
+<a href='https://github.com/5Sigma/app_kit/'>here.</a>
+</div>
+<div class='div'>
+This project is maintained by
+<a href='http://5sigma.io'>5Sigma.</a>
+</div>
+</footer>
+
+</body>
+</html>
