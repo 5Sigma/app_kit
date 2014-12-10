@@ -14,7 +14,7 @@ kit
 </div>
 <small>Advanced data applications in minutes</small>
 <nav>
-<a class="" href="/">home</a>
+<a class="" href="/overview/">overview</a>
 <a class="active" href="/reference/">reference</a>
 <a class="" href="/tutorial/">tutorial</a>
 <a href='https://github.com/5Sigma/app_kit/'>code</a>
@@ -172,6 +172,9 @@ when viewing a given record. <em>(default: true)</em></li>
 show_in_detail. <em>(default: false)</em></li>
 <li>  <strong>editor</strong> <em>(symbol)</em> - The editor displayed for the field when editing a
 record. The default value is dependent on the fields data type.</li>
+<li>  <strong>sort_field</strong> <em>(symbol)</em> - An alternate field to sort by. This can be used
+if the field is a virtual attribute and you want to use a different field
+for sorting operations. <em>(default: nil)</em></li>
 </ul>
 
 <h5>Before actions</h5>

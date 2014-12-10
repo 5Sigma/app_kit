@@ -4,156 +4,81 @@
 <link href="stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="stylesheets/main.css" rel="stylesheet" type="text/css" />
 <script src="javascripts/all.js" type="text/javascript"></script>
 </head>
-<body>
+<body class='landing'>
 <header>
 <div class='title'>
-app
-<strong>
-kit
-</strong>
-</div>
+app<strong>kit</strong>
 <small>Advanced data applications in minutes</small>
-<nav>
-<a class="active" href="/">home</a>
-<a class="" href="/reference/">reference</a>
-<a class="" href="/tutorial/">tutorial</a>
-<a href='https://github.com/5Sigma/app_kit/'>code</a>
-</nav>
+</div>
+<div class='buttons'>
+<a href='/overview'>
+<i class='fa fa-newspaper-o'></i>
+Reference
+</a>
+<a href='https://github.com/5Sigma/app_kit/'>
+<i class='fa fa-github'></i>
+Code
+</a>
+</div>
 </header>
-
-<div class='page-container'>
-<div class='side-nav'>
-<ul>
-<li>
-<a href='#overview'>Overview</a>
-<ul>
-<li>
-<a href='#how-it-works'>How it works</a>
-</li>
-<li>
-<a href='#what-for'>What is it for</a>
-</li>
-</ul>
-</li>
-<li>
-<a href='#getting-started'>Getting started</a>
-<ul>
-<li>
-<a href='#adding-appkit'>Adding appkit to a project</a>
-</li>
-<li>
-<a href='#create-user'>Create a user</a>
-</li>
-</ul>
-</li>
-</ul>
+<div class='land-section red'>
+<h2>Not just scaffolding</h2>
+<p>
+AppKit builds user ready applications with a number of nice features and an
+attractive interface. Ready to be used out of the box.
+<div class='image filter_ss'></div>
+<div class='feature-cells'>
+<div class='feature'>
+<span class='fa-stack fa-lg'>
+<i class='fa fa-square-o fa-stack-2x'></i>
+<i class='fa fa-filter fa-stack-1x fa-inverse'></i>
+</span>
+<div class='content'>
+<div class='title'>Intelligent record filtering</div>
+<p>
+Automtic data-type aware filtering options for easily searching and
+finding records.
+</p>
 </div>
-<div class='article-container'>
-<h3>Overview</h3>
-
-<p><a id="overview" name="overview"></a></p>
-
-<p>AppKit is a rails engine for quickly building data based applications.
-Applications that are primary for finding, editing, and visualizing data. These
-applications can be rapidly built using a simple DSL without the need to write
-views, controllers, or any real logic.</p>
-
-<p>AppKit makes a number of assumptions for your project.</p>
-
-<ul>
-<li>  The application&rsquo;s flow will use basic restful actions. This means that the
-interaction with the data will be in the form of creating, editing,
-deleting, listing, and viewing record data.</li>
-<li>  The application&rsquo;s visual appearance and branding is not important. AppKit
-will automatically generate the visual apperance of the application.
-Although the views themselves can be overridden, visual customization goes
-against the purpose of the framework.</li>
-<li>  The models within the application are not separated by modules. Currently
-AppKit does not support handling models that exist in their own module.</li>
-</ul>
-
-<p><a name="how-it-works" id="how-it-works"></a></p>
-
-<h4>How it works</h4>
-
-<p>AppKit automatically generates restful controllers and views, based on a
-simple <code>DSL</code> and your model layouts. It builds controllers exactly how you would
-using standard rails paradigms. It will build a restful controller for each of
-your models with actions and views for INDEX, EDIT, NEW, CREATE, UPDATE, and
-DELETE. These controllers or individual views can then be overridden to extend
-functionality. The DSL also allows for minor functionality to be added with only
-a few lines of code.</p>
-
-<p><a name="what-for" id="what-for"></a></p>
-
-<h4>When should I use AppKit</h4>
-
-<p>AppKit was built to generate data aware application <strong>extreamly</strong> rapidly. Its
-intended use cases were transient internal tools that needed to be up quickly but
-might not stick around too long or quickly prototyping an application  to have
-something in use while developing a more robust system.</p>
-
-<h4>If I prototype with AppKit will I be locked into using it?</h4>
-
-<p>Negative ghostrider. AppKit is built to be overridable. You can slowly override
-the controllers and views with your own custom code. Once Everything has been
-overridden you can simply remove AppKit from the project. This allows you to have
-a functional application up in minutes and in use while developing a more custom
-solution.</p>
-
-<p><a id="getting-started" name="getting-started"></a></p>
-
-<h3>Getting started</h3>
-
-<p>AppKit was built to quickly generate web based data
-applications. It is excellent at prototyping or building
-transient internal tools.</p>
-
-<p><a id="adding-appkit" name="adding-appkit"></a></p>
-
-<h4>Adding AppKit to a project</h4>
-
-<p>After creating a new rails application simply add AppKit to your
-<code>Gemfile</code> and run the install generator.</p>
-
-<p>Edit the file <code>Gemfile</code> in the root of the application directory
-and add:</p>
-<pre class="highlight plaintext"><code>gem 'app_kit'
-</code></pre>
-
-<p>After the gem has been included in your <code>Gemfile</code> then run
-bundler and the installation generator:</p>
-<pre class="highlight plaintext"><code>bundle
-rails g app_kit:install
-</code></pre>
-
-<p>This will do a few things. First an initialization file will be
-created located at <code>PROJECT/config/initializer/app_kit.rb</code>.
-Second, a migration will be created for storing users.
-Finally, A line will be added to your <code>config/routes.rb</code> to
-mount the AppKit engine at <code>/</code>.</p>
-
-<p><a id="create-user" name="create-user"></a></p>
-
-<h4>Creating a user</h4>
-
-<p>You will need to create a new AppKit user to be able to login
-to your application. The easiest way to do this for the
-first time is from the rails console.</p>
-<pre class="highlight plaintext"><code>rails console
-AppKit::User.create(
-  first_name: 'John',
-  last_name: 'Doe',
-  password: 'some passphrase',
-  password_confirmation: 'some passphrase'
-)
-</code></pre>
-
-<p>This will setup your first user so you will be able to
-login. AppKit uses <a href="http://devise.plataformatec.com.br">Devise</a>
-to handle authentication.</p>
-
 </div>
+<div class='feature'>
+<span class='fa-stack fa-lg'>
+<i class='fa fa-square-o fa-stack-2x'></i>
+<i class='fa fa-list fa-stack-1x fa-inverse'></i>
+</span>
+<div class='content'>
+<div class='title'>Full RESTful actions</div>
+<p>
+Edit, update, create, view, and search for data and records.
+</p>
+</div>
+</div>
+<div class='feature'>
+<span class='fa-stack fa-lg'>
+<i class='fa fa-square-o fa-stack-2x'></i>
+<i class='fa fa-user fa-stack-1x fa-inverse'></i>
+</span>
+<div class='content'>
+<div class='title'>User authentication</div>
+<p>
+Automatic authentication and user management.
+</p>
+</div>
+</div>
+<div class='feature'>
+<span class='fa-stack fa-lg'>
+<i class='fa fa-square-o fa-stack-2x'></i>
+<i class='fa fa-code fa-stack-1x fa-inverse'></i>
+</span>
+<div class='content'>
+<div class='title'>Extendable</div>
+<p>
+Easily override existing functionality or build new functionality.
+</p>
+</div>
+</div>
+</div>
+</p>
 </div>
 
 <footer>
