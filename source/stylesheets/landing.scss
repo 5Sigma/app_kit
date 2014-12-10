@@ -35,6 +35,23 @@ body.landing {
 
 .land-section {
   @include pad;
+  .image {
+    margin: auto;
+    margin-top: 30px;
+    width: 600px;
+    height: 400px;
+    -moz-box-shadow: 0 0 5px 5px #888;
+    -webkit-box-shadow: 0 0 5px 5px#888;
+    box-shadow: 0 0 5px 5px darken($red-background, 20);
+    border-radius: 15px;
+    border: 5px solid lighten($red-background,10);
+    &.filter_ss {
+      background-image: url(image-path('filter_ss.png'));
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
   h2 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
