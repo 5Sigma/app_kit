@@ -1,11 +1,14 @@
 %header
   .title
-    app<strong>kit</strong>
-    %small Advanced data applications in minutes
+    %h2
+      app<strong>kit</strong>
+      %small Advanced data applications in minutes
   .buttons
     %a{href:"/overview"}
       %i.fa.fa-newspaper-o
       Reference
+
+
     %a{href:"https://github.com/5Sigma/app_kit/"}
       %i.fa.fa-github
       Code
@@ -14,7 +17,12 @@
   %p
     AppKit builds user ready applications with a number of nice features and an
     attractive interface. Ready to be used out of the box.
-    .image.filter_ss
+    .browser
+      .header
+        .circle.red
+        .circle.blue
+        .circle.green
+      .image.filter_ss
     .feature-cells
       .feature
         %span.fa-stack.fa-lg
@@ -50,3 +58,46 @@
           .title Extendable
           %p
             Easily override existing functionality or build new functionality.
+.land-section.grey
+  %h2 An easy DSL built for getting things up quickly
+  %p Get apps up and running in minutes with only a few lines of code
+  .code-box
+    :code
+      # lang: ruby
+      AppKit.register Invoice do
+        show_in_navigation true
+
+        icon 'list'
+        field :invoice_number, editable: false
+        field :customer_id
+        field :invoice_total, editable: false, :formatter => :currency
+        field :invoice_date, :formatter => :date
+        field :paid, show_in_table: false
+        field :published, show_in_table: false
+      end
+
+  .feature-cells.three
+    %a.feature{href: '/tutorial'}
+      %span.fa-stack.fa-lg
+        %i.fa.fa-square-o.fa-stack-2x
+        %i.fa.fa-question.fa-stack-1x
+      .content
+        .title Checkout the tutorial
+        %p
+          A quick tutorial to get an app running
+    %a.feature{href: '/overview'}
+      %span.fa-stack.fa-lg
+        %i.fa.fa-square-o.fa-stack-2x
+        %i.fa.fa-newspaper-o.fa-stack-1x
+      .content
+        .title Documentation
+        %p
+          View the documentation and refference
+    %a.feature{href: 'https://github.com/5Sigma/app_kit/'}
+      %span.fa-stack.fa-lg
+        %i.fa.fa-square-o.fa-stack-2x
+        %i.fa.fa-code.fa-stack-1x
+      .content
+        .title Get the code
+        %p
+          View the documentation and refference

@@ -4,16 +4,37 @@ $red-background: #F42433;
 
 body.landing {
   background-color: white;
+  padding-bottom: 0px;
+  footer {
+    border-top: 3px solid #ccc;
+  }
   header {
     @include outer-container;
-    padding-bottom: 20px;
+    background: white;
+    padding: 50px;
     margin-bottom: 0px;
     border-bottom: none;
     .title {
       float: left;
+      background: url(image-path('appkit.png'));
+      background-repeat: no-repeat;
+      background-postion: center left;
+      background-size: contain;
+      padding-left: 120px;
+      height: 100px;
+      h2 {
+        margin-top: 15px;
+        padding:0px;
+        line-height: 1;
+        margin-bottom: 0px;
+        font-size: 40px;
+        font-weight: normal;
+      }
       small {
+        margin-top: 5px;
+        display: block;
+        line-height: auto !important;
         font-size: 0.4em;
-        margin-left: 10px;
       }
     }
     .buttons {
@@ -35,21 +56,68 @@ body.landing {
 
 .land-section {
   @include pad;
-  .image {
+  padding-bottom: 50px;
+  padding-top: 50px;
+  .browser {
+    width: 600px;
     margin: auto;
     margin-top: 30px;
-    width: 600px;
-    height: 400px;
     -moz-box-shadow: 0 0 5px 5px #888;
     -webkit-box-shadow: 0 0 5px 5px#888;
     box-shadow: 0 0 5px 5px darken($red-background, 20);
-    border-radius: 15px;
-    border: 5px solid lighten($red-background,10);
-    &.filter_ss {
-      background-image: url(image-path('filter_ss.png'));
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: white;
+    overflow: hidden;
+    .header {
+      @include linear-gradient(#ddd,#ccc);
+      height: 30px;
+      border-bottom: 1px solid #161616;
+      .circle {
+        height: 14px;
+        width: 14px;
+        border-radius: 7px;
+        display: inline-block;
+        margin-left: 5px;
+        margin-top: 8px;
+        border: 1px solid #aaa;
+        &.red {
+          $red-browser-bulb: #F18695;
+          @include radial-gradient($red-browser-bulb, darken($red-browser-bulb, 10));
+          border: darken($red-browser-bulb,20);
+        }
+        &.green {
+          $green-browser-bulb: #83F19C;
+          @include radial-gradient($green-browser-bulb, darken($green-browser-bulb, 10));
+        }
+        &.blue {
+          $blue-browser-bulb: #7998F1;
+          @include radial-gradient($blue-browser-bulb, darken($blue-browser-bulb,10));
+        }
+        &.grey {
+          @include radial-gradient(#eee,#ccc);
+        }
+
+      }
+    }
+    .image {
+      width: 600px;
+      height: 400px;
       background-position: center center;
-      background-size: contain;
+      background-size: cover;
       background-repeat: no-repeat;
+      &.filter_ss {
+        background-image: url(image-path('filter_ss.png'));
+      }
+    }
+  }
+  .code-box {
+    width: 700px;
+    margin: auto;
+    margin-top: 40px;
+    pre {
+      padding: 15px;
+      border-radius: 8px;
     }
   }
   h2 {
@@ -78,12 +146,42 @@ body.landing {
         }
       }
     }
+    &.three {
+      .feature {
+        @include span-columns(4);
+        @include omega(3n);
+      }
+    }
   }
   &.red {
     color: white;
+    border-top: 5px solid darken($red-background,20);
     @include linear-gradient($red-background, darken($red-background, 15));
     h2 {
       text-shadow: rgba(0, 0, 0, 0.4) 0px -1px 0px;
+    }
+  }
+  &.grey {
+    @include linear-gradient(#fff, #eee);
+    color: #444;
+    .feature-cells {
+       text-align: center;
+      .feature {
+        @include pad;
+        @include transition(all,0.5s);
+        background: #e5e5e5;
+        border-radius: 5px;
+        color: #444;
+        p {
+          text-align: center;
+        }
+        &:last-child {
+          border-right: none;
+        }
+        &:hover {
+          background: #F1BFC6;
+        }
+      }
     }
   }
 }

@@ -173,7 +173,7 @@ AppKit.register InvoiceItem do
 end
 ```
 
-<a id="name" name="name"></a>
+<a id="user" name="user"></a>
 ### Create a user account
 
 AppKit automatically handles user authorization so you will need an initial
