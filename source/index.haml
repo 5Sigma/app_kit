@@ -1,20 +1,51 @@
-.page-container
-  .side-nav
-    %ul
-      %li
-        %a{:href => '#overview'} Overview
-        %ul
-          %li
-            %a{:href => '#how-it-works'} How it works 
-          %li
-            %a{:href => '#what-for'} What is it for
-      %li
-        %a{href: '#getting-started'} Getting started
-        %ul
-          %li
-            %a{:href => '#adding-appkit'} Adding appkit to a project
-          %li
-            %a{href: '#create-user'} Create a user
-  .article-container
-    = partial 'articles/overview.md'
-    = partial 'articles/getting_started.md'
+%header
+  .title
+    app<strong>kit</strong>
+    %small Advanced data applications in minutes
+  .buttons
+    %a{href:"/overview"}
+      %i.fa.fa-newspaper-o
+      Reference
+    %a{href:"https://github.com/5Sigma/app_kit/"}
+      %i.fa.fa-github
+      Code
+.land-section.red
+  %h2 Not just scaffolding
+  %p
+    AppKit builds user ready applications with a number of nice features and an
+    attractive interface. Ready to be used out of the box.
+    .feature-cells
+      .feature
+        %span.fa-stack.fa-lg
+          %i.fa.fa-square-o.fa-stack-2x
+          %i.fa.fa-filter.fa-stack-1x.fa-inverse
+        .content
+          .title Intelligent record filtering
+          %p
+            Automtic data-type aware filtering options for easily searching and
+            finding records.
+
+      .feature
+        %span.fa-stack.fa-lg
+          %i.fa.fa-square-o.fa-stack-2x
+          %i.fa.fa-list.fa-stack-1x.fa-inverse
+        .content
+          .title Full RESTful actions
+          %p
+            Edit, update, create, view, and search for data and records.
+      .feature
+        %span.fa-stack.fa-lg
+          %i.fa.fa-square-o.fa-stack-2x
+          %i.fa.fa-user.fa-stack-1x.fa-inverse
+        .content
+          .title User authentication
+          %p
+            Automatic authentication and user management.
+      .feature
+        %span.fa-stack.fa-lg
+          %i.fa.fa-square-o.fa-stack-2x
+          %i.fa.fa-code.fa-stack-1x.fa-inverse
+        .content
+          .title Extendable
+          %p
+            Easily override existing functionality or build new functionality.

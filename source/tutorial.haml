@@ -2,27 +2,21 @@
   .side-nav
     %ul
       %li
-        %a{:name => 'configuration'} Configuration
-        %ul
-          %li
-            %a{:href => '#dashboard'} Dashboard
-            %ul
-              %li
-                %a{href: '#tables'} Tables
+        %a{:href => '/'} Generating a new project
       %li
-        %a{href: '#resources'} Resources
+        %a{href: '#models'} Data models
+      %li
+        %a{:href => '#resources'} Resources
         %ul
           %li
-            %a{:href => '#generating-resources'} Generating resources
+            %a{:href => '#customer-resource'} Customer resource
           %li
-            %a{:href => '#resource-configuration'} Resource configuration
+            %a{:href => '#invoice-resource'} Invoice resource
           %li
-            %a{:href => '#fields'} Fields
-            %ul
-              %li
-                %a{href: '#field-options'} Field options
-          %li
-            %a{href: '#before-actions'} Before actions
+            %a{:href => '#invoice-item-resource'} Invoice item resource
+      %li
+        %a{:href => '#user'} Creating a user 
+
 
   .article-container
     = partial 'articles/tutorial.md'

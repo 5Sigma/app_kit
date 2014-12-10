@@ -1,0 +1,20 @@
+.page-container
+  .side-nav
+    %ul
+      %li
+        %a{:href => '#overview'} Overview
+        %ul
+          %li
+            %a{:href => '#how-it-works'} How it works 
+          %li
+            %a{:href => '#what-for'} What is it for
+      %li
+        %a{href: '#getting-started'} Getting started
+        %ul
+          %li
+            %a{:href => '#adding-appkit'} Adding appkit to a project
+          %li
+            %a{href: '#create-user'} Create a user
+  .article-container
+    = partial 'articles/overview.md'
+    = partial 'articles/getting_started.md'

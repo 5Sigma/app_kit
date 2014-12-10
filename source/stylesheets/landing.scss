@@ -1,0 +1,72 @@
+$red-background: #F42433;
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+
+body.landing {
+  background-color: white;
+  header {
+    @include outer-container;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+    border-bottom: none;
+    .title {
+      float: left;
+      small {
+        font-size: 0.4em;
+        margin-left: 10px;
+      }
+    }
+    .buttons {
+      float: right;
+      a {
+        @include button(simple,#fff, 0.8em, 5px 10px);
+      }
+      a:last-child {
+        @include button(simple,#fff, 0.8em, 5px 10px);
+      }
+    }
+  }
+  footer {
+    margin-top: 0px;
+  }
+}
+
+
+
+.land-section {
+  @include pad;
+  h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-align: center;
+  }
+  p {
+    text-align: center;
+  }
+  .feature-cells {
+    @include outer-container;
+    margin-top: 40px;
+    .feature {
+      @include span-columns(3);
+      @include omega(4n);
+      .content {
+        .title {
+          font-weight: bold;
+          font-size: 1.1em;
+        }
+        p {
+          text-align: left;
+          font-size: 1em;
+        }
+      }
+    }
+  }
+  &.red {
+    color: white;
+    @include linear-gradient($red-background, darken($red-background, 15));
+    h2 {
+      text-shadow: rgba(0, 0, 0, 0.4) 0px -1px 0px;
+    }
+  }
+}

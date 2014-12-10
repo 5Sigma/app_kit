@@ -72,6 +72,9 @@ field model_name, options_hash
     show\_in\_detail. _(default: false)_
 -   __editor__ _(symbol)_ - The editor displayed for the field when editing a
     record. The default value is dependent on the fields data type.
+-   __sort\_field__ _(symbol)_ - An alternate field to sort by. This can be used
+    if the field is a virtual attribute and you want to use a different field
+    for sorting operations. _(default: nil)_
 
 ##### Before actions
 
