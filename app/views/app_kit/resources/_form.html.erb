@@ -1,28 +1,28 @@
 <div class="panelkit">
-    <%= simple_form_for [app_kit, @record] do |f| %>
-        <% if @record.new_record? %>
-            <div class="pk-title">New <%= model.name.humanize %></div>
+<%= simple_form_for [app_kit, @record] do |f| %>
+  <% if @record.new_record? %>
+    <div class="pk-title">New <%= model.name.humanize %></div>
+  <% else %>
+    <div class="pk-title"><%= @record.to_s %></div>
+  <% end %>
+  <div class="pk-body pad">
+    <% resource.editable_fields.each do |field| %>
+      <% if field.is_foreign_key? %>
+        <%= f.association field.association.name.to_sym, wrapper_html: {class: 'association'} %>
+      <% else %>
+        <% if field.editor == :readonly %>
+          <div class="input readonly">
+            <label><%= field.display_name %></label>
+            <div class="field_value"><%= @record.send(field.name) %></div>
+          </div>
         <% else %>
-            <div class="pk-title"><%= @record %></div>
+          <%= f.input field.name, :as => field.editor %>
         <% end %>
-        <div class="pk-body pad">
-            <% resource.editable_fields.each do |field| %>
-                <% if field.is_foreign_key? %>
-                    <%= f.association field.association.name.to_sym, wrapper_html: {class: 'association'} %>
-                <% else %>
-                    <% if field.editor == :readonly %>
-                        <div class="input readonly">
-                            <label><%= field.display_name %></label>
-                            <div class="field_value"><%= @record.send(field.name) %></div>
-                        </div>
-                    <% else %>
-                        <%= f.input field.name, :as => field.editor %>
-                    <% end %>
-                <% end %>
-            <% end %>
-            <div class="buttons">
-                <%= f.submit %>
-            </div>
-        </div>
+      <% end %>
     <% end %>
+    <div class="buttons">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>
 </div>

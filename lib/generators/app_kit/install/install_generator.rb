@@ -18,4 +18,8 @@ class AppKit::InstallGenerator < Rails::Generators::Base
     generate "simple_form:install"
   end
 
+  def create_routes
+    route 'mount AppKit::Engine => "/"'
+  end
+
 end

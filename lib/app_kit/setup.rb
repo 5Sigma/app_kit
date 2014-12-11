@@ -19,12 +19,12 @@ module AppKit
       files.each { |file| load file }
       require "app_kit/user_resource"
       AppKit::SetupDsl.module_eval(&block)
+      AppKit::APP.dashboard = AppKit::Views::Dashboard.new
     end
   end
 
   module SetupDsl
     def self.dashboard(&block)
-      AppKit::APP.dashboard = AppKit::Views::Dashboard.new
       AppKit::APP.dashboard.instance_eval(&block)
     end
   end
