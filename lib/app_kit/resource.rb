@@ -35,7 +35,6 @@ module AppKit
       if model.is_a? Symbol
         return AppKit::RESOURCES.find{|r| r.model.model_name.name.underscore.to_sym == model}
       end
-      puts "finding model.inspect"
       AppKit::RESOURCES.find{|r| r.model == model}
     end
 

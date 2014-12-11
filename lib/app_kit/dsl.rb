@@ -4,7 +4,8 @@ module AppKit
     return unless ActiveRecord::Base.connection.table_exists? model.table_name
     resource_name = model.name.demodulize.underscore.pluralize
     controller_name = model.name.demodulize.pluralize
-    controller = AppKit.const_set("#{controller_name}Controller", Class.new(ResourcesController))
+    controller = AppKit.const_set("#{controller_name}Controller",
+                                  Class.new(ResourcesController))
     controller.resource = Resource.new(model)
     controller.resource.instance_exec(&block)  if block_given?
     controller.resource.controller_name = controller.controller_name
