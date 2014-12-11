@@ -135,11 +135,6 @@ AppKit.register Customer do
     show_in_navigation true
     icon 'user'
 
-    action :deactivate, :if => :active do |customer|
-        customer.update(active: false)
-    end
-
-    field :name, :sort_field => :first_name, editable: false
     field :first_name, show_in_table: false, show_in_details: false
     field :last_name, show_in_table: false, show_in_details: false
     field :email, formatter: :email
@@ -204,8 +199,45 @@ AppKit::User.create(
 )
 ```
 
-### Finished
+### Up and running
 
 Thats it run the rails server and open a browser to `http://localhost:3000`.
 
     rails server
+
+
+<a id="improvements" name="improvements"></a>
+### Tightening things up
+
+There are a few changes we can make to improve the way everything works and
+looks.
+
+<a id="model-display-text" name="model-display-text"></a>
+#### Model display text
+
+When a model's instance needs to be displayed its `#to_s` method is used to
+output it as a string. You should override the method on each model to give it 
+nicer display text.
+
+Add the following functions to the three model classes inside `app/models`.
+
+```ruby
+# customer.rb
+def to_s
+  "#{first_name} #{last_name}"
+end
+
+# invoice.rb
+def to_s
+  invoice_number
+end
+
+#invoice_items.rb
+def to_s
+  description
+end
+```
+
+
+
+

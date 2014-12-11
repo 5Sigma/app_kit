@@ -1,3 +1,4 @@
+<a id="resources" name="resources"></a>
 ### Resources
 
 Resources are the configuration object for a specific set of data, namely a
@@ -6,7 +7,7 @@ build controllers and views for.
 
 Resource files are expected to be in `app/app_kit`.
 
-
+<a id="generating-resources" name="generating-resources"></a>
 #### Generating resources
 
 AppKit comes with a generator for creating resource files. From the root of your
@@ -34,6 +35,7 @@ AppKit.Register Invoice do
   }
 end
 ```
+<a id="resource-configuration" name="resource-configuration"></a>
 ##### Configuration commands
 -   __show\_in\_navigation__ _(boolean)_ - If set to true a menu item will be
     created in the navigation for interacting with this model. _(defaults to
@@ -43,6 +45,7 @@ end
     font-awesome for creating icons/glyphs. This string should be the icon name
     from the font-awesome list.
 
+<a id="field" name="fields"></a>
 ##### Defining fields
 
 Resource fields are the data attributes on the model that will be displayed when
@@ -52,6 +55,7 @@ viewing tables or records. Fields are defined with the field command:
 field model_name, options_hash
 ```
 
+<a id="field-options" name="field-options"></a>
 ###### Field options
 -   __editable__ _(boolean)_ - If set to true the field will be editable when
     editing a record. This will also control attribute whitelisting. _(default:
@@ -76,6 +80,7 @@ field model_name, options_hash
     if the field is a virtual attribute and you want to use a different field
     for sorting operations. _(default: nil)_
 
+<a id="before-actions" name="before-actions"></a>
 ##### Before actions
 
 Before actions let you define small pieces of logic that should occure during

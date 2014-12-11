@@ -1,9 +1,11 @@
 ### Configuration
+<a id="configuration" name="configuration"></a>
 
 Application configuration is done in the initialization file install by running
 the installation generator. This file is placed in
 `config/initializers/app_kit.rb`.
 
+<a id="dashboard" name="dashboard"></a>
 #### Dashboard
 
 The dashboard must be setup from this file, since it does not have an associated
