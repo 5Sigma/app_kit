@@ -19,6 +19,11 @@ Then run the bundle command:
 This will install the AppKit gem and all of its dependencies as well as set them
 up in your project.
 
+To setup the project run the AppKit install generator. This will create a
+migration for the users table and install an initializer.
+
+    rails g app_kit:install
+
 <a id="models" name="models"></a>
 ### Setting up data models
 
@@ -32,7 +37,7 @@ ActiveRecord. To create a few models we can use Rails' built in generators.
 Edit the customer migration created in `db/migrate/XXXXXXXX_create_customer.rb`.
 
 ```ruby
-class CreateCustomers << ActiveRecord::migration
+class CreateCustomers < ActiveRecord::Migration
   def change
     create_table :customers do |t|
       t.string :first_name
@@ -49,7 +54,7 @@ end
 Edit the invoice migration created at `db/migrate/XXXXXXX_create_invoices`.
 
 ```ruby
-class CreateInvoices << ActiveRecord::migration
+class CreateInvoices < ActiveRecord::Migration
   def change
     create_table :invoices do |t|
       t.belongs_to :customer
@@ -80,6 +85,11 @@ class CreateInvoiceItems < ActiveRecord::Migration
   end
 end
 ```
+
+Migrate your database to create the tables.
+
+    rake db:migrate
+
 Next add your associations to your model files located in `app/model/`.
 
 ```ruby
