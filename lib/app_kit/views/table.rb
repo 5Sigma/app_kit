@@ -9,6 +9,10 @@ class AppKit::Views::Table
     @title = options[:title]
   end
 
+  def icon
+    resource.navigation_icon || 'list'
+  end
+
   def title
      @title || resource.plural_display_name
   end

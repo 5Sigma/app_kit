@@ -1,47 +1,11 @@
 <% content_for :breadcrumb do %>
   <li class="active"><%= resource.plural_display_name %></li>
 <% end %>
-<div class="panelkit">
-  <div class="pk-title">
-    <%= icon("list", resource_name) %>
-    <span class="right">
-      <%= link_to icon('filter', 'Filter'), '#', class: 'filter-trigger' %>
-    </span>
-  </div>
-  <div class="pk-body">
-    <table>
-      <thead>
-        <tr>
-          <th class="checkbox-cell"><%= check_box_tag :all %></th>
-          <% resource.table_fields.each do |field| %>
-            <th>
-              <%= field.display_name %>
-            </th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @records.each do |record| %>
-          <tr class="data-row" data-url="<%= ak_path(record) %>">
-            <td class="checkbox-cell"><%= check_box_tag record.id %></td>
-            <% resource.table_fields.each do |field| %>
-              <td><%= format_attribute(record,field) %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <div class="data-download">
-      <%= link_to 'XML', ak_path(model, :format => :xml) %>
-      <%= link_to 'JSON', ak_path(model, :format => :json) %>
-      <%= link_to 'CSV', ak_path(model, :format => :csv) %>
-    </div>
-  </div>
-</div>
+<%= render 'app_kit/table', item: AppKit::Views::Table.new(resource) %>
 <%= paginate @records, params: { :route_set => :app_kit } %>
 <div class="buttons">
-  <%= link_to "New #{resource_name.singularize}",
-    new_polymorphic_path([app_kit, model]),
+  <%= link_to "New #{resource.display_name}",
+    new_polymorphic_path([app_kit, resource.model]),
     class: 'primary' %>
 </div>
 <%= render partial: 'filter_panel', locals: { filter_resource: resource } %>

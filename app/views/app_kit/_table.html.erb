@@ -1,9 +1,7 @@
-<% content_for :breadcrumb do %>
-  <li class="active">Dashboard</li>
-<% end %>
 <div class="panelkit">
-  <div class="pk-title"><%= icon("list", item.title) %></div>
+  <div class="pk-title"><%= icon(item.icon, item.title) %></div>
   <div class="pk-body">
+    <% if item.get_records.count > 0 %>
     <table>
       <thead>
         <tr>
@@ -26,5 +24,16 @@
         <% end %>
       </tbody>
     </table>
+    <div class="data-download">
+      <%= link_to 'XML', ak_path(item.resource.model, :format => :xml) %>
+      <%= link_to 'JSON', ak_path(item.resource.model, :format => :json) %>
+      <%= link_to 'CSV', ak_path(item.resource.model, :format => :csv) %>
+    </div>
+    <%= paginate item.get_records, params: { :route_set => :app_kit } %>
+  <% else %>
+    <p class="no-data">
+      No <%= item.resource.plural_display_name.downcase %> found.
+    </p>
+  <% end %>
   </div>
 </div>
