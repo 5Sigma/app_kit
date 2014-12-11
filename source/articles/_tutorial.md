@@ -44,7 +44,7 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :last_name
       t.string :phone_number
       t.string :email
-      t.string :active
+      t.boolean :active
       t.timestamps
     end
   end
@@ -139,7 +139,7 @@ AppKit.register Customer do
         customer.update(active: false)
     end
 
-    field :name, :sort_field => :first_name
+    field :name, :sort_field => :first_name, editable: false
     field :first_name, show_in_table: false, show_in_details: false
     field :last_name, show_in_table: false, show_in_details: false
     field :email, formatter: :email
