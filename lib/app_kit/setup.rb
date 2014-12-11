@@ -18,8 +18,8 @@ module AppKit
       files = LOAD_PATH.flatten.compact.uniq.map{ |path| Dir["#{path}/**/*.rb"] }.flatten
       files.each { |file| load file }
       require "app_kit/user_resource"
-      AppKit::SetupDsl.module_eval(&block)
       AppKit::APP.dashboard = AppKit::Views::Dashboard.new
+      AppKit::SetupDsl.module_eval(&block)
     end
   end
 
