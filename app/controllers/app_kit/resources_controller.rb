@@ -61,7 +61,9 @@ module AppKit
     def update
       flash[:success] = "Record updated successfully."
       # call before actions created in the DSL
-      resource.before_actions[:update].call(@record) if resource.before_actions[:update]
+      if resource.before_actions[:update]
+        resource.before_actions[:update].call(@record)
+      end
       if @record.update(record_params)
         redirect_to polymorphic_path([app_kit, @record])
       else
@@ -82,7 +84,7 @@ module AppKit
 
     # GET /resource/:id/:action_name
     # A catchall action for any custom actions defined in the DSL.
-    # The action name is passed by the route as a param and a block 
+    # The action name is passed by the route as a param and a block
     # given in the DSL is called (with the record instance).
     #
     # Actions can be defined using blocks are a symbol name of a method
@@ -103,7 +105,8 @@ module AppKit
 
     # Whitelisting for all fields marked as +editable+ in the dsl.
     def record_params
-      params.require(model.model_name.name.underscore.to_sym).permit(resource.editable_fields.map(&:name))
+      fields = resource.editable_fields.map(&:name)
+      params.require(model.model_name.name.underscore.to_sym).permit(fields)
     end
 
     # A generic before_action method to set an instance variable for the
@@ -112,14 +115,15 @@ module AppKit
       @record ||= model.find_by_id(params[:id])
     end
 
-    # A helper method that returns the AppKit::Resource object tied to the current controller.
+    # A helper method that returns the AppKit::Resource object tied to the
+    # current controller.
     def resource
       self.class.resource
     end
     helper_method :resource
 
-    # A helper method to retrieve the model classs based on the current controller's
-    # class name.
+    # A helper method to retrieve the model classs based on the current
+    # controller's class name.
     def model
       @model ||= resource.model
     end
@@ -129,6 +133,7 @@ module AppKit
       model.name.deconstantize != ""
     end
 
+    # helper method to resolve the url for forms, between edit and new
     def form_url(record)
       if has_namespace?
         [app_kit, model.name.deconstantize.underscore.to_sym, record]
@@ -144,10 +149,12 @@ module AppKit
     end
     helper_method :resource_name
 
+    # gets the current page or first page for pagination
     def get_page
       params[:page] || 1
     end
 
+    # handles record filtering passed by the filter panel
     def process_filters(records,filter_params)
       return records unless filter_params
       filter_params.each do |field,filter_param|
@@ -164,6 +171,10 @@ module AppKit
             records = records.where("#{field} LIKE '%#{value}%'")
           when "ncont"
             records = records.where("#{field} NOT LIKE '%#{value}%'")
+          when "gt"
+            records = records.where("#{field} > ?", value)
+          when "lt"
+            records = records.where("#{field} < ?", value)
           end
         end
       end
