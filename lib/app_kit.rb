@@ -12,6 +12,7 @@ require "app_kit/kaminari_patch"
 
 module AppKit
     autoload :App, 'app_kit/app'
+    autoload :Configuration, 'app_kit/configuration'
     autoload :Resource, 'app_kit/resource'
     autoload :Navigation, 'app_kit/navigation'
     autoload :Action, 'app_kit/action'

@@ -3,6 +3,6 @@ class AppKit::App
   attr_accessor :config
 
   def initialize
-    @config = {}
+    @config = AppKit::Configuration.new
   end
 end

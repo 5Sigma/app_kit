@@ -1,5 +1,7 @@
 <div class="simple-container">
-<h1><%= AppKit::APP.config[:appication_name] %></h1>
+<div class="empty-panel">
+  <h1><%= AppKit.application.config.application_title %></h1>
+</div>
 <div class="simple-panel">
   <h2>Log in</h2>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

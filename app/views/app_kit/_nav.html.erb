@@ -1,5 +1,5 @@
 <div class="nav-header">
-  <div class="application-name">AppKit Test Application</div>
+<div class="application-name"><%= AppKit.application.config.application_title %></div>
   <div class="user">
     <%= link_to 'profile', ak_path(current_user) %> | <%= link_to 'logout', app_kit.destroy_user_session_path, :method => :delete %>
   </div>

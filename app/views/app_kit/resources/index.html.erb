@@ -1,8 +1,8 @@
-<%= debug params %>
 <% content_for :breadcrumb do %>
   <li class="active"><%= resource.plural_display_name %></li>
 <% end %>
-<%= render 'app_kit/table', item: AppKit::Views::Table.new(resource) %>
+<%= render 'app_kit/table',
+  item: AppKit::Views::Table.new(resource, records: @records) %>
 <%= paginate @records, params: { :route_set => :app_kit } %>
 <div class="buttons">
   <%= link_to "New #{resource.display_name}",

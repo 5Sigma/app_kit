@@ -6,7 +6,7 @@
     </span>
   </div>
   <div class="pk-body">
-    <% if item.get_records.count > 0 %>
+    <% if item.records.count > 0 %>
     <table>
       <thead>
         <tr>
@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <% item.get_records.each do |record| %>
+        <% item.records.each do |record| %>
           <tr class="data-row" data-url="<%= ak_path(record) %>">
             <td class="checkbox-cell"><%= check_box_tag record.id %></td>
             <% item.resource.table_fields.each do |field| %>
@@ -30,11 +30,11 @@
       </tbody>
     </table>
     <div class="data-download">
-      <%= link_to 'XML', ak_path(item.resource.model, :format => :xml) %>
-      <%= link_to 'JSON', ak_path(item.resource.model, :format => :json) %>
-      <%= link_to 'CSV', ak_path(item.resource.model, :format => :csv) %>
+      <%= link_to 'XML', ak_path(item.resource.model, :format => :xml, "#{item.resource.model.name.underscore}_filter".to_sym => params["#{item.resource.model.name.underscore}_filter"]) %>
+      <%= link_to 'JSON', ak_path(item.resource.model, :format => :json, "#{item.resource.model.name.underscore}_filter".to_sym => params["#{item.resource.model.name.underscore}_filter"]) %>
+      <%= link_to 'CSV', ak_path(item.resource.model, :format => :csv, "#{item.resource.model.name.underscore}_filter".to_sym => params["#{item.resource.model.name.underscore}_filter"]) %>
     </div>
-    <%= paginate item.get_records, params: { :route_set => :app_kit } %>
+    <%= paginate item.records, params: { :route_set => :app_kit } %>
   <% else %>
     <p class="no-data">
       No <%= item.resource.plural_display_name.downcase %> found.

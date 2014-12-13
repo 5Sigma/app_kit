@@ -8,7 +8,7 @@ module AppKit
 
     private
     def dashboard
-      AppKit::APP.dashboard
+      AppKit::application.dashboard
     end
     helper_method :dashboard
   end

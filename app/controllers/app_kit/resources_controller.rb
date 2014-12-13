@@ -18,7 +18,10 @@ module AppKit
     # GET /resource
     # Lists all records for an invoice.
     def index
-      @records = process_filters(model, params["#{model.name.underscore}_filter"].try(:first)).page(get_page)
+      @records = process_filters(model, params["#{model.name.underscore}_filter"].try(:first))
+      # page resources if the request is for html. For JSON and XML we will
+      # return the entire recordset
+      @records = @records.page(get_page) if request.format == :html
       respond_with(@records)
     end
 

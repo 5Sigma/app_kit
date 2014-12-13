@@ -1,6 +1,5 @@
 module AppKit
-  APP = App.new
-
+    @@application = App.new
   # Setup the appkit instance including reloading routes and modifying the
   # load paths. The AppKit DSL needs to be removed from the load paths because
   # we dont it loading before the models.
@@ -18,14 +17,24 @@ module AppKit
       files = LOAD_PATH.flatten.compact.uniq.map{ |path| Dir["#{path}/**/*.rb"] }.flatten
       files.each { |file| load file }
       require "app_kit/user_resource"
-      AppKit::APP.dashboard = AppKit::Views::Dashboard.new
+      AppKit.application.dashboard = AppKit::Views::Dashboard.new
       AppKit::SetupDsl.module_eval(&block)
+    end
+
+    def self.application
+      @@application
     end
   end
 
   module SetupDsl
+    def self.title(title_text)
+      AppKit.application.config.application_title = title_text
+    end
+    def self.disable_authentication
+      AppKit.application.config.authentication_enabled = false
+    end
     def self.dashboard(&block)
-      AppKit::APP.dashboard.instance_eval(&block)
+      AppKit.application.dashboard.instance_eval(&block)
     end
   end
 end

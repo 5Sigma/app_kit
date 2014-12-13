@@ -7,6 +7,7 @@ class AppKit::Views::Table
     @resource = resource
     @resource_scope = options[:resource_scope]
     @title = options[:title]
+    @records = options[:records]
   end
 
   def icon
@@ -17,9 +18,13 @@ class AppKit::Views::Table
      @title || resource.plural_display_name
   end
 
-  def get_records
-    records = @resource.model
-    records = records.send(resource_scope) if resource_scope
-    records.page(0)
+  def records
+    unless @records
+      @records = @resource.model
+      @records = @records.send(resource_scope) if resource_scope
+      @records.page(1)
+    end
+    @records.page(1)
   end
+
 end

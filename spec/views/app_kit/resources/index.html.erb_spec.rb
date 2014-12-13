@@ -16,13 +16,15 @@ RSpec.describe 'app_kit/resources/index.html.erb', :type => :view do
       expect(rendered).to have_selector('table')
     end
     it "should render table row for each record" do
-      FactoryGirl.create_list(:invoice, 10)
+      FactoryGirl.create_list(:invoice_published, 5)
+      FactoryGirl.create_list(:invoice_paid, 5)
+      assign(:records, Invoice.open.page(1))
       render
-      expect(rendered).to have_selector('table tbody tr', count: Invoice.count)
+      expect(rendered).to have_selector('table tbody tr', count: 5)
     end
   end
   context "without data" do
-    before(:each) do 
+    before(:each) do
       assign(:records, Invoice.all.page(0))
     end
 
