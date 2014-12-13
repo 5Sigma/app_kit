@@ -39,6 +39,7 @@ module AppKit
       if @record.save
         redirect_to polymorphic_path([app_kit, @record])
       else
+        puts @record.errors.full_messages.inspect
         render 'new'
       end
     end
