@@ -1,12 +1,32 @@
 body.simple {
   background: #eee;
-  @include outer-container;
+  .simple-container {
+    @include outer-container;
+  }
+  .empty-panel {
+    @include span-columns(4);
+    @include shift(4);
+    text-align: center;
+    a {
+      @include transition(all, 0.5s);
+      color: #999;
+      display: block;
+      text-align: center;
+      padding: 5px 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      &:hover {
+        background: #e0e0e0;
+      }
+    }
+  }
   .simple-panel {
     @include span-columns(4);
     @include shift(4);
     @include pad;
     background: #fff;
     margin-top: 30px;
+    margin-bottom: 30px;
     font-family: $base-font-family;
     box-shadow: 1px 1px 1px darken($base-background-color, 10);
     border-bottom: 1px solid #ccc;
@@ -24,8 +44,10 @@ body.simple {
       color: #121212;
     }
     h2 {
-      font-size: 1.2em;
+      font-size: 1.0em;
       text-transform:uppercase;
+      color: #ccc;
+      text-align: right;
     }
     form {
       margin-top: 20px;

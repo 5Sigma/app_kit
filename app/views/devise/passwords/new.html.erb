@@ -1,0 +1,22 @@
+<div class="simple-container">
+<h1><%= AppKit::APP.config[:appication_name] %></h1>
+<div class="simple-panel">
+  <h2>Password recovery</h2>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Send Instructions" %>
+    </div>
+  <% end %>
+</div>
+<div class="empty-panel">
+  <%= render "devise/shared/links" %>
+</div>
+</div>
