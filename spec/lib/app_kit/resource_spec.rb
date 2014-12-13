@@ -19,15 +19,15 @@ describe AppKit::Resource do
     context "when set to false" do
       it "should remove from navigation list" do
         resource.show_in_navigation false
-        expect(AppKit::Navigation::RESOURCES).to_not include(resource)
+        expect(AppKit.application.navigation_resources).to_not include(resource)
       end
     end
     context "when set to true" do
-      it "should add the resource to the RESOURCES list" do 
+      it "should add the resource to the RESOURCES list" do
         resource.show_in_navigation false
-        expect(AppKit::Navigation::RESOURCES).to_not include(resource)
+        expect(AppKit.application.navigation_resources).to_not include(resource)
         resource.show_in_navigation true
-        expect(AppKit::Navigation::RESOURCES).to include(resource)
+        expect(AppKit.application.navigation_resources).to include(resource)
       end
     end
   end

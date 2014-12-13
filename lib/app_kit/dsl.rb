@@ -13,6 +13,9 @@ module AppKit
     # draw controller routes
     AppKit::Engine.routes.append do
       resources resource_name.to_sym do
+        controller.resource.has_many_associations.each do |assoc|
+          resources assoc.name.to_s.pluralize, only: [:new]
+        end
         member do
           controller.resource.member_actions.each do |name,action|
             get action.name, action: 'perform_action', action_name: 'deactivate'

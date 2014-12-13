@@ -3,6 +3,7 @@ $(function() {
     width: '100%'
   });
   $('select.datetime').select2();
+  $('select.date').select2();
   $('.date-range input').datepicker();
   $('.filter-panel select').dropkick();
 });

@@ -5,7 +5,7 @@ AppKit.register Invoice do
     field :invoice_number, editable: false
     field :customer_id
     field :invoice_total, editable: false, :formatter => :currency
-    field :invoice_date, :formatter => :date
+    field :invoice_date, :formatter => :date, :editor => :date
     field :paid, show_in_table: false
     field :published, show_in_table: false
 

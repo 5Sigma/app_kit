@@ -83,7 +83,7 @@
       <% else %>
         <p class="no-data">
         No <%= assoc.name.to_s.humanize.pluralize %> found for this <%= @record.class.name.humanize %>. <br/>
-        <%= link_to 'Create', new_polymorphic_path([app_kit, assoc.klass]) %> a new <%= assoc.name.to_s.humanize.singularize %>.
+        <%= link_to 'Create', new_polymorphic_path([app_kit, @record, assoc.klass]) %> a new <%= assoc.name.to_s.humanize.singularize %>.
         </p>
       <% end %>
     </div>

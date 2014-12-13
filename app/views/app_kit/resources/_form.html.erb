@@ -8,7 +8,11 @@
   <div class="pk-body pad">
     <% resource.editable_fields.each do |field| %>
       <% if field.is_foreign_key? %>
-        <%= f.association field.association.name.to_sym, wrapper_html: {class: 'association'} %>
+        <% if params[field.name].present? %>
+          <%= f.hidden_field field.name, value: params[field.name] %>
+        <% else %>
+          <%= f.association field.association.name.to_sym, wrapper_html: {class: 'association'} %>
+        <% end %>
       <% else %>
         <% if field.editor == :readonly %>
           <div class="input readonly">

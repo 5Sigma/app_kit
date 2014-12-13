@@ -6,7 +6,7 @@
 </div>
 <div class="nav">
     <div class="nav-left">
-      <% AppKit::Navigation::RESOURCES.each do |resource| %>
+      <% AppKit.application.navigation_resources.each do |resource| %>
         <% next unless resource.navigation_position == :left %>
         <% if params[:controller] == "app_kit/#{resource.controller_name}" %>
             <%= link_to [app_kit, resource.model], class: 'active' do %>
@@ -22,7 +22,7 @@
       <% end %>
     </div>
     <div class="nav-right">
-      <% AppKit::Navigation::RESOURCES.each do |resource| %>
+      <% AppKit.application.navigation_resources.each do |resource| %>
         <% next unless resource.navigation_position == :right %>
         <% if params[:controller] == "app_kit/#{resource.controller_name}" %>
             <%= link_to [app_kit, resource.model], class: 'active' do %>
