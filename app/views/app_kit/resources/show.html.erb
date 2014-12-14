@@ -27,7 +27,6 @@
     </span>
     </div>
     <div class="pk-body">
-      <div class="show-details-column">
         <div class="keyval">
           <% resource.detail_fields.each do |field| %>
             <div class="kv-row">
@@ -35,17 +34,16 @@
               <span class="kv-value"><%= format_attribute(@record, field) %></span>
             </div>
           <% end %>
-        </div>
       </div>
       <% if resource.member_actions.select{|name, a| a.enabled_for_record?(@record)}.count > 0 %>
-        <div class="show-actions-column">
-          <ul class="links">
+        <div class="panel-footer-links">
+          <div class="right">
             <% resource.member_actions.each do |name, action| %>
               <% if action.enabled_for_record?(@record) %>
-                <li><%= link_to action.name.to_s.humanize, polymorphic_path([app_kit, action.name, @record])%></li>
+                <%= link_to action.name.to_s.humanize, polymorphic_path([app_kit, action.name, @record])%>
               <% end %>
             <% end %>
-          </ul>
+          </div>
         </div>
       <% end %>
     </div>

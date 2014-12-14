@@ -7,32 +7,37 @@
   </div>
   <div class="pk-body">
     <% if item.records.count > 0 %>
-    <table>
-      <thead>
-        <tr>
-          <th class="checkbox-cell"><%= check_box_tag :all %></th>
-          <% item.resource.table_fields.each do |field| %>
-            <th>
-              <%= field.display_name %>
-            </th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% item.records.each do |record| %>
-          <tr class="data-row" data-url="<%= ak_path(record) %>">
-            <td class="checkbox-cell"><%= check_box_tag record.id %></td>
+      <div class="table-container">
+        <table id="table-<%= item.resource.model.name.underscore %>">
+        <thead>
+          <tr>
             <% item.resource.table_fields.each do |field| %>
-              <td><%= format_attribute(record,field) %></td>
+              <th>
+                <%= field.display_name %>
+              </th>
             <% end %>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <div class="data-download">
-      <%= link_to 'XML', ak_path(item.resource.model, :format => :xml, "#{item.resource.model.name.underscore}_filter".to_sym => params["#{item.resource.model.name.underscore}_filter"]) %>
-      <%= link_to 'JSON', ak_path(item.resource.model, :format => :json, "#{item.resource.model.name.underscore}_filter".to_sym => params["#{item.resource.model.name.underscore}_filter"]) %>
-      <%= link_to 'CSV', ak_path(item.resource.model, :format => :csv, "#{item.resource.model.name.underscore}_filter".to_sym => params["#{item.resource.model.name.underscore}_filter"]) %>
+        </thead>
+        <tbody>
+          <% item.records.each do |record| %>
+            <tr class="data-row" data-url="<%= ak_path(record) %>">
+              <% item.resource.table_fields.each do |field| %>
+                <td><%= format_attribute(record,field) %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="panel-footer-links">
+        <div class="left">
+          <%= link_to 'New Invoice', '' %>
+        </div>
+        <div class="right">
+        <%= link_to 'XML', ak_path(item.resource.model, :format => :xml, "#{item.resource.model.name.underscore}_filter".to_sym => params["#{item.resource.model.name.underscore}_filter"]) %>
+        <%= link_to 'JSON', ak_path(item.resource.model, :format => :json, "#{item.resource.model.name.underscore}_filter".to_sym => params["#{item.resource.model.name.underscore}_filter"]) %>
+        <%= link_to 'CSV', ak_path(item.resource.model, :format => :csv, "#{item.resource.model.name.underscore}_filter".to_sym => params["#{item.resource.model.name.underscore}_filter"]) %>
+        </div>
+      </div>
     </div>
     <%= paginate item.records, params: { :route_set => :app_kit } %>
   <% else %>

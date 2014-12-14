@@ -92,6 +92,30 @@
         }
       }
     }
+    .panel-footer-links {
+      @include clearfix;
+      .left {
+        float: left;
+        text-align:left;
+      }
+      .right {
+        float: right;
+        text-align: right;
+      }
+      padding: 10px 20px;
+      font-size: 0.8em;
+      color: #888;
+      a {
+        color: #666;
+        font-weight: bold;
+        display: inline-block;
+        padding: 0px 5px;
+      }
+      a:hover {
+        color: #121212;
+        text-decoration: none;
+      }
+    }
   }
 }
 .buttons {
