@@ -1,4 +1,4 @@
-class AppKit::App
+class AppKit::Application
   attr_accessor :dashboard
   attr_accessor :config
   attr_accessor :resources
@@ -9,4 +9,5 @@ class AppKit::App
     @resources = []
     @navigation_resources = []
   end
+
 end

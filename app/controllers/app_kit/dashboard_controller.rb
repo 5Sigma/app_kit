@@ -2,7 +2,6 @@ require_dependency "app_kit/application_controller"
 
 module AppKit
   class DashboardController < ApplicationController
-    before_action :authenticate_user!
     def show
     end
 

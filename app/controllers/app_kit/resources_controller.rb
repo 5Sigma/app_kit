@@ -2,7 +2,7 @@ module AppKit
   # The base resource controller. This controller contains all the functionality for REST
   # actions for all resources. Resource specific controllers are generated that inherit from
   # this class. It should not be nessicary to use this class directly.
-  class ResourcesController < ActionController::Base
+  class ResourcesController < ApplicationController 
     # Stores the resource object this controller manages.
     class_attribute :resource
     layout 'app_kit/application'
@@ -13,7 +13,6 @@ module AppKit
     # Setup a instance variable for the model
     before_action :find_record, only: [:show, :edit, :update,
                                        :destroy, :perform_action]
-    before_action :authenticate_user!
 
     # GET /resource
     # Lists all records for an invoice.

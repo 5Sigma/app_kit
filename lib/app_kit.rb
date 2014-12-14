@@ -11,7 +11,7 @@ require "as_csv"
 require "app_kit/kaminari_patch"
 
 module AppKit
-    autoload :App, 'app_kit/app'
+    autoload :Application, 'app_kit/application'
     autoload :Configuration, 'app_kit/configuration'
     autoload :Resource, 'app_kit/resource'
     autoload :Navigation, 'app_kit/navigation'
@@ -24,6 +24,7 @@ module AppKit
       autoload :Table, 'app_kit/views/table'
     end
     LOAD_PATH = [File.expand_path('app/app_kit', Rails.root)]
+    @@application = Application.new
 end
 require "app_kit/engine"
 require "app_kit/setup"

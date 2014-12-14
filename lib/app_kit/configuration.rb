@@ -4,4 +4,8 @@ class AppKit::Configuration
   def initialize
     @authentication_enabled = true
   end
+
+  def authentication_enabled?
+    authentication_enabled
+  end
 end
