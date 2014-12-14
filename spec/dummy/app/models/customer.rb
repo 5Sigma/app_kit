@@ -4,6 +4,7 @@ class Customer < ActiveRecord::Base
     validates :phone_number, numericality: true
 
     has_many :invoices, :dependent => :destroy
+    has_paper_trail
 
     def name
         "#{first_name} #{last_name}"

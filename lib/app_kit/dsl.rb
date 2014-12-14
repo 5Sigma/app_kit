@@ -17,6 +17,8 @@ module AppKit
           resources assoc.name.to_s.pluralize, only: [:new]
         end
         member do
+          get 'history' => :history, :as => :history
+          get 'version/:version_id' => :version, :as => :version
           controller.resource.member_actions.each do |name,action|
             get action.name, action: 'perform_action', action_name: 'deactivate'
           end

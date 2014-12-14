@@ -1,0 +1,41 @@
+.version-list {
+  width: 450px;
+  margin: auto auto;
+  .version {
+    @include transition(all, 0.5s);
+    display: block;
+    padding: 10px 15px;
+    border-radius: 4px;
+    background: white;
+    border: 1px solid #eee;
+    color: #555;
+    padding-bottom: 10px;
+    .glyph {
+      display: inline-block;
+      margin-right: 10px;
+      color: #ccc;
+    }
+    .title {
+      display: inline-block;
+      font-weight: 500;
+    }
+    .detail {
+      display: inline-block;
+      font-size: 0.8em;
+      color: #888;
+      padding: 0px 10px;
+    }
+  }
+  a.version:hover {
+    background: #FEFAE5;
+    border-color: darken(#FEFAE5,10);
+  }
+}
+.version-arrow {
+  width: 64px;
+  height: 48px;
+  margin: auto auto;
+  background-image: url(asset-path('app_kit/history-arrow.png'));
+  background-repeat: no-repeat;
+  background-size: cover;
+}

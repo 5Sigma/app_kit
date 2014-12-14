@@ -9,17 +9,21 @@
 <div class="show-details">
   <div class="panelkit">
     <div class="pk-title">
-      <%= @record %>
+      <%= @record.to_s %>
       <span class="right">
         <%= link_to icon('edit', 'edit details'),
           edit_polymorphic_path([app_kit, @record]) %>
         <%= link_to icon('trash', "delete #{resource.display_name}"),
-          polymorphic_path([ app_kit, @record]),
+          polymorphic_path([app_kit, @record]),
           data: {
             :method => :delete,
             confirm: "This will permanently delete this record. Are you sure?"
           },
           class: 'danger' %>
+        <% if @record.respond_to?(:versions) %>
+          <%= link_to icon('history', 'History'),
+            polymorphic_path([app_kit, :history, @record]), class: 'warning' %>
+        <% end %>
     </span>
     </div>
     <div class="pk-body">
@@ -82,7 +86,7 @@
         </table>
       <% else %>
         <p class="no-data">
-        No <%= assoc.name.to_s.humanize.pluralize %> found for this <%= @record.class.name.humanize %>. <br/>
+        No <%= assoc.name.to_s.humanize.pluralize.downcase %> found for this <%= @record.class.name.humanize.downcase %>. <br/>
         <%= link_to 'Create', new_polymorphic_path([app_kit, @record, assoc.klass]) %> a new <%= assoc.name.to_s.humanize.singularize %>.
         </p>
       <% end %>

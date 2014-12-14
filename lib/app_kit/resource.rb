@@ -132,7 +132,7 @@ module AppKit
 
     # A list of all has_many associations the model has.
     def has_many_associations
-      model.reflect_on_all_associations.select{|a| a.macro == :has_many }
+      model.reflect_on_all_associations.select{|a| a.macro == :has_many unless a.name == :versions }
     end
 
     # DSL method for displaying resources in the main navigation bar.

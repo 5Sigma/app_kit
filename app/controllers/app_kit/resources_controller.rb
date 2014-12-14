@@ -11,7 +11,7 @@ module AppKit
     respond_to :html, :json, :xml, :csv
 
     # Setup a instance variable for the model
-    before_action :find_record, only: [:show, :edit, :update,
+    before_action :find_record, only: [:show, :edit, :update, :history,
                                        :destroy, :perform_action]
 
     # GET /resource
@@ -84,6 +84,12 @@ module AppKit
       end
     end
 
+    def history; end
+
+    def version
+      @record =  model.find_by_id(params[:id]).versions[params[:version_id].to_i].reify(dup:true)
+      render 'show'
+    end
 
     # GET /resource/:id/:action_name
     # A catchall action for any custom actions defined in the DSL.
