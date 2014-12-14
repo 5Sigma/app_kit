@@ -4,6 +4,7 @@ class Invoice < ActiveRecord::Base
     validates :customer_id, presence: true
 
     scope :open, ->{ where(paid: false, published: true) }
+    scope :unpublished, ->{where(published: false)}
 
     def to_s
         "Invoice ##{invoice_number}"

@@ -39,6 +39,8 @@ RSpec.describe AppKit::Views::Table do
     let(:paid) {FactoryGirl.create(:invoice_paid)}
     context "with scope" do
       it "should return scoped records" do
+        FactoryGirl.create(:invoice)
+        expect(table.records).to eq([])
         expect(table.records).to eq([open])
       end
     end
