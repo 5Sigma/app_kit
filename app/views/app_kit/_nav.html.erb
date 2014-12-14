@@ -1,21 +1,25 @@
 <div class="nav-header">
 <div class="application-name"><%= AppKit.application.config.application_title %></div>
   <div class="user">
-    <%= link_to 'profile', ak_path(current_user) %> | <%= link_to 'logout', app_kit.destroy_user_session_path, :method => :delete %>
+    <%= link_to icon('user', 'profile'), ak_path(current_user) %><%= link_to icon('sign-out', 'logout'), app_kit.destroy_user_session_path, :method => :delete %>
   </div>
 </div>
 <div class="nav">
-    <div class="nav-left">
+  <div class="nav-left">
+    <%= link_to app_kit.dashboard_path, class: "#{'active' if params[:controller] == 'dashboard'}" do %>
+      <%= icon('dashboard') %>
+      Dashboard
+    <% end %>
       <% AppKit.application.navigation_resources.each do |resource| %>
         <% next unless resource.navigation_position == :left %>
         <% if params[:controller] == "app_kit/#{resource.controller_name}" %>
             <%= link_to [app_kit, resource.model], class: 'active' do %>
-                <%= icon(resource.navigation_icon, nil, class: 'fa-2x fa-fw') %>
+                <%= icon(resource.navigation_icon, nil, class: 'fa-fw') %>
                 <%= resource.plural_display_name %>
             <% end %>
         <% else %>
             <%= link_to [app_kit, resource.model] do %>
-                <%= icon(resource.navigation_icon, nil, class: 'fa-2x fa-fw') %>
+                <%= icon(resource.navigation_icon, nil, class: 'fa-fw') %>
                 <%= resource.plural_display_name %>
             <% end %>
         <% end %>
@@ -26,12 +30,12 @@
         <% next unless resource.navigation_position == :right %>
         <% if params[:controller] == "app_kit/#{resource.controller_name}" %>
             <%= link_to [app_kit, resource.model], class: 'active' do %>
-                <%= icon(resource.navigation_icon, nil, class: 'fa-2x fa-fw') %>
+                <%= icon(resource.navigation_icon, nil, class: 'fa-fw') %>
                 <%= resource.plural_display_name %>
             <% end %>
         <% else %>
             <%= link_to [app_kit, resource.model] do %>
-                <%= icon(resource.navigation_icon, nil, class: 'fa-2x fa-fw') %>
+                <%= icon(resource.navigation_icon, nil, class: 'fa-fw') %>
                 <%= resource.plural_display_name %>
             <% end %>
         <% end %>
