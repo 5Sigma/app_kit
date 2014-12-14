@@ -6,10 +6,6 @@
 </div>
 <div class="nav">
   <div class="nav-left">
-    <%= link_to app_kit.dashboard_path, class: "#{'active' if params[:controller] == 'dashboard'}" do %>
-      <%= icon('dashboard') %>
-      Dashboard
-    <% end %>
       <% AppKit.application.navigation_resources.each do |resource| %>
         <% next unless resource.navigation_position == :left %>
         <% if params[:controller] == "app_kit/#{resource.controller_name}" %>
