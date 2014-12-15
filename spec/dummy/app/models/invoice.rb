@@ -6,6 +6,15 @@ class Invoice < ActiveRecord::Base
     scope :open, ->{ where(paid: false, published: true) }
     scope :unpublished, ->{where(published: false)}
 
+
+    after_create :set_invoice_number
+
+
+    def set_invoice_number
+      self.invoice_number = "#{Time.current.year}#{Time.current.month}#{self.id}"
+      self.save
+    end
+
     def to_s
         "Invoice ##{invoice_number}"
     end

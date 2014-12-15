@@ -20,7 +20,7 @@ module AppKit
       @records = process_filters(model, params["#{model.name.underscore}_filter"].try(:first))
       # page resources if the request is for html. For JSON and XML we will
       # return the entire recordset
-      @records = @records.page(get_page) 
+      @records = @records.page(get_page)
       respond_with(@records)
     end
 
@@ -115,7 +115,7 @@ module AppKit
     # Whitelisting for all fields marked as +editable+ in the dsl.
     def record_params
       fields = resource.editable_fields.map(&:name)
-      params.require(model.model_name.name.underscore.to_sym).permit(fields)
+      params.require(model.model_name.param_key.underscore.to_sym).permit(fields)
     end
 
     # A generic before_action method to set an instance variable for the
@@ -162,6 +162,7 @@ module AppKit
     def get_page
       params[:page] || 1
     end
+    helper_method :get_page
 
     # handles record filtering passed by the filter panel
     def process_filters(records,filter_params)

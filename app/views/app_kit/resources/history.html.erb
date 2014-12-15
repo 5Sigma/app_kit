@@ -7,17 +7,14 @@
   <p class="no-data">No edits have been made for this record</p>
 <% else %>
     <div class="version-list">
-      <div class="version created">
-        <div class="glyph"><%= icon('plus') %> </div>
-        <div class="title"> Record created </div>
-        <div class="detail"> <%= time_ago_in_words @record.created_at %> ago</div>
-    </div>
-    <% if @record.versions.count > 0 %>
-      <div class="version-arrow"></div>
-    <% end %>
     <% @record.versions.each_with_index do |version, index| %>
-      <%= link_to polymorphic_path([app_kit, :version, @record], version_id: version.index), class: 'version edited' do %>
+      <%= link_to polymorphic_path([app_kit, :version, @record], version_id: version.index), class: "version #{version.event}" do %>
+        <% if version.event == "update" %>
         <div class="glyph"><%= icon('edit') %></div>
+      <% end %>
+        <% if version.event == "create" %>
+        <div class="glyph"><%= icon('plus') %></div>
+      <% end %>
           <div class="title">Record <%= version.event.capitalize %></div>
           <div class="detail"> <%= time_ago_in_words version.created_at %> ago</div>
           <% if AppKit.application.config.authentication_enabled? %>

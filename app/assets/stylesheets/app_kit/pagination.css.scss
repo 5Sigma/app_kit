@@ -1,13 +1,9 @@
 nav.pagination {
   span.current, span a {
-      padding: 4px 12px;
-      border: 1px solid $base-border-color;
       color: #454545;
-      background-color: darken($base-background-color, 3);
       display: inline-block;
   }
   span.current {
-    background: #333;
-    color: white;
+    color: $base-accent-color;
   }
 }

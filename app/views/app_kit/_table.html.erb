@@ -30,7 +30,7 @@
       </table>
       <div class="panel-footer-links">
         <div class="left">
-          <%= link_to 'New Invoice', '' %>
+  <%= paginate item.records, params: { :route_set => :app_kit } %>
         </div>
         <div class="right">
         <%= link_to 'XML', ak_path(item.resource.model, :format => :xml, "#{item.resource.model.name.underscore}_filter".to_sym => params["#{item.resource.model.name.underscore}_filter"]) %>
@@ -39,7 +39,6 @@
         </div>
       </div>
     </div>
-    <%= paginate item.records, params: { :route_set => :app_kit } %>
   <% else %>
     <p class="no-data">
       No <%= item.resource.plural_display_name.downcase %> found.

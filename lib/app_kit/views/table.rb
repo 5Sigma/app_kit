@@ -1,5 +1,5 @@
 class AppKit::Views::Table
-  attr_accessor :resource, :resource_scope
+  attr_accessor :resource, :resource_scope, :page
   attr_writer :title
 
   def initialize(resource, options = {})
@@ -8,6 +8,7 @@ class AppKit::Views::Table
     @resource_scope = options[:resource_scope]
     @title = options[:title]
     @records = options[:records]
+    @page = options[:page] || 1
   end
 
   def icon
@@ -22,9 +23,10 @@ class AppKit::Views::Table
     unless @records
       @records = @resource.model
       @records = @records.send(resource_scope) if resource_scope
-      @records.page(1)
+      @records.page(page)
     end
-    @records.page(1)
+    @records.page(page)
   end
+
 
 end

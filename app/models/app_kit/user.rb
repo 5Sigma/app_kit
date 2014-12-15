@@ -2,7 +2,7 @@
     devise :database_authenticatable, :recoverable, :validatable, stretches: 2
 
     def to_s
-      email
+      "#{first_name} #{last_name}"
     end
   end
 
