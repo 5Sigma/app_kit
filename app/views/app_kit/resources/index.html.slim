@@ -1,0 +1,13 @@
+- content_for :breadcrumb do
+  li.active =resource.plural_display_name
+
+= resource_table resource, @records, get_page
+.buttons
+  =link_to "New #{resource.display_name}",
+    new_polymorphic_path([app_kit, resource.model]),
+    class: 'primary'
+
+= render partial: 'filter_panel', locals: {filter_resource: resource }
+.filter_screen
+
+

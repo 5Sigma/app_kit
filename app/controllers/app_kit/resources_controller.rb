@@ -1,8 +1,9 @@
 module AppKit
-  # The base resource controller. This controller contains all the functionality for REST
-  # actions for all resources. Resource specific controllers are generated that inherit from
-  # this class. It should not be nessicary to use this class directly.
-  class ResourcesController < ApplicationController 
+  # The base resource controller. This controller contains all the
+  # functionality for REST actions for all resources. Resource specific
+  # controllers are generated that inherit from this class. It should not
+  # be nessicary to use this class directly.
+  class ResourcesController < ApplicationController
     # Stores the resource object this controller manages.
     class_attribute :resource
     layout 'app_kit/application'
@@ -17,7 +18,8 @@ module AppKit
     # GET /resource
     # Lists all records for an invoice.
     def index
-      @records = process_filters(model, params["#{model.name.underscore}_filter"].try(:first))
+      filter_params = params["#{model.name.underscore}_filter"].try(:first)
+      @records = process_filters(model, filter_params)
       # page resources if the request is for html. For JSON and XML we will
       # return the entire recordset
       @records = @records.page(get_page)
@@ -29,7 +31,9 @@ module AppKit
     def new
       @record = model.new
       # call before actions created in the DSL
-      resource.before_actions[:new].call(@record) if resource.before_actions[:new]
+      if resource.before_actions[:new]
+        resource.before_actions[:new].call(@record)
+      end
     end
 
     # POST /resource
@@ -37,7 +41,9 @@ module AppKit
     def create
       @record = model.new(record_params)
       # call before actions created in the DSL
-      resource.before_actions[:create].call(@record) if resource.before_actions[:create]
+      if resource.before_actions[:create]
+        resource.before_actions[:create].call(@record)
+      end
       if @record.save
         redirect_to polymorphic_path([app_kit, @record])
       else
@@ -113,6 +119,10 @@ module AppKit
 
     private
 
+    def get_page
+      params[:page] || 1
+    end
+
     # Whitelisting for all fields marked as +editable+ in the dsl.
     def record_params
       fields = resource.editable_fields.map(&:name)
@@ -159,11 +169,6 @@ module AppKit
     end
     helper_method :resource_name
 
-    # gets the current page or first page for pagination
-    def get_page
-      params[:page] || 1
-    end
-    helper_method :get_page
 
     # handles record filtering passed by the filter panel
     def process_filters(records,filter_params)

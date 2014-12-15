@@ -1,15 +1,17 @@
-RSpec.describe 'app_kit/resources/index.html.erb', :type => :view do
+RSpec.describe 'app_kit/resources/index.html.slim', :type => :view do
   let(:resource) { AppKit::Resource.find(:invoice) }
   before(:each) do
     allow(view).to receive(:resource).and_return(resource)
     view.extend AppKit::PathHelper
     view.extend AppKit::FilterHelper
     view.extend AppKit::AttributeHelper
+    view.extend AppKit::ResourceHelper
+    view.extend AppKit::TableHelper
   end
   context "with data" do
     before(:each) do
       FactoryGirl.create(:invoice)
-      assign(:records, Invoice.all.page(0))
+      assign(:records, Invoice.all.page(1))
     end
     it "should display table" do
       render

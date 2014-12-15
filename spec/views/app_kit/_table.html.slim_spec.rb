@@ -1,12 +1,13 @@
 require 'spec_helper'
 
-RSpec.describe 'app_kit/_table.html.erb', :type => :view do
+RSpec.describe 'app_kit/_table.html.slim', :type => :view do
   context "with data" do
     before(:each) do
       FactoryGirl.create(:invoice)
       view.extend AppKit::PathHelper
       view.extend AppKit::FilterHelper
       view.extend AppKit::AttributeHelper
+      view.extend AppKit::TableHelper
     end
     it "should render table" do
       table = AppKit::Views::Table.new(AppKit::Resource.find(:invoice))
