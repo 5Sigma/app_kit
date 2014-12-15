@@ -1,0 +1,17 @@
+.nav-header
+  .application-name = AppKit.application.config.application_title
+  .user
+    - if AppKit.application.config.authentication_enabled?
+      = link_to icon('user', 'profile'), ak_path(current_user)
+      = link_to icon('sign-out', 'logout'), app_kit.destroy_user_session_path,
+        :method => :delete
+.nav
+  .nav-left
+    - AppKit.application.nav_items(:left).each do |nav_item|
+      = navigation_link(nav_item)
+  .nav-right
+    - AppKit.application.nav_items(:right).each do |nav_item|
+      = navigation_link(nav_item)
+
+
+

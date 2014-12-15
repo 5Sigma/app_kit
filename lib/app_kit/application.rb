@@ -10,4 +10,8 @@ class AppKit::Application
     @navigation_resources = []
   end
 
+  def nav_items(position)
+    navigation_resources.select { |i| i.navigation_position == position }
+  end
+
 end

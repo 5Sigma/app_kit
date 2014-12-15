@@ -1,0 +1,8 @@
+- if content_for :breadcrumb
+  .ap-breadcrumb
+    ul
+      li =link_to icon('dashboard'), app_kit.dashboard_path
+      = yield :breadcrumb
+    - if content_for :breadcrumb_tools
+     .tools
+       = yield :breadcrumb_tools
