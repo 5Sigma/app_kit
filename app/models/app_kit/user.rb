@@ -7,7 +7,7 @@
   
 
     def versions
-      PaperTrail::Version.where(whodunnit: self.id).order(:created_at).limit(20)
+      PaperTrail::Version.where(whodunnit: self.id).order(:created_at => :desc).limit(20)
     end
 
 
