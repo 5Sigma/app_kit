@@ -46,11 +46,11 @@
           tbody
             - @record.send(assoc.name).each do |assoc_record|
               tr.data-row data-url="#{ak_path(assoc_record)}"
-              - AppKit::Resource.find(assoc.klass).table_fields.each do |field|
-                - if field.is_foreign_key?
-                  - if field.association.active_record == assoc.klass
-                    - next
-                td =format_attribute(assoc_record, field)
+                - AppKit::Resource.find(assoc.klass).table_fields.each do |field|
+                  - if field.is_foreign_key?
+                    - if field.association.active_record == assoc.klass
+                      - next
+                  td =format_attribute(assoc_record, field)
       - else
         p.no-data
           = "No #{assoc.name.to_s.humanize.pluralize.downcase} found. "
