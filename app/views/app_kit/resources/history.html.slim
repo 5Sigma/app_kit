@@ -1,0 +1,23 @@
+- content_for :breadcrumb do
+  li =link_to resource.plural_display_name, ak_path(@record.class)
+  li =link_to @record, ak_path(@record)
+  li.active History
+
+- if @record.versions.length == 0
+  p.no-data No edits have been made for this record
+- else
+  .version-list
+    - @record.versions.each_with_index do |version, index|
+      = link_to show_version_path(@record,version,index),
+        class: "version #{version.event}" do
+        - if version.event == "update"
+          .glyph =icon('edit')
+        - if version.event == "create"
+          .glyph =icon('plus')
+        .title Record #{version.event.capitalize}
+        .detail #{time_ago_in_words version.created_at} ago
+        - if AppKit.application.config.authentication_enabled?
+          .detail =AppKit::User.find_by_id(version.whodunnit)
+      - if index < @record.versions.count - 1
+        .version-arrow
+

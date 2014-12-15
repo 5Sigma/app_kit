@@ -1,5 +1,5 @@
 AppKit.register InvoiceItem do
-  show_in_navigation true
+  show_in_navigation false
   icon 'list-alt'
 
   field :invoice_id

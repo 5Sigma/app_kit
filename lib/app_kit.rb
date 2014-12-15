@@ -9,6 +9,7 @@ require "kaminari"
 require "devise"
 require "as_csv"
 require "app_kit/kaminari_patch"
+require "slim-rails"
 
 module AppKit
     autoload :Application, 'app_kit/application'

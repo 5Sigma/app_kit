@@ -87,7 +87,8 @@ module AppKit
     def history; end
 
     def version
-      @record =  model.find_by_id(params[:id]).versions[params[:version_id].to_i].reify(dup:true)
+      version_index = params[:version_id].to_i
+      @record =  model.find_by_id(params[:id]).versions[version_index].reify(dup:true)
       render 'show'
     end
 

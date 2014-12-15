@@ -1,0 +1,27 @@
+.panelkit
+  .pk-title
+    = icon(item.icon, item.title)
+    - if item.filter_enabled  == true
+      span.right =link_to icon('filter', 'filter'), '#', class: 'filter-trigger'
+  .pk-body
+    - if item.records.count > 0
+      .table-container
+        table id="table-#{item.resource.model.name.underscore}"
+          thead
+            tr
+              - item.resource.table_fields.each do |field|
+                th =field.display_name
+          tbody
+            - item.records.each do |record|
+              tr.data-row data-url="#{ak_path(record)}"
+                -item.resource.table_fields.each do |field|
+                  td =format_attribute(record,field)
+      .panel-footer-links
+        .left
+          = paginate item.records, params: { :route_set => :app_kit }
+        .right
+          = data_download_link item, :xml
+          = data_download_link item, :json
+          = data_download_link item, :csv
+    - else
+      p.no-data No #{item.resource.plural_display_name.downcase} found.

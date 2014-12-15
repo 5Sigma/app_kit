@@ -1,0 +1,44 @@
+- content_for :breadcrumb do
+  li
+    = link_to resource.plural_display_name, [app_kit, @record.class]
+  li.active
+    span.resource = resource.display_name
+    = @record
+
+.panelkit
+  .pk-title
+    = icon('user', @record)
+    span.right
+      = link_to icon('edit', 'edit details'),
+        edit_polymorphic_path([app_kit, @record])
+      = link_to icon('trash' "delete #{resource.display_name}"),
+        polymorphic_path([app_kit, @record]), data: { method: :delete, confirm: "This will permanently delete this record. Are you sure?" }, class: 'danger'
+  .pk-body
+    .keyval
+      - resource.detail_fields.each do |field|
+        .kv-row
+          span.kv-key =field.display_name
+          span.kv-value =format_attribute(@record,field)
+
+.panelkit
+  .pk-title = icon('history', 'Activity')
+  .pk-body
+    table
+      - @record.versions.each do |version|
+        tr.data-row data-url="#{version_url(version)}"
+          - if version.event == 'update'
+            td #{icon('edit','updated')}
+              #{version.item_type.humanize.downcase}
+              (#{link_to version.item, [app_kit, version.item]})
+          - if version.event == 'create'
+            td #{icon('plus','created new')}
+              #{version.item_type.humanize.downcase}
+              (#{link_to version.item, [app_kit, version.item]})
+          td #{time_ago_in_words version.created_at} ago
+            (#{version.created_at.strftime('%m/%d/%y')})
+
+
+
+
+
+

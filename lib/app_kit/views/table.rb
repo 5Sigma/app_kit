@@ -1,5 +1,5 @@
 class AppKit::Views::Table
-  attr_accessor :resource, :resource_scope, :page
+  attr_accessor :resource, :resource_scope, :page, :filter_enabled
   attr_writer :title
 
   def initialize(resource, options = {})
@@ -9,6 +9,7 @@ class AppKit::Views::Table
     @title = options[:title]
     @records = options[:records]
     @page = options[:page] || 1
+    @filter_enabled = (options[:filter].nil? ? true : false) 
   end
 
   def icon
