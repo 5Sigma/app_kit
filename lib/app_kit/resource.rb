@@ -163,5 +163,9 @@ module AppKit
       self.navigation_icon = icon_name
     end
 
+    def actions_for_record?(record)
+      member_actions.select{|name, a| a.enabled_for_record?(record)}.count > 0
+    end
+
   end
 end

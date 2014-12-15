@@ -1,0 +1,23 @@
+.panelkit
+  = simple_form_for [app_kit, @record] do |f|
+    - if @record.new_record?
+      .pk-title New #{model.name.humanize}
+    - else
+      .pk-title =@record
+    .pk-body.pad
+      - resource.editable_fields.each do |field|
+        - if field.is_foreign_key?
+          - if params[field.name].present?
+            = f.hidden_field field.name, value: params[field.name]
+          - else
+            = f.association field.association.name.to_sym,
+              wrapper_html: { class: 'association' }
+        - else
+          - if field.editor == :readonly
+            .input.readonly
+              label =field.display_name
+              .field_value =@record.send(field.name)
+          - else
+            = f.input field.name, :as => field.editor
+      .buttons
+        = f.submit

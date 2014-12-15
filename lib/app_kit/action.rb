@@ -7,7 +7,7 @@ module AppKit
     # == DSL Examples
     # === Inline example
     #   action :deactivate, :if => :active
-    #   
+    #
     # === Block example
     #
     #   action :deactivate, :if => :active do |record|
@@ -15,10 +15,10 @@ module AppKit
     #   end
     class Action
         # The name of the aciton. This will be used to display the link title of the action itself.
-        # It will also be used as a the name of the method on the model class to execute if a block is 
+        # It will also be used as a the name of the method on the model class to execute if a block is
         # not given.
         #
-        #   action :consolidate_items 
+        #   action :consolidate_items
         #
         # This action would create a custom action visible when viewing a resource record. This action will
         # also execute a method named +consolidate_items+ on the model instance.
@@ -27,7 +27,7 @@ module AppKit
         # The block to be executed when the aciton is performed.
         #   action :deactive do |record|
         #      record.update(active: false)
-        #   end 
+        #   end
         attr_accessor :block
 
         # The resoruce this action belongs to.
@@ -36,7 +36,6 @@ module AppKit
         # A method to call on the model to determin if this action should be displayed.
         #   action :deactivate, :if => :active
         attr_accessor :if_method
-    
 
         # This class should be created from the Resource DSL and should not be created manually.
         # @param name [Symbol] The name of the action and the name of the model method to call (if no block is given).

@@ -1,0 +1,66 @@
+- content_for :breadcrumb do
+  li =link_to resource.plural_display_name, [app_kit, @record.class]
+  li.active
+    span.resource =resource.display_name
+    = @record
+
+.show-details
+  .panelkit
+    .pk-title
+      = @record
+      span.right
+        = link_to icon('edit', 'edit details'), edit_polymorphic_path([app_kit, @record])
+        = link_to icon('trash', "delete #{resource.display_name}"), ak_path(@record), data: { :method => :delete, confirm: 'This will permenantly delete this record. Are you sure?'}, class: 'danger'
+        - if @record.respond_to?(:versions)
+          = link_to icon('history', 'history'),
+            polymorphic_path([app_kit, :history, @record]), class: 'warning'
+    .pk-body
+      .keyval
+        - resource.detail_fields.each do |field|
+          .kv-row
+            span.kv-key =field.display_name
+            span.kv-value =format_attribute(@record, field)
+      - if resource.actions_for_record?(@record)
+        .panel-footer-links
+          .right
+            - resource.member_actions.each do |name, action|
+              - if action.enabled_for_record?(@record)
+                = link_to action.name.to_s.humanize,
+                  polymorphic_path([app_kit, action.name, @record])
+
+
+
+- resource.has_many_associations.each do |assoc|
+  .panelkit
+    .pk-title =assoc.name.to_s.humanize.pluralize
+    .pk-body
+      - if @record.send(assoc.name).count > 0
+        table
+          thead
+            tr
+              - AppKit::Resource.find(assoc.klass).table_fields.each do |field|
+                - if field.is_foreign_key?
+                  - if field.association.active_record == assoc.klass
+                    - next
+                th =field.display_name
+          tbody
+            - @record.send(assoc.name).each do |assoc_record|
+              tr.data-row data-url="#{ak_path(assoc_record)}"
+              - AppKit::Resource.find(assoc.klass).table_fields.each do |field|
+                - if field.is_foreign_key?
+                  - if field.association.active_record == assoc.klass
+                    - next
+                td =format_attribute(assoc_record, field)
+      - else
+        p.no-data
+          = "No #{assoc.name.to_s.humanize.pluralize.downcase} found. "
+          = link_to 'Create',
+            new_polymorphic_path([app_kit, @record, assoc.klass])
+          = " a new #{assoc.name.to_s.humanize.singularize}"
+
+
+
+
+
+
+

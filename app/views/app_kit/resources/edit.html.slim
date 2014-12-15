@@ -1,0 +1,6 @@
+- content_for :breadcrumb do
+  li =link_to resource.plural_display_name, [app_kit, @record.class]
+  li =link_to @record, [app_kit, @record]
+  li.active Edit #{resource.display_name}
+
+= render 'app_kit/resources/form'

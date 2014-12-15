@@ -1,0 +1,7 @@
+.filter-panel
+  h2 FILTERS
+  = filter_form_for resource do |form|
+    - filter_resource.fields.each do |field|
+      = form.filter(field)
+    .buttons
+      = form.submit 'Filter Records'

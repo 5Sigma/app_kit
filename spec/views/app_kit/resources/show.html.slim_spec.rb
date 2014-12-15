@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe 'app_kit/resources/show.html.erb', :type=>:view do
+RSpec.describe 'app_kit/resources/show.html.slim', :type=>:view do
   let(:resource) { AppKit::Resource.find(:invoice) }
   before(:each) do
     allow(view).to receive(:resource).and_return(resource)
