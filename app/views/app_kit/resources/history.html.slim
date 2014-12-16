@@ -4,7 +4,11 @@
   li.active History
 
 - if @record.versions.length == 0
-  p.no-data No edits have been made for this record
+  .panelkit
+    .pk-title
+      = icon 'history','History'
+    .pk-body
+      p.no-data No edits have been made for this record.
 - else
   .version-list
     - @record.versions.each_with_index do |version, index|

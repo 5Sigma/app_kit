@@ -1,4 +1,7 @@
 body.simple {
+  .flash-notice {
+    margin-bottom: 20px;
+  }
   h1 {
     text-align:left;
     font-weight: bold;
@@ -11,6 +14,7 @@ body.simple {
   padding-top: 50px;
   .simple-container {
     @include outer-container;
+    margin-bottom: 20px;
   }
   .empty-panel {
     @include span-columns(4);

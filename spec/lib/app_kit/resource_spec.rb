@@ -18,16 +18,17 @@ describe AppKit::Resource do
   describe "#show_in_navigation" do
     context "when set to false" do
       it "should remove from navigation list" do
-        resource.show_in_navigation false
-        expect(AppKit.application.navigation_resources).to_not include(resource)
+        expect {
+          resource.show_in_navigation false
+        }.to change(AppKit.application.navigation_items, :count).by(-1)
       end
     end
     context "when set to true" do
       it "should add the resource to the RESOURCES list" do
         resource.show_in_navigation false
-        expect(AppKit.application.navigation_resources).to_not include(resource)
-        resource.show_in_navigation true
-        expect(AppKit.application.navigation_resources).to include(resource)
+        expect {
+          resource.show_in_navigation true
+        }.to change(AppKit.application.navigation_items, :count).by(1)
       end
     end
   end
