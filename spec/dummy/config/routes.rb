@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reporting/show'
+
   mount AppKit::Engine => "/"
-  get 'report' => 'reporting#dashboard', :as => :reporting
+  get 'reporting' => 'reporting#show', :as => :reporting
 end

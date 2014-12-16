@@ -1,5 +1,5 @@
 class AppKit::NavigationItem
-  attr_accessor :resource, :title, :path_helper, :position
+  attr_accessor :resource, :title, :path_helper, :position, :controller
   attr_writer :icon
 
   def initialize
@@ -13,6 +13,7 @@ class AppKit::NavigationItem
       main_app.send(path_helper)
     end
   end
+
   def icon
     if has_resource?
       resource.navigation_icon

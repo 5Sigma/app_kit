@@ -14,6 +14,7 @@ module AppKit::NavigationHelper
 
   def custom_navigation_link(item)
     cls = ""
+    cls = "active" if params[:controller].to_s == item.controller.to_s
     link_to icon(item.icon,item.title), main_app.send("#{item.path_helper}_path"), class: cls
   end
 
