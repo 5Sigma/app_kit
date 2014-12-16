@@ -22,6 +22,8 @@ kit
 </nav>
 </header>
 
+<p><a id="resources" name="resources"></a></p>
+
 <h3>Resources</h3>
 
 <p>Resources are the configuration object for a specific set of data, namely a
@@ -29,6 +31,8 @@ model. A resource should be defined for each model that the application needs to
 build controllers and views for.</p>
 
 <p>Resource files are expected to be in <code>app/app_kit</code>.</p>
+
+<p><a id="generating-resources" name="generating-resources"></a></p>
 
 <h4>Generating resources</h4>
 
@@ -56,6 +60,8 @@ configurations.</p>
 <span class="k">end</span>
 </code></pre>
 
+<p><a id="resource-configuration" name="resource-configuration"></a></p>
+
 <h5>Configuration commands</h5>
 
 <ul>
@@ -68,12 +74,16 @@ font-awesome for creating icons/glyphs. This string should be the icon name
 from the font-awesome list.</li>
 </ul>
 
+<p><a id="field" name="fields"></a></p>
+
 <h5>Defining fields</h5>
 
 <p>Resource fields are the data attributes on the model that will be displayed when
 viewing tables or records. Fields are defined with the field command:</p>
 <pre class="highlight ruby"><code><span class="n">field</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">options_hash</span>
 </code></pre>
+
+<p><a id="field-options" name="field-options"></a></p>
 
 <h6>Field options</h6>
 
@@ -104,6 +114,8 @@ record. The default value is dependent on the fields data type.</li>
 if the field is a virtual attribute and you want to use a different field
 for sorting operations. <em>(default: nil)</em></li>
 </ul>
+
+<p><a id="before-actions" name="before-actions"></a></p>
 
 <h5>Before actions</h5>
 

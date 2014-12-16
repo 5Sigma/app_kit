@@ -48,6 +48,14 @@ kit
 <li>
 <a href='#user'>Creating a user</a>
 </li>
+<li>
+<a href='#improvements'>Cleanin up</a>
+<ul>
+<li>
+<a href='#model-display-text'>Model display text</a>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class='article-container'>
@@ -70,6 +78,11 @@ the following line somewhere in the file.</p>
 <p>This will install the AppKit gem and all of its dependencies as well as set them
 up in your project.</p>
 
+<p>To setup the project run the AppKit install generator. This will create a
+migration for the users table and install an initializer.</p>
+<pre class="highlight plaintext"><code>rails g app_kit:install
+</code></pre>
+
 <p><a id="models" name="models"></a></p>
 
 <h3>Setting up data models</h3>
@@ -82,14 +95,14 @@ rails g model invoice_item
 </code></pre>
 
 <p>Edit the customer migration created in <code>db/migrate/XXXXXXXX_create_customer.rb</code>.</p>
-<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">CreateCustomers</span> <span class="o">&lt;&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="n">migration</span>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">CreateCustomers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
   <span class="k">def</span> <span class="nf">change</span>
     <span class="n">create_table</span> <span class="ss">:customers</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
       <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:first_name</span>
       <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:last_name</span>
       <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:phone_number</span>
       <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:email</span>
-      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:active</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">boolean</span> <span class="ss">:active</span>
       <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
     <span class="k">end</span>
   <span class="k">end</span>
@@ -97,7 +110,7 @@ rails g model invoice_item
 </code></pre>
 
 <p>Edit the invoice migration created at <code>db/migrate/XXXXXXX_create_invoices</code>.</p>
-<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">CreateInvoices</span> <span class="o">&lt;&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="n">migration</span>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">CreateInvoices</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
   <span class="k">def</span> <span class="nf">change</span>
     <span class="n">create_table</span> <span class="ss">:invoices</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
       <span class="n">t</span><span class="p">.</span><span class="nf">belongs_to</span> <span class="ss">:customer</span>
@@ -126,6 +139,10 @@ rails g model invoice_item
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
+</code></pre>
+
+<p>Migrate your database to create the tables.</p>
+<pre class="highlight plaintext"><code>rake db:migrate
 </code></pre>
 
 <p>Next add your associations to your model files located in <code>app/model/</code>.</p>
@@ -171,11 +188,6 @@ fields in the tables. We will tweak them just a bit to improve the setup.</p>
     <span class="n">show_in_navigation</span> <span class="kp">true</span>
     <span class="n">icon</span> <span class="s1">'user'</span>
 
-    <span class="n">action</span> <span class="ss">:deactivate</span><span class="p">,</span> <span class="ss">:if</span> <span class="o">=&gt;</span> <span class="ss">:active</span> <span class="k">do</span> <span class="o">|</span><span class="n">customer</span><span class="o">|</span>
-        <span class="n">customer</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">active: </span><span class="kp">false</span><span class="p">)</span>
-    <span class="k">end</span>
-
-    <span class="n">field</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:sort_field</span> <span class="o">=&gt;</span> <span class="ss">:first_name</span>
     <span class="n">field</span> <span class="ss">:first_name</span><span class="p">,</span> <span class="ss">show_in_table: </span><span class="kp">false</span><span class="p">,</span> <span class="ss">show_in_details: </span><span class="kp">false</span>
     <span class="n">field</span> <span class="ss">:last_name</span><span class="p">,</span> <span class="ss">show_in_table: </span><span class="kp">false</span><span class="p">,</span> <span class="ss">show_in_details: </span><span class="kp">false</span>
     <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">formatter: :email</span>
@@ -237,10 +249,42 @@ password if you would like):</p>
 <span class="p">)</span>
 </code></pre>
 
-<h3>Finished</h3>
+<h3>Up and running</h3>
 
 <p>Thats it run the rails server and open a browser to <code>http://localhost:3000</code>.</p>
 <pre class="highlight plaintext"><code>rails server
+</code></pre>
+
+<p><a id="improvements" name="improvements"></a></p>
+
+<h3>Tightening things up</h3>
+
+<p>There are a few changes we can make to improve the way everything works and
+looks.</p>
+
+<p><a id="model-display-text" name="model-display-text"></a></p>
+
+<h4>Model display text</h4>
+
+<p>When a model&rsquo;s instance needs to be displayed its <code>#to_s</code> method is used to
+output it as a string. You should override the method on each model to give it 
+nicer display text.</p>
+
+<p>Add the following functions to the three model classes inside <code>app/models</code>.</p>
+<pre class="highlight ruby"><code><span class="c1"># customer.rb</span>
+<span class="k">def</span> <span class="nf">to_s</span>
+  <span class="s2">"</span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+
+<span class="c1"># invoice.rb</span>
+<span class="k">def</span> <span class="nf">to_s</span>
+  <span class="n">invoice_number</span>
+<span class="k">end</span>
+
+<span class="c1">#invoice_items.rb</span>
+<span class="k">def</span> <span class="nf">to_s</span>
+  <span class="n">description</span>
+<span class="k">end</span>
 </code></pre>
 
 </div>

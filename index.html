@@ -28,13 +28,32 @@ Code
 <p>
 AppKit builds user ready applications with a number of nice features and an
 attractive interface. Ready to be used out of the box.
+</p>
+<div class='browsers'>
 <div class='browser'>
-<div class='header'>
-<div class='circle red'></div>
-<div class='circle blue'></div>
-<div class='circle green'></div>
+<div class='browser-top-bar'>
+<div class='browser-circle'></div>
+<div class='browser-circle'></div>
+<div class='browser-circle'></div>
 </div>
-<div class='image filter_ss'></div>
+<div class='browser-content'></div>
+</div>
+<div class='browser'>
+<div class='browser-top-bar'>
+<div class='browser-circle'></div>
+<div class='browser-circle'></div>
+<div class='browser-circle'></div>
+</div>
+<div class='browser-content'></div>
+</div>
+<div class='browser'>
+<div class='browser-top-bar'>
+<div class='browser-circle'></div>
+<div class='browser-circle'></div>
+<div class='browser-circle'></div>
+</div>
+<div class='browser-content'></div>
+</div>
 </div>
 <div class='feature-cells'>
 <div class='feature'>
@@ -87,10 +106,9 @@ Easily override existing functionality or build new functionality.
 </div>
 </div>
 </div>
-</p>
 </div>
 <div class='land-section grey'>
-<h2>An easy DSL built for getting things up quickly</h2>
+<h2>An easy DSL built to get things up quickly</h2>
 <p>Get apps up and running in minutes with only a few lines of code</p>
 <div class='code-box'>
 <pre class="highlight ruby"><code><span class="no">AppKit</span><span class="p">.</span><span class="nf">register</span> <span class="no">Invoice</span> <span class="k">do</span>&#x000A;  <span class="n">show_in_navigation</span> <span class="kp">true</span>&#x000A;&#x000A;  <span class="n">icon</span> <span class="s1">'list'</span>&#x000A;  <span class="n">field</span> <span class="ss">:invoice_number</span><span class="p">,</span> <span class="ss">editable: </span><span class="kp">false</span>&#x000A;  <span class="n">field</span> <span class="ss">:customer_id</span>&#x000A;  <span class="n">field</span> <span class="ss">:invoice_total</span><span class="p">,</span> <span class="ss">editable: </span><span class="kp">false</span><span class="p">,</span> <span class="ss">:formatter</span> <span class="o">=&gt;</span> <span class="ss">:currency</span>&#x000A;  <span class="n">field</span> <span class="ss">:invoice_date</span><span class="p">,</span> <span class="ss">:formatter</span> <span class="o">=&gt;</span> <span class="ss">:date</span>&#x000A;  <span class="n">field</span> <span class="ss">:paid</span><span class="p">,</span> <span class="ss">show_in_table: </span><span class="kp">false</span>&#x000A;  <span class="n">field</span> <span class="ss">:published</span><span class="p">,</span> <span class="ss">show_in_table: </span><span class="kp">false</span>&#x000A;<span class="k">end</span>&#x000A;&#x000A;</code></pre>
@@ -104,7 +122,7 @@ Easily override existing functionality or build new functionality.
 <div class='content'>
 <div class='title'>Checkout the tutorial</div>
 <p>
-A quick tutorial to get an app running
+A quick tutorial to get an app running.
 </p>
 </div>
 </a>
@@ -116,7 +134,7 @@ A quick tutorial to get an app running
 <div class='content'>
 <div class='title'>Documentation</div>
 <p>
-View the documentation and refference
+View the documentation and refference.
 </p>
 </div>
 </a>
@@ -128,7 +146,7 @@ View the documentation and refference
 <div class='content'>
 <div class='title'>Get the code</div>
 <p>
-View the documentation and refference
+Get the sourcecode from Github.
 </p>
 </div>
 </a>
