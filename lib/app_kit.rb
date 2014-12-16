@@ -16,7 +16,7 @@ module AppKit
     autoload :Application, 'app_kit/application'
     autoload :Configuration, 'app_kit/configuration'
     autoload :Resource, 'app_kit/resource'
-    autoload :Navigation, 'app_kit/navigation'
+    autoload :NavigationItem, 'app_kit/navigation_item'
     autoload :Action, 'app_kit/action'
     autoload :Field, 'app_kit/field'
     autoload :FilterFormBuilder, 'app_kit/filter_form_builder'

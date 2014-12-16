@@ -2,16 +2,17 @@ class AppKit::Application
   attr_accessor :dashboard
   attr_accessor :config
   attr_accessor :resources
-  attr_accessor :navigation_resources
+  attr_writer :navigation_items
 
   def initialize
     @config = AppKit::Configuration.new
     @resources = []
-    @navigation_resources = []
+    @navigation_items = []
   end
 
-  def nav_items(position)
-    navigation_resources.select { |i| i.navigation_position == position }
+  def navigation_items(position = :all)
+    return @navigation_items if position == :all
+    navigation_items.select { |i| i.position == position }
   end
 
 end

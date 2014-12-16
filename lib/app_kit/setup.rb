@@ -38,5 +38,12 @@ module AppKit
     def self.dashboard(&block)
       AppKit.application.dashboard.instance_eval(&block)
     end
+    def self.navigation_item(title, path_helper, icon=nil)
+      nav_item = AppKit::NavigationItem.new
+      nav_item.title = title
+      nav_item.path_helper = path_helper
+      nav_item.icon = icon
+      AppKit.application.navigation_items << nav_item
+    end
   end
 end

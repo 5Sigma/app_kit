@@ -12,7 +12,17 @@ module AppKit::NavigationHelper
     end
   end
 
-  def navigation_link(item)
-    resource_navigation_link(item)
+  def custom_navigation_link(item)
+    cls = ""
+    link_to icon(item.icon,item.title), main_app.send("#{item.path_helper}_path"), class: cls
   end
+
+  def navigation_link(item)
+    if item.has_resource?
+      resource_navigation_link(item.resource)
+    else
+      custom_navigation_link(item)
+    end
+  end
+
 end

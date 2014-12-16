@@ -7,10 +7,10 @@
         :method => :delete
 .nav
   .nav-left
-    - AppKit.application.nav_items(:left).each do |nav_item|
+    - AppKit.application.navigation_items(:left).each do |nav_item|
       = navigation_link(nav_item)
   .nav-right
-    - AppKit.application.nav_items(:right).each do |nav_item|
+    - AppKit.application.navigation_items(:right).each do |nav_item|
       = navigation_link(nav_item)
 
 

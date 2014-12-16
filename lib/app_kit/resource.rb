@@ -13,7 +13,6 @@ module AppKit
     # A string tha represents a icon used in the navigation menu.
     # Taken from FontAwesome and is set using the #icon DSL method.
     attr_accessor :navigation_icon
-    attr_accessor :navigation_position
 
     # The name of the controller this resource manages.
     attr_accessor :controller_name
@@ -140,10 +139,13 @@ module AppKit
     # @param position [:left,:right] the position for the navigation item
     def show_in_navigation(val=true, position = :left)
       if val == true
-        AppKit.application.navigation_resources << self
-        self.navigation_position = position
+        nav_item = AppKit::NavigationItem.new
+        nav_item.resource = self
+        nav_item.position = position
+        nav_item.icon = self.navigation_icon
+        AppKit.application.navigation_items << nav_item
       else
-        AppKit.application.navigation_resources.delete self
+        AppKit.application.navigation_items.delete_if {|i| i.resource == self}
       end
     end
 
