@@ -58,59 +58,6 @@ body.landing {
   @include pad;
   padding-bottom: 50px;
   padding-top: 50px;
-  .browser {
-    width: 600px;
-    margin: auto;
-    margin-top: 30px;
-    -moz-box-shadow: 0 0 5px 5px #888;
-    -webkit-box-shadow: 0 0 5px 5px#888;
-    box-shadow: 0 0 5px 5px darken($red-background, 20);
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background: white;
-    overflow: hidden;
-    .header {
-      @include linear-gradient(#ddd,#ccc);
-      height: 30px;
-      border-bottom: 1px solid #161616;
-      .circle {
-        height: 14px;
-        width: 14px;
-        border-radius: 7px;
-        display: inline-block;
-        margin-left: 5px;
-        margin-top: 8px;
-        border: 1px solid #aaa;
-        &.red {
-          $red-browser-bulb: #F18695;
-          @include radial-gradient($red-browser-bulb, darken($red-browser-bulb, 10));
-          border: darken($red-browser-bulb,20);
-        }
-        &.green {
-          $green-browser-bulb: #83F19C;
-          @include radial-gradient($green-browser-bulb, darken($green-browser-bulb, 10));
-        }
-        &.blue {
-          $blue-browser-bulb: #7998F1;
-          @include radial-gradient($blue-browser-bulb, darken($blue-browser-bulb,10));
-        }
-        &.grey {
-          @include radial-gradient(#eee,#ccc);
-        }
-
-      }
-    }
-    .image {
-      width: 600px;
-      height: 400px;
-      background-position: center center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      &.filter_ss {
-        background-image: url(image-path('filter_ss.png'));
-      }
-    }
-  }
   .code-box {
     width: 700px;
     margin: auto;
@@ -131,7 +78,7 @@ body.landing {
   }
   .feature-cells {
     @include outer-container;
-    margin-top: 40px;
+    margin-top: 80px;
     .feature {
       @include span-columns(3);
       @include omega(4n);
