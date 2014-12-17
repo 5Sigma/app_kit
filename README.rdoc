@@ -2,4 +2,4 @@
 
 AppKit is a Ruby on Rails framework designed to generate data driven very easily and very fast. 
 
-For more information goto http://appkit.5sigma.io
+For more information visit http://appkit.5sigma.io
