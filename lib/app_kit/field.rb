@@ -15,8 +15,8 @@ module AppKit
     #   * +:datetime+ - Formats to +m/d/yy+ hh:mm:ss
     #   * +:string+ - Returns the value unmodified.
     #   The default formatter for a given field is determened by its data type.
-    # * +display_in_table+ - If set to false the field will not appear in tabular lists of the records.
-    # * +display_in_detail+ - If set to false the field will not appear in the key/value details view in the #show action.
+    # * +show_in_table+ - If set to false the field will not appear in tabular lists of the records.
+    # * +show_in_detail+ - If set to false the field will not appear in the key/value details view in the #show action.
     # * +hide+ - A convienence method. If set to false the +display_in_table+, +display_in_detail+, and +editable+ options will all be set to false.
     # * +editor+ - The editor to use when this field is displayed on in the edit/create forms. The default editor is selected based on the field's data type.
     #

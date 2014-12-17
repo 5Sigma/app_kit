@@ -11,6 +11,7 @@ PATH
       jquery-ui-rails
       kaminari
       neat
+      paper_trail
       rails (~> 4.1.6)
       sass-rails (~> 4.0.3)
       simple_form
@@ -234,7 +235,6 @@ DEPENDENCIES
   factory_girl_rails
   faker
   guard-rspec
-  paper_trail
   pry-rails
   rspec-rails
   sqlite3

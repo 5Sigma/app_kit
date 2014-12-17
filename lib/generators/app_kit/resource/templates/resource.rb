@@ -11,8 +11,16 @@ AppKit.register <%= class_name %> do
   #   show_in_details (true|false) to show the field when the record is viewed
   #   formatter (string) - a formatter that should be used to display the field
   #   hide - hides the field from both tables and detail views
-<% @resource_class.column_names.each do |column_name| %>
-  field :<%= column_name %><% end %>
+<%- @resource_class.column_names.each do |column_name| -%>
+  <%- next if column_name == "id" -%>
+  <%- if column_name == "created_at" -%>
+     field :created_at, show_in_table: false, editable: false
+  <%- elsif column_name == "updated_at" -%>
+     field :updated_at, show_in_table: false, editable: false
+  <%- else -%>
+     field :<%= column_name %>
+  <%- end -%>
+<%- end -%>
 
   # Action definitions - Custom actions can be defined for the resource. This
   # will generate a link on the details page for the record to perform the 

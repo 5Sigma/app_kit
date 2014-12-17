@@ -31,6 +31,7 @@
 
 
 - resource.has_many_associations.each do |assoc|
+  - next unless AppKit::Resource.find(assoc.klass)
   .panelkit
     .pk-title =assoc.name.to_s.humanize.pluralize
     .pk-body
