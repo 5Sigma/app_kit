@@ -2,7 +2,11 @@ require "spec_helper"
 
 describe AppKit::Resource do
 
-  let(:resource) { AppKit::Resource.find(Customer) }
+  let(:resource) {
+    r = AppKit::Resource.new(Customer)
+    r.field(:first_name)
+    r
+  }
 
   describe "#field" do
     it "should add to fields list" do
@@ -18,6 +22,7 @@ describe AppKit::Resource do
   describe "#show_in_navigation" do
     context "when set to false" do
       it "should remove from navigation list" do
+        resource.show_in_navigation true
         expect {
           resource.show_in_navigation false
         }.to change(AppKit.application.navigation_items, :count).by(-1)
@@ -29,6 +34,7 @@ describe AppKit::Resource do
         expect {
           resource.show_in_navigation true
         }.to change(AppKit.application.navigation_items, :count).by(1)
+        resource.show_in_navigation false
       end
     end
   end

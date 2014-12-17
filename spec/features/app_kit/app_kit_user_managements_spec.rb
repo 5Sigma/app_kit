@@ -12,6 +12,7 @@ feature "UserManagements", :type => :feature do
     fill_in 'Password confirmation', with: 'test1234'
     click_button 'Create User'
     expect(page).to have_content('Alice Alison')
+    save_and_open_page
     click_link 'logout'
     fill_in 'Email', with: 'alice@example.com'
     fill_in 'Password', with: 'test1234'

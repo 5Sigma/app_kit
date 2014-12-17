@@ -8,6 +8,7 @@ RSpec.describe AppKit::SetupDsl do
     end
   end
   describe "#disable_authentication" do
+    after(:each) { AppKit::application.config.authentication_enabled = true }
     it "should disable authentication in config" do
       AppKit::SetupDsl.disable_authentication
       expect(AppKit::application.config.authentication_enabled).to eq(false)

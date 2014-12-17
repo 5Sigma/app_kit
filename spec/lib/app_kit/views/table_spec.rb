@@ -1,8 +1,5 @@
 require 'spec_helper'
 
-class TestModel < ActiveRecord::Base; end
-
-
 RSpec.describe AppKit::Views::Table do
 
   let(:table) {
