@@ -1,10 +1,12 @@
 module AppKit::HistoryHelper
   def version_url(version)
-    if version.index == version.item.versions.length - 1
-      ak_path(version.item)
-    else
-      polymorphic_path([app_kit, :version, version.item],
-                       version_id: version.index + 1)
+    unless version.event == "destroy" || version.item == nil
+      if version.index == version.item.versions.length - 1
+        ak_path(version.item)
+      else
+        polymorphic_path([app_kit, :version, version.item],
+                         version_id: version.index + 1)
+      end
     end
   end
   def show_version_path(record, version, count)

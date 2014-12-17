@@ -23,6 +23,9 @@ module AppKit
             get action.name, action: 'perform_action', action_name: 'deactivate'
           end
         end
+        collection do
+          get 'versions/:version_id' => :show_version, :as => :show_version
+        end
       end
     end
   end

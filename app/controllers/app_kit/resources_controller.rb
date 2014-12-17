@@ -55,7 +55,7 @@ module AppKit
     # GET /resource/:id
     # Shows the details of a given resource.
     def show
-      resource.before_actions[:show].call(@record) if resource.before_actions[:show]
+      instance_exec(&resource.before_actions[:show]) if resource.before_actions[:show]
     end
 
 
@@ -95,6 +95,12 @@ module AppKit
     def version
       version_index = params[:version_id].to_i
       @record =  model.find_by_id(params[:id]).versions[version_index].reify(dup:true)
+      render 'show'
+    end
+
+    def show_version
+      version = PaperTrail::Version.find(params[:version_id])
+      @record = version.reify
       render 'show'
     end
 

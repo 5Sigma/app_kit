@@ -6,4 +6,8 @@ AppKit.register AppKit::User do
   field :email
   field :password, show_in_details: false, show_in_table: false
   field :password_confirmation, show_in_details: false, show_in_table: false
+
+  before(:show) {
+    @versions = @record.versions.order(:created_at => :desc).page(params[:page]).per(20)
+  }
 end
