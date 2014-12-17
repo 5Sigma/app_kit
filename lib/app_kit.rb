@@ -20,6 +20,8 @@ module AppKit
     autoload :Action, 'app_kit/action'
     autoload :Field, 'app_kit/field'
     autoload :FilterFormBuilder, 'app_kit/filter_form_builder'
+    autoload :Association, 'app_kit/association.rb'
+    autoload :AssociationCollection, 'app_kit/association_collection.rb'
     module Views
       autoload :Base, 'app_kit/views/base'
       autoload :Dashboard, 'app_kit/views/dashboard'
