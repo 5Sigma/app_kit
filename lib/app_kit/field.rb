@@ -59,7 +59,8 @@ module AppKit
 
         attr_writer :show_in_table
         # DSL option
-        # @param val [Boolean] - If set to false the item will not appear in tables.
+        # @param val [Boolean] - If set to false the item will not appear 
+        # in tables.
         def show_in_table(val = nil)
             return @show_in_table if val.nil?
             @show_in_table = val
@@ -68,13 +69,24 @@ module AppKit
 
         attr_writer :show_in_details
         # DSL option
-        # @param val [Boolean] - If set to false the field will not be displayed in the details panel of the #show action.
+        # @param val [Boolean] - If set to false the field will not be
+        # displayed in the details panel of the #show action.
         def show_in_details(val=nil)
             return @show_in_details if val.nil?
             @show_in_details = val
         end
 
-        # The display name for this field. By default it will be a humanized form of the method name.
+        attr_writer :show_in_filters
+        # DSL Option
+        # @param val [Boolean] - If set to false the field will not be
+        # displayed in the filter panel
+        def show_in_filters(val=nil)
+          return @show_in_filters if val.nil?
+          @show_in_filters = val
+        end
+
+        # The display name for this field. By default it will be a humanized
+        # form of the method name.
         attr_writer :display_name
         def display_name; @display_name ||= name.to_s.humanize; end
 
@@ -85,22 +97,38 @@ module AppKit
             @editor = val
         end
 
+        # a proc used to display the value of the field. For dynamic virtual
+        # fields defined with a block
+        attr_accessor :display_proc
 
-        # This class is generally created by the Resource DSL and it should not need to be
-        # created directly.
+        # This class is generally created by the Resource DSL and it should
+        # not need to be created directly.
         # @param model [ActiveRecord::Base] The model this field belongs to.
         # @param name [Symbol] The method this field gets it's value from.
         # @param options [Hash] The options which should be set for this field.
-        def initialize(model, name, options={})
+        def initialize(model, name, options={}, &block)
             @name = name
             @data_type = model.columns_hash[name.to_s].try(:type) || :string
             @show_in_details = true
             @show_in_table = true
+            @show_in_filters = true
             @editable = true
             @formatter = data_type
             options.each {|k,v| send(k,v) }
-
+            if block_given?
+              @editable = false
+              @show_in_filters = false
+              @display_proc = block
+            end
             @association = model.reflect_on_all_associations.find{|i| i.foreign_key.to_sym == name}
+        end
+
+        def value_for_record(record)
+          if @display_proc
+            @display_proc.call(record)
+          else
+            @record.send(:name)
+          end
         end
 
         # Determins if the field is the foreign_key of an association.
@@ -132,7 +160,5 @@ module AppKit
                 @sort_field = val
             end
         end
-
-
     end
 end

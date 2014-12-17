@@ -19,6 +19,13 @@ describe AppKit::Resource do
       expect(resource.fields.map(&:name)).to include(:test)
     end
   end
+  describe "#filter_fields" do
+    it "should return only filterable fields" do
+      resource.field(:last_name, show_in_filters: false)
+      expect(resource.filter_fields.count).to eq(1)
+      expect(resource.fields.count).to eq(2)
+    end
+  end
   describe "#show_in_navigation" do
     context "when set to false" do
       it "should remove from navigation list" do

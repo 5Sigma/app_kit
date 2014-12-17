@@ -26,4 +26,9 @@ module AppKit
       end
     end
   end
+  def self.setup(&block)
+    @@application = Application.new
+    AppKit.application.setup!
+    AppKit.application.instance_exec(&block)
+  end
 end
