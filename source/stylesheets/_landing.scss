@@ -109,6 +109,10 @@ body.landing {
     }
   }
   &.grey {
+    color: #444;
+    background: #eee;
+  }
+  &.white-grey {
     @include linear-gradient(#fff, #eee);
     color: #444;
     .feature-cells {
