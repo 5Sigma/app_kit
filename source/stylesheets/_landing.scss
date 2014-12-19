@@ -79,9 +79,9 @@ body.landing {
   .feature-cells {
     @include outer-container;
     margin-top: 80px;
+    text-align: left;
     .feature {
       @include span-columns(3);
-      @include omega(4n);
       .content {
         .title {
           font-weight: bold;
@@ -89,7 +89,7 @@ body.landing {
         }
         p {
           text-align: left;
-          font-size: 1em;
+          font-size: 0.8em;
         }
       }
     }
@@ -97,6 +97,39 @@ body.landing {
       .feature {
         @include span-columns(4);
         @include omega(3n);
+      }
+    }
+  }
+  .image-section {
+    margin-top: 40px;
+    @include outer-container;
+    .image-column {
+      @include span-columns(4);
+      @include shift(1)
+    }
+    .text-column {
+      @include span-columns(6);
+      @include pad;
+      h2 {
+        font-size: 1.1em;
+        text-align: left;
+      }
+      p {
+        text-align: left;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .centered-p-wrapper {
+    @include outer-container;
+    .centered-p {
+      @include span-columns(8);
+      @include shift(2);
+      h2 {
+        text-align: left;
+      }
+      p {
+        text-align: left;
       }
     }
   }
@@ -110,13 +143,13 @@ body.landing {
   }
   &.grey {
     color: #444;
-    background: #eee;
+    background: #ccc
   }
   &.white-grey {
-    @include linear-gradient(#fff, #eee);
+    @include linear-gradient(#fff, #ccc);
     color: #444;
     .feature-cells {
-       text-align: center;
+      text-align: center;
       .feature {
         @include pad;
         @include transition(all,0.5s);
