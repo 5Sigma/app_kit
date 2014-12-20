@@ -52,15 +52,16 @@
                     - if field.association.active_record == assoc.klass
                       - next
                   td =format_attribute(assoc_record, field)
+        .panel-footer-links
+          .right
+            = link_to "Create #{assoc.name.to_s.humanize.singularize}",
+                new_polymorphic_path([app_kit, @record, assoc.klass])
       - else
         p.no-data
           = "No #{assoc.name.to_s.humanize.pluralize.downcase} found. "
           = link_to 'Create',
             new_polymorphic_path([app_kit, @record, assoc.klass])
           = " a new #{assoc.name.to_s.humanize.singularize}"
-
-
-
 
 
 
