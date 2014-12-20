@@ -45,15 +45,23 @@ module AppKit
                 associated_record = record.send(field.association.name)
                 return link_to associated_record, [app_kit, associated_record]
             end
+            if field.enum
+              return field.enum[record.send(field.name).to_sym]
+            end
             formatter = field.formatter
             format_method = "format_#{formatter}"
-            return send(format_method, record, field.name, record.send(field.name)) if self.respond_to?(format_method)
+            if self.respond_to?(format_method)
+              return send(format_method, record,
+                          field.name,
+                          field.value_for_record(record))
+            end
             return record.send(field.name)
 
         end
 
         def detect_attribute_type(record,attribute)
-            record.class.columns_hash[attribute.to_s].type || resource.formatters.has_key(attribute.to_sym)
+            record.class.columns_hash[attribute.to_s].type ||
+              resource.formatters.has_key(attribute.to_sym)
         end
 
         def get_editor_for_attribute(attribute)

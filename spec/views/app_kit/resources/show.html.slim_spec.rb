@@ -8,6 +8,7 @@ RSpec.describe 'app_kit/resources/show.html.slim', :type=>:view do
     view.extend AppKit::FilterHelper
     view.extend AppKit::AttributeHelper
     invoice = FactoryGirl.create(:invoice)
+    FactoryGirl.create(:invoice_item, invoice: invoice)
     assign(:record, invoice)
   end
   it "should display all detail fields" do
@@ -21,5 +22,14 @@ RSpec.describe 'app_kit/resources/show.html.slim', :type=>:view do
     render
     expect(rendered).to have_selector('.panelkit',
                                       count: resource.has_many_associations.count+1)
+  end
+  it "should render assocated items" do
+    render
+    expect(rendered).to have_selector('.panelkit, .pk-title',
+                                      text: 'Invoice items')
+  end
+  it "should hide foreign key" do
+    render
+    expect(rendered).to_not have_selector('th', text: 'Invoice')
   end
 end

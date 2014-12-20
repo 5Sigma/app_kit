@@ -23,29 +23,32 @@
 .panelkit
   .pk-title = icon('history', 'Activity')
   .pk-body
-    table
-      - @versions.each do |version|
-        tr class="#{"data-row" if version_url(version)}" data-url="#{version_url(version)}"
-          - if version.event == 'update'
-            td
-              =icon('edit','updated a ')
-              =version.item_type.humanize.downcase
-              - if version.item != nil
-               == " (#{link_to version.item, [app_kit, version.item]})"
-          - if version.event == 'create'
-            td
-              = icon('plus','created a new ')
-              = version.item_type.humanize.downcase
-              - if version.item != nil
+    - if @versions.count == 0
+      p.no-data This user has not performed any trackable actions.
+    - else
+      table
+        - @versions.each do |version|
+          tr class="#{"data-row" if version_url(version)}" data-url="#{version_url(version)}"
+            - if version.event == 'update'
+              td
+                =icon('edit','updated a ')
+                =version.item_type.humanize.downcase
+                - if version.item != nil
                 == " (#{link_to version.item, [app_kit, version.item]})"
-          - if version.event == "destroy"
-            td
-              = icon('trash', "deleted a #{version.item_type.humanize.downcase} (#{version.reify.to_s})")
-          td #{time_ago_in_words version.created_at} ago
-            (#{version.created_at.strftime('%m/%d/%y')})
-    .panel-footer-links
-      .left
-        = paginate(@versions)
+            - if version.event == 'create'
+              td
+                = icon('plus','created a new ')
+                = version.item_type.humanize.downcase
+                - if version.item != nil
+                  == " (#{link_to version.item, [app_kit, version.item]})"
+            - if version.event == "destroy"
+              td
+                = icon('trash', "deleted a #{version.item_type.humanize.downcase} (#{version.reify.to_s})")
+            td #{time_ago_in_words version.created_at} ago
+              (#{version.created_at.strftime('%m/%d/%y')})
+      .panel-footer-links
+        .left
+          = paginate(@versions)
 
 
 

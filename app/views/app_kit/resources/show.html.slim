@@ -41,7 +41,7 @@
             tr
               - AppKit::Resource.find(assoc.klass).table_fields.each do |field|
                 - if field.is_foreign_key?
-                  - if field.association.active_record == assoc.klass
+                  - if field.association.klass == @record.class
                     - next
                 th =field.display_name
           tbody
@@ -49,7 +49,7 @@
               tr.data-row data-url="#{ak_path(assoc_record)}"
                 - AppKit::Resource.find(assoc.klass).table_fields.each do |field|
                   - if field.is_foreign_key?
-                    - if field.association.active_record == assoc.klass
+                    - if field.association.klass == @record.class
                       - next
                   td =format_attribute(assoc_record, field)
         .panel-footer-links

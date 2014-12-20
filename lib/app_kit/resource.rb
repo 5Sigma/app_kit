@@ -99,7 +99,7 @@ module AppKit
     def editable_fields
       fields.each.select(&:editable)
     end
-  
+
     # A list of all fields that can be displayed in the filter panel.
     def filter_fields
       fields.each.select(&:show_in_filters)

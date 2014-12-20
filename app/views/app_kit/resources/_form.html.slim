@@ -18,6 +18,6 @@
               label =field.display_name
               .field_value =@record.send(field.name)
           - else
-            = f.input field.name, :as => field.editor
+            = f.input field.name, field.editor_options
       .buttons
         = f.submit

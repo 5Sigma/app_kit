@@ -9,7 +9,7 @@ class AppKit::Views::Table
     @title = options[:title]
     @records = options[:records]
     @page = options[:page] || 1
-    @filter_enabled = (options[:filter].nil? ? true : false) 
+    @filter_enabled = (options[:filter].nil? ? true : false)
   end
 
   def icon

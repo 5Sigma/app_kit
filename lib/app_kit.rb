@@ -13,6 +13,7 @@ require "slim-rails"
 require "paper_trail"
 
 require "app_kit/dsl"
+require "app_kit/inputs/enum_input.rb"
 
 module AppKit
     LOAD_PATH = [File.expand_path('app/app_kit', Rails.root)]
