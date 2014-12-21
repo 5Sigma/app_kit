@@ -17,7 +17,6 @@ require "app_kit/inputs/enum_input.rb"
 
 module AppKit
     LOAD_PATH = [File.expand_path('app/app_kit', Rails.root)]
-
     autoload :Application, 'app_kit/application'
     autoload :Configuration, 'app_kit/configuration'
     autoload :Resource, 'app_kit/resource'
@@ -37,6 +36,7 @@ module AppKit
       autoload :ApplicationDsl, 'app_kit/dsl/application_dsl'
     end
 
+    @@application = Application.new
     def self.application
       @@application
     end

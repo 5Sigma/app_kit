@@ -1,13 +1,25 @@
 module AppKit::Dsl::ApplicationDsl
+  # DSL method to set the application title. This is called from the
+  # initializer.
   def title(title_text)
+    puts "title called"
     config.application_title = title_text
   end
+
+  # DSL method to disable user authentication. This is called from the
+  # initializer
   def disable_authentication
     config.authentication_enabled = false
   end
+
+  # DSL method for configuring the dashboard. This is called from the
+  # initializer
   def dashboard(&block)
-    dashboard.instance_eval(&block)
+    AppKit.application.dashboard_view.instance_eval(&block)
   end
+
+  # DSL method for creating custom naviation items. This is called from the
+  # initializer
   def navigation_item(title, path_helper,options ={})
     nav_item = AppKit::NavigationItem.new
     nav_item.title = title

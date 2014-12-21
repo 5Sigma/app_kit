@@ -7,9 +7,11 @@ module AppKit
     controller = AppKit.const_set("#{controller_name}Controller",
                                   Class.new(ResourcesController))
     controller.resource = Resource.new(model)
+    # process resource dsl
     controller.resource.instance_exec(&block)  if block_given?
     controller.resource.controller_name = controller.controller_name
     controller.prepend_view_path("app/views/#{model.name.underscore.pluralize}")
+
     # draw controller routes
     AppKit::Engine.routes.append do
       resources resource_name.to_sym do
@@ -30,8 +32,6 @@ module AppKit
     end
   end
   def self.setup(&block)
-    @@application = Application.new
-    AppKit.application.setup!
-    AppKit.application.instance_exec(&block)
+      AppKit.application.setup!(&block)
   end
 end
