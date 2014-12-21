@@ -2,7 +2,6 @@ module AppKit::Dsl::ApplicationDsl
   # DSL method to set the application title. This is called from the
   # initializer.
   def title(title_text)
-    puts "title called"
     config.application_title = title_text
   end
 

@@ -2,20 +2,20 @@ PATH
   remote: .
   specs:
     app_kit (0.0.1)
-      as_csv
+      as_csv (>= 2.0)
       bourbon
       coffee-rails
-      devise
-      font-awesome-sass
+      devise (>= 3.0)
+      font-awesome-sass (~> 4.2)
       jquery-rails
       jquery-ui-rails
-      kaminari
+      kaminari (~> 0.16)
       neat
-      paper_trail
-      rails (~> 4.1.6)
-      sass-rails (~> 4.0.3)
-      simple_form
-      slim-rails
+      paper_trail (~> 3.0)
+      rails (>= 4.0)
+      sass-rails
+      simple_form (~> 3.1)
+      slim (~> 3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -197,14 +197,9 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    slim (2.1.0)
-      temple (~> 0.6.9)
+    slim (3.0.0)
+      temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
-    slim-rails (2.1.5)
-      actionpack (>= 3.0, < 4.2)
-      activesupport (>= 3.0, < 4.2)
-      railties (>= 3.0, < 4.2)
-      slim (~> 2.0)
     slop (3.6.0)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -216,7 +211,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     sqlite3 (1.3.10)
-    temple (0.6.10)
+    temple (0.7.3)
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -228,7 +223,6 @@ GEM
       rack (>= 1.0)
     xpath (2.0.0)
       nokogiri (~> 1.3)
-    yard (0.8.7.6)
 
 PLATFORMS
   ruby
@@ -244,4 +238,3 @@ DEPENDENCIES
   pry-rails
   rspec-rails
   sqlite3
-  yard
